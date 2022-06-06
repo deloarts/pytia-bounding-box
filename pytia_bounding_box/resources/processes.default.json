@@ -1,0 +1,14 @@
+[
+    {
+        "name": "Milling",
+        "preset": "Standard"
+    },
+    {
+        "name": "Turning",
+        "preset": "Shaft"
+    },
+    {
+        "name": "Cutting",
+        "preset": "Cut"
+    }
+]
