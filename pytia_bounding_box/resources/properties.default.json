@@ -1,0 +1,7 @@
+{
+    "base_size": "pytia.base_size",
+    "base_size_preset": "pytia.base_size_preset",
+    "creator": "pytia.creator",
+    "modifier": "pytia.modifier",
+    "process": "pytia.process_1"
+}

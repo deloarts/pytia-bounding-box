@@ -1,0 +1,36 @@
+{
+    "title": "PYTIA Bounding Box",
+    "debug": false,
+    "precision": 3,
+    "offset": {
+        "min": 0,
+        "max": 10,
+        "tick": 1
+    },
+    "step": {
+        "min": 0,
+        "max": 10,
+        "tick": 5
+    },
+    "parameters": {
+        "thickness": "section_thickness"
+    },
+    "enable_information": true,
+    "allow_all_users": false,
+    "allow_property_creation": true,
+    "save_modifier_by": "%id% | %name%",
+    "paths": {
+        "local_dependencies": "C:\\pytia\\local_deps",
+        "release": "C:\\pytia\\release"
+    },
+    "files": {
+        "app": "pytia_bounding_box.pyz",
+        "launcher": "pytia_bounding_box.catvbs"
+    },
+    "urls": {
+        "help": "https://github.com/deloarts/pytia-bounding-box"
+    },
+    "mails": {
+        "admin": "admin@company.com"
+    }
+}
