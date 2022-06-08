@@ -531,6 +531,8 @@ class GUI(tk.Tk):
     def callback_combobox_preset(self, _: tk.Event) -> None:
         """Callback for the presets combo box widget."""
         log.info(f"Callback Combobox Preset: User selected {self.combo_preset.get()!r}")
+        self.pre_selected_preset_reason = ""
+
         self.load_combobox_preset()
         self.load_combobox_axis()
         self.load_scale_offset()
