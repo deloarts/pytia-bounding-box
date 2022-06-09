@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -15,6 +15,7 @@ PYTIA_BOUNDING_BOX = "pytia_bounding_box"
 APP_NAME = "PYTIA Bounding Box"
 APP_VERSION = __version__
 
+CNEXT = "win_b64\\code\\bin\\CNEXT.exe"
 TEMP = str(os.environ.get("TEMP"))
 APPDATA = f"{str(os.environ.get('APPDATA'))}\\{PYTIA}\\{PYTIA_BOUNDING_BOX}"
 LOGS = f"{APPDATA}\\logs"
@@ -42,12 +43,16 @@ WEB_PIP = "www.pypi.org"
 
 
 class Preference(Enum):
+    """Enum class for preference settings."""
+
     MIN = "min"
     MAX = "max"
     AXIS = "axis"
 
 
 class Axes(Enum):
+    """Enum class for axes."""
+
     X = "X-Axis"
     Y = "Y-Axis"
     Z = "Z-Axis"

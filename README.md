@@ -3,7 +3,7 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-Alpha-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.1.0-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/badge/Version-0.1.1-orange.svg?style=for-the-badge)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
@@ -162,7 +162,7 @@ Use the launcher (a.k.a the catvbs-file) to launch the app. On the first run all
 
 ![Installer](assets/images/installer.png)
 
-After the installation restart the app using the launcher:
+After the installation the app starts automatically:
 
 ![App](assets/images/app.png)
 

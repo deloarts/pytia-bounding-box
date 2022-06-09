@@ -29,7 +29,14 @@ from socket import gaierror
 from tkinter import ttk
 from typing import Dict, List
 
-from const import CONFIG_DEPS, CONFIG_DEPS_DEFAULT, VENV_PYTHON, VENV_PYTHONW, WEB_PIP
+from const import (
+    CNEXT,
+    CONFIG_DEPS,
+    CONFIG_DEPS_DEFAULT,
+    VENV_PYTHON,
+    VENV_PYTHONW,
+    WEB_PIP,
+)
 from resources import resource
 
 
@@ -155,10 +162,10 @@ class Dependencies:
                 result = tkmsg.askyesno(
                     title=resource.settings.title,
                     message=(
-                        f"The app is not running in its virtualenv environment. "
-                        f"This will install all dependencies global, which can lead to unexpected "
-                        f"behaviour.\n\nProceed with installing dependencies global?\n\n"
-                        f"Hint: To run the app in its environment use the launcher."
+                        "The app is not running in its virtualenv environment. "
+                        "This will install all dependencies global, which can lead to unexpected "
+                        "behaviour.\n\nProceed with installing dependencies global?\n\n"
+                        "Hint: To run the app in its environment use the launcher."
                     ),
                     icon="warning",
                 )
@@ -184,8 +191,20 @@ class Dependencies:
                 else:
                     tkmsg.showinfo(
                         title=resource.settings.title,
-                        message="Updated dependencies.\
-                            \n\nClick OK to close the app and apply changes.",
+                        message=(
+                            "Successfully updated the app.\n\n"
+                            "The app will start automatically, once all changes have been applied. "
+                            "This may take a while.\n\nClick OK to continue."
+                        ),
+                    )
+                    subprocess.Popen(  # pylint: disable=R1732
+                        [
+                            f"{resource.settings.paths.catia}\\{CNEXT}",
+                            "-batch",
+                            "-macro",
+                            f"{resource.settings.paths.release}\\"
+                            f"{resource.settings.files.launcher}",
+                        ]
                     )
             else:
                 tkmsg.showerror(

@@ -36,7 +36,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = &#34;0.1.0&#34;
+__version__ = &#34;0.1.1&#34;
 
 PYTIA = &#34;pytia&#34;
 PYTIA_BOUNDING_BOX = &#34;pytia_bounding_box&#34;
@@ -44,6 +44,7 @@ PYTIA_BOUNDING_BOX = &#34;pytia_bounding_box&#34;
 APP_NAME = &#34;PYTIA Bounding Box&#34;
 APP_VERSION = __version__
 
+CNEXT = &#34;win_b64\\code\\bin\\CNEXT.exe&#34;
 TEMP = str(os.environ.get(&#34;TEMP&#34;))
 APPDATA = f&#34;{str(os.environ.get(&#39;APPDATA&#39;))}\\{PYTIA}\\{PYTIA_BOUNDING_BOX}&#34;
 LOGS = f&#34;{APPDATA}\\logs&#34;
@@ -71,12 +72,16 @@ WEB_PIP = &#34;www.pypi.org&#34;
 
 
 class Preference(Enum):
+    &#34;&#34;&#34;Enum class for preference settings.&#34;&#34;&#34;
+
     MIN = &#34;min&#34;
     MAX = &#34;max&#34;
     AXIS = &#34;axis&#34;
 
 
 class Axes(Enum):
+    &#34;&#34;&#34;Enum class for axes.&#34;&#34;&#34;
+
     X = &#34;X-Axis&#34;
     Y = &#34;Y-Axis&#34;
     Z = &#34;Z-Axis&#34;</code></pre>
@@ -96,12 +101,14 @@ class Axes(Enum):
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>An enumeration.</p></div>
+<div class="desc"><p>Enum class for axes.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Axes(Enum):
+    &#34;&#34;&#34;Enum class for axes.&#34;&#34;&#34;
+
     X = &#34;X-Axis&#34;
     Y = &#34;Y-Axis&#34;
     Z = &#34;Z-Axis&#34;</code></pre>
@@ -131,12 +138,14 @@ class Axes(Enum):
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>An enumeration.</p></div>
+<div class="desc"><p>Enum class for preference settings.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">class Preference(Enum):
+    &#34;&#34;&#34;Enum class for preference settings.&#34;&#34;&#34;
+
     MIN = &#34;min&#34;
     MAX = &#34;max&#34;
     AXIS = &#34;axis&#34;</code></pre>

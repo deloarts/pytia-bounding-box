@@ -69,7 +69,14 @@ from socket import gaierror
 from tkinter import ttk
 from typing import Dict, List
 
-from const import CONFIG_DEPS, CONFIG_DEPS_DEFAULT, VENV_PYTHON, VENV_PYTHONW, WEB_PIP
+from const import (
+    CNEXT,
+    CONFIG_DEPS,
+    CONFIG_DEPS_DEFAULT,
+    VENV_PYTHON,
+    VENV_PYTHONW,
+    WEB_PIP,
+)
 from resources import resource
 
 
@@ -195,10 +202,10 @@ class Dependencies:
                 result = tkmsg.askyesno(
                     title=resource.settings.title,
                     message=(
-                        f&#34;The app is not running in its virtualenv environment. &#34;
-                        f&#34;This will install all dependencies global, which can lead to unexpected &#34;
-                        f&#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
-                        f&#34;Hint: To run the app in its environment use the launcher.&#34;
+                        &#34;The app is not running in its virtualenv environment. &#34;
+                        &#34;This will install all dependencies global, which can lead to unexpected &#34;
+                        &#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
+                        &#34;Hint: To run the app in its environment use the launcher.&#34;
                     ),
                     icon=&#34;warning&#34;,
                 )
@@ -224,8 +231,20 @@ class Dependencies:
                 else:
                     tkmsg.showinfo(
                         title=resource.settings.title,
-                        message=&#34;Updated dependencies.\
-                            \n\nClick OK to close the app and apply changes.&#34;,
+                        message=(
+                            &#34;Successfully updated the app.\n\n&#34;
+                            &#34;The app will start automatically, once all changes have been applied. &#34;
+                            &#34;This may take a while.\n\nClick OK to continue.&#34;
+                        ),
+                    )
+                    subprocess.Popen(  # pylint: disable=R1732
+                        [
+                            f&#34;{resource.settings.paths.catia}\\{CNEXT}&#34;,
+                            &#34;-batch&#34;,
+                            &#34;-macro&#34;,
+                            f&#34;{resource.settings.paths.release}\\&#34;
+                            f&#34;{resource.settings.files.launcher}&#34;,
+                        ]
                     )
             else:
                 tkmsg.showerror(
@@ -427,10 +446,10 @@ deps = Dependencies()</code></pre>
                 result = tkmsg.askyesno(
                     title=resource.settings.title,
                     message=(
-                        f&#34;The app is not running in its virtualenv environment. &#34;
-                        f&#34;This will install all dependencies global, which can lead to unexpected &#34;
-                        f&#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
-                        f&#34;Hint: To run the app in its environment use the launcher.&#34;
+                        &#34;The app is not running in its virtualenv environment. &#34;
+                        &#34;This will install all dependencies global, which can lead to unexpected &#34;
+                        &#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
+                        &#34;Hint: To run the app in its environment use the launcher.&#34;
                     ),
                     icon=&#34;warning&#34;,
                 )
@@ -456,8 +475,20 @@ deps = Dependencies()</code></pre>
                 else:
                     tkmsg.showinfo(
                         title=resource.settings.title,
-                        message=&#34;Updated dependencies.\
-                            \n\nClick OK to close the app and apply changes.&#34;,
+                        message=(
+                            &#34;Successfully updated the app.\n\n&#34;
+                            &#34;The app will start automatically, once all changes have been applied. &#34;
+                            &#34;This may take a while.\n\nClick OK to continue.&#34;
+                        ),
+                    )
+                    subprocess.Popen(  # pylint: disable=R1732
+                        [
+                            f&#34;{resource.settings.paths.catia}\\{CNEXT}&#34;,
+                            &#34;-batch&#34;,
+                            &#34;-macro&#34;,
+                            f&#34;{resource.settings.paths.release}\\&#34;
+                            f&#34;{resource.settings.files.launcher}&#34;,
+                        ]
                     )
             else:
                 tkmsg.showerror(
@@ -506,10 +537,10 @@ deps = Dependencies()</code></pre>
             result = tkmsg.askyesno(
                 title=resource.settings.title,
                 message=(
-                    f&#34;The app is not running in its virtualenv environment. &#34;
-                    f&#34;This will install all dependencies global, which can lead to unexpected &#34;
-                    f&#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
-                    f&#34;Hint: To run the app in its environment use the launcher.&#34;
+                    &#34;The app is not running in its virtualenv environment. &#34;
+                    &#34;This will install all dependencies global, which can lead to unexpected &#34;
+                    &#34;behaviour.\n\nProceed with installing dependencies global?\n\n&#34;
+                    &#34;Hint: To run the app in its environment use the launcher.&#34;
                 ),
                 icon=&#34;warning&#34;,
             )
@@ -535,8 +566,20 @@ deps = Dependencies()</code></pre>
             else:
                 tkmsg.showinfo(
                     title=resource.settings.title,
-                    message=&#34;Updated dependencies.\
-                        \n\nClick OK to close the app and apply changes.&#34;,
+                    message=(
+                        &#34;Successfully updated the app.\n\n&#34;
+                        &#34;The app will start automatically, once all changes have been applied. &#34;
+                        &#34;This may take a while.\n\nClick OK to continue.&#34;
+                    ),
+                )
+                subprocess.Popen(  # pylint: disable=R1732
+                    [
+                        f&#34;{resource.settings.paths.catia}\\{CNEXT}&#34;,
+                        &#34;-batch&#34;,
+                        &#34;-macro&#34;,
+                        f&#34;{resource.settings.paths.release}\\&#34;
+                        f&#34;{resource.settings.files.launcher}&#34;,
+                    ]
                 )
         else:
             tkmsg.showerror(

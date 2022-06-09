@@ -14,13 +14,6 @@ playground/
 old.txt
 global_modules.txt
 
-# VS Code files
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
 # Config files
 information.json
 presets.json
@@ -28,6 +21,13 @@ properties.json
 processes.json
 settings.json
 users.json
+
+# VS Code files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
