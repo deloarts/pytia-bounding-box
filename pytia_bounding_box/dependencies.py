@@ -29,7 +29,14 @@ from socket import gaierror
 from tkinter import ttk
 from typing import Dict, List
 
-from const import CONFIG_DEPS, CONFIG_DEPS_DEFAULT, VENV_PYTHON, VENV_PYTHONW, WEB_PIP
+from const import (
+    CNEXT,
+    CONFIG_DEPS,
+    CONFIG_DEPS_DEFAULT,
+    VENV_PYTHON,
+    VENV_PYTHONW,
+    WEB_PIP,
+)
 from resources import resource
 
 
@@ -184,8 +191,19 @@ class Dependencies:
                 else:
                     tkmsg.showinfo(
                         title=resource.settings.title,
-                        message="Updated dependencies.\
-                            \n\nClick OK to close the app and apply changes.",
+                        message=(
+                            "Successfully updated the app.\n\n"
+                            "The app will start automatically, once all changes have been applied. "
+                            "This may take a while.\n\nClick OK to continue."
+                        ),
+                    )
+                    subprocess.Popen(
+                        [
+                            f"{resource.settings.paths.catia}\\{CNEXT}",
+                            "-batch",
+                            "-macro",
+                            f"{resource.settings.paths.release}\\{resource.settings.files.launcher}",
+                        ]
                     )
             else:
                 tkmsg.showerror(

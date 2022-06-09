@@ -52,6 +52,8 @@ Sub CATMain()
     
     ' Check environment folder for the current app version
     If Not Fso.FolderExists(VenvVersionFolder) Then
+        MsgBox "The app requires an update. Click OK to continue.", 0 + 64 + 65536 + 4096, "PYTIA Bounding Box"
+
         If Fso.FolderExists(VenvFolder) Then
             ' Delete old version folder
             Set Folders = Fso.GetFolder(VenvFolder)

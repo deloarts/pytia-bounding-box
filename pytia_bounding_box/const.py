@@ -15,6 +15,7 @@ PYTIA_BOUNDING_BOX = "pytia_bounding_box"
 APP_NAME = "PYTIA Bounding Box"
 APP_VERSION = __version__
 
+CNEXT = "win_b64\\code\\bin\\CNEXT.exe"
 TEMP = str(os.environ.get("TEMP"))
 APPDATA = f"{str(os.environ.get('APPDATA'))}\\{PYTIA}\\{PYTIA_BOUNDING_BOX}"
 LOGS = f"{APPDATA}\\logs"
