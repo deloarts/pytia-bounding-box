@@ -43,12 +43,16 @@ WEB_PIP = "www.pypi.org"
 
 
 class Preference(Enum):
+    """Enum class for preference settings."""
+
     MIN = "min"
     MAX = "max"
     AXIS = "axis"
 
 
 class Axes(Enum):
+    """Enum class for axes."""
+
     X = "X-Axis"
     Y = "Y-Axis"
     Z = "Z-Axis"

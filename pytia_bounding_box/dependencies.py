@@ -162,10 +162,10 @@ class Dependencies:
                 result = tkmsg.askyesno(
                     title=resource.settings.title,
                     message=(
-                        f"The app is not running in its virtualenv environment. "
-                        f"This will install all dependencies global, which can lead to unexpected "
-                        f"behaviour.\n\nProceed with installing dependencies global?\n\n"
-                        f"Hint: To run the app in its environment use the launcher."
+                        "The app is not running in its virtualenv environment. "
+                        "This will install all dependencies global, which can lead to unexpected "
+                        "behaviour.\n\nProceed with installing dependencies global?\n\n"
+                        "Hint: To run the app in its environment use the launcher."
                     ),
                     icon="warning",
                 )
@@ -197,12 +197,13 @@ class Dependencies:
                             "This may take a while.\n\nClick OK to continue."
                         ),
                     )
-                    subprocess.Popen(
+                    subprocess.Popen(  # pylint: disable=R1732
                         [
                             f"{resource.settings.paths.catia}\\{CNEXT}",
                             "-batch",
                             "-macro",
-                            f"{resource.settings.paths.release}\\{resource.settings.files.launcher}",
+                            f"{resource.settings.paths.release}\\"
+                            f"{resource.settings.files.launcher}",
                         ]
                     )
             else:

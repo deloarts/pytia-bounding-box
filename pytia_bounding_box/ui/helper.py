@@ -28,7 +28,7 @@ def show_help() -> None:
     else:
         tkmsg.showinfo(
             title=resource.settings.title,
-            message=f"Your administrator did not provide a help page for this app.",
+            message="Your administrator did not provide a help page for this app.",
         )
 
 
