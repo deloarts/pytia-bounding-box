@@ -560,6 +560,8 @@ class GUI(tk.Tk):
     def callback_combobox_preset(self, _: tk.Event) -&gt; None:
         &#34;&#34;&#34;Callback for the presets combo box widget.&#34;&#34;&#34;
         log.info(f&#34;Callback Combobox Preset: User selected {self.combo_preset.get()!r}&#34;)
+        self.pre_selected_preset_reason = &#34;&#34;
+
         self.load_combobox_preset()
         self.load_combobox_axis()
         self.load_scale_offset()
@@ -632,8 +634,8 @@ class GUI(tk.Tk):
         if preset_property and resource.preset_exists(preset_property):
             self.combo_preset.set(preset_property)
             self.pre_selected_preset_reason = (
-                f&#34;This preset has been pre-selected because it &#34;
-                f&#34;already existed in the part properties.\n\n&#34;
+                &#34;This preset has been pre-selected because it &#34;
+                &#34;already existed in the part properties.\n\n&#34;
             )
             return
 
@@ -1317,6 +1319,8 @@ is the name of the widget class.</p></div>
     def callback_combobox_preset(self, _: tk.Event) -&gt; None:
         &#34;&#34;&#34;Callback for the presets combo box widget.&#34;&#34;&#34;
         log.info(f&#34;Callback Combobox Preset: User selected {self.combo_preset.get()!r}&#34;)
+        self.pre_selected_preset_reason = &#34;&#34;
+
         self.load_combobox_preset()
         self.load_combobox_axis()
         self.load_scale_offset()
@@ -1389,8 +1393,8 @@ is the name of the widget class.</p></div>
         if preset_property and resource.preset_exists(preset_property):
             self.combo_preset.set(preset_property)
             self.pre_selected_preset_reason = (
-                f&#34;This preset has been pre-selected because it &#34;
-                f&#34;already existed in the part properties.\n\n&#34;
+                &#34;This preset has been pre-selected because it &#34;
+                &#34;already existed in the part properties.\n\n&#34;
             )
             return
 
@@ -1606,6 +1610,8 @@ is the name of the widget class.</p></div>
 <pre><code class="python">def callback_combobox_preset(self, _: tk.Event) -&gt; None:
     &#34;&#34;&#34;Callback for the presets combo box widget.&#34;&#34;&#34;
     log.info(f&#34;Callback Combobox Preset: User selected {self.combo_preset.get()!r}&#34;)
+    self.pre_selected_preset_reason = &#34;&#34;
+
     self.load_combobox_preset()
     self.load_combobox_axis()
     self.load_scale_offset()
@@ -1857,8 +1863,8 @@ def load_process(self) -&gt; None:
     if preset_property and resource.preset_exists(preset_property):
         self.combo_preset.set(preset_property)
         self.pre_selected_preset_reason = (
-            f&#34;This preset has been pre-selected because it &#34;
-            f&#34;already existed in the part properties.\n\n&#34;
+            &#34;This preset has been pre-selected because it &#34;
+            &#34;already existed in the part properties.\n\n&#34;
         )
         return
 
