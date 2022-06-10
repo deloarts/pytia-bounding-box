@@ -213,12 +213,13 @@ def sort_base_size(
                 if thickness_value:
                     try:
                         thickness_value = float(thickness_value)
-                        thickness_value = (
-                            int(thickness_value)
-                            if thickness_value.is_integer()
-                            else thickness_value
-                        )
-                        sorted_list.append(str(thickness_value))
+                        if thickness_value > 0:
+                            thickness_value = (
+                                int(thickness_value)
+                                if thickness_value.is_integer()
+                                else thickness_value
+                            )
+                            sorted_list.append(str(thickness_value))
                     except ValueError:
                         log.warning("Parameter 'thickness' cannot be casted to float.")
 
