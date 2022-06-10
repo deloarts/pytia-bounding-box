@@ -193,4 +193,5 @@ The result area is for a last check before saving the bounding box value to the 
 
 ## 5 changelog
 
+**v0.1.1**: Automatically restart app after update.  
 **v0.1.0**: Initial commit.  
