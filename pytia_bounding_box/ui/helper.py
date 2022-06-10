@@ -324,8 +324,8 @@ class LazyPartHelper:
         Returns:
             Optional[str]: The value of the property as string.
         """
-        if self.part_document.parameters.exists(name):
-            param = str(self.part_document.parameters.get(name).value)
+        if self.part_document.properties.exists(name):
+            param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f"Retrieved property {name} ({param}) from part.")
             return param
         else:
