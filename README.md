@@ -72,8 +72,10 @@ Files without 'default' or 'sample' in their names cannot be changed! Just leave
 
 Some dependencies are not publicly available on PyPi or GitHub (because they are private). Therefore it's necessary to provide the wheel-file locally for the app to auto-install it. The list below shows said local deps:
 
-- [pytia](https://github.com/deloarts/pytia)
-- [pytia-ui-tools](https://github.com/deloarts/pytia-ui-tools)
+Name | Link | Version
+--- | --- | ---
+**pytia** | <https://github.com/deloarts/pytia> | [0.1.0](https://github.com/deloarts/pytia/releases/tag/v0.1.0)
+**pytia-ui-tools** | <https://github.com/deloarts/pytia-ui-tools> | [0.1.2](https://github.com/deloarts/pytia-ui-tools/releases/tag/v0.1.2)
 
 > ❗️ The folder where you provide the local dependencies must match the **paths.local_dependencies** entry of the **settings.json**. The user must have at least read access on this folder.
 >
@@ -145,16 +147,20 @@ You can find the documentation in the [docs folder](/docs).
 
 On a new revision, do the following:
 
-1. Update **dependencies**: `poetry update`
-2. Update the **version** in
+1. Update **dependency versions** in
+   - [pyproject.toml](pyproject.toml)
+   - [dependencies.json](pytia_bounding_box/resources/dependencies.json)
+   - [README.md](README.md)
+2. Update **dependencies**: `poetry update`
+3. Update the **version** in
    - [pyproject.toml](pyproject.toml)
    - [__ init __.py](pytia_bounding_box/__init__.py)
    - [README.md](README.md)
-3. Run all **tests**: `poetry run pytest`
-4. Check **pylint** output: `poetry run pylint pytia_bounding_box/`
-5. Update the **documentation**: `poetry run pdoc --force --html --output-dir docs pytia_bounding_box`
-6. Update the **lockfile**: `poetry lock`
-7. Update the **requirements.txt**: `poetry export --dev -f requirements.txt -o requirements.txt`
+4. Run all **tests**: `poetry run pytest`
+5. Check **pylint** output: `poetry run pylint pytia_bounding_box/`
+6. Update the **documentation**: `poetry run pdoc --force --html --output-dir docs pytia_bounding_box`
+7. Update the **lockfile**: `poetry lock`
+8. Update the **requirements.txt**: `poetry export --dev -f requirements.txt -o requirements.txt`
 
 ## 3 usage
 
