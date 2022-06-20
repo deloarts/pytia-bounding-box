@@ -242,12 +242,13 @@ def sort_base_size(
                 if thickness_value:
                     try:
                         thickness_value = float(thickness_value)
-                        thickness_value = (
-                            int(thickness_value)
-                            if thickness_value.is_integer()
-                            else thickness_value
-                        )
-                        sorted_list.append(str(thickness_value))
+                        if thickness_value &gt; 0:
+                            thickness_value = (
+                                int(thickness_value)
+                                if thickness_value.is_integer()
+                                else thickness_value
+                            )
+                            sorted_list.append(str(thickness_value))
                     except ValueError:
                         log.warning(&#34;Parameter &#39;thickness&#39; cannot be casted to float.&#34;)
 
@@ -352,8 +353,8 @@ class LazyPartHelper:
         Returns:
             Optional[str]: The value of the property as string.
         &#34;&#34;&#34;
-        if self.part_document.parameters.exists(name):
-            param = str(self.part_document.parameters.get(name).value)
+        if self.part_document.properties.exists(name):
+            param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f&#34;Retrieved property {name} ({param}) from part.&#34;)
             return param
         else:
@@ -710,12 +711,13 @@ numbers can't be sorted.</dd>
                 if thickness_value:
                     try:
                         thickness_value = float(thickness_value)
-                        thickness_value = (
-                            int(thickness_value)
-                            if thickness_value.is_integer()
-                            else thickness_value
-                        )
-                        sorted_list.append(str(thickness_value))
+                        if thickness_value &gt; 0:
+                            thickness_value = (
+                                int(thickness_value)
+                                if thickness_value.is_integer()
+                                else thickness_value
+                            )
+                            sorted_list.append(str(thickness_value))
                     except ValueError:
                         log.warning(&#34;Parameter &#39;thickness&#39; cannot be casted to float.&#34;)
 
@@ -837,8 +839,8 @@ document changes all operations will be made on the original document.</p>
         Returns:
             Optional[str]: The value of the property as string.
         &#34;&#34;&#34;
-        if self.part_document.parameters.exists(name):
-            param = str(self.part_document.parameters.get(name).value)
+        if self.part_document.properties.exists(name):
+            param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f&#34;Retrieved property {name} ({param}) from part.&#34;)
             return param
         else:
@@ -968,8 +970,8 @@ def get_property(self, name: str) -&gt; Optional[str]:
     Returns:
         Optional[str]: The value of the property as string.
     &#34;&#34;&#34;
-    if self.part_document.parameters.exists(name):
-        param = str(self.part_document.parameters.get(name).value)
+    if self.part_document.properties.exists(name):
+        param = str(self.part_document.properties.get_by_name(name).value)
         log.info(f&#34;Retrieved property {name} ({param}) from part.&#34;)
         return param
     else:

@@ -71,6 +71,9 @@ t0 = time.perf_counter()
 class GUI(tk.Tk):
     &#34;&#34;&#34;The user interface of the app.&#34;&#34;&#34;
 
+    HEIGHT = 470
+    WIDTH = 365
+
     def __init__(self) -&gt; None:
         tk.Tk.__init__(self)
 
@@ -136,36 +139,15 @@ class GUI(tk.Tk):
         self.default_font.configure(family=&#34;Segoe UI&#34;, size=10)
         self.report_callback_exception = self.error_handler.exceptions_callback
 
-        window_height = 470
-        window_width = 365
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
-        x_coordinate = int((screen_width / 2) - (window_width / 2))
-        y_coordinate = int((screen_height / 2) - (window_height / 2))
-        self.geometry(f&#34;{window_width}x{window_height}+{x_coordinate}+{y_coordinate}&#34;)
+        x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
+        y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
+        self.geometry(f&#34;{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}&#34;)
 
         # STYLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        # TTK Padding: ipad_left ipad_top ipad_right ipad_bottom
         style = ttk.Style(self)
-        style.configure(
-            &#34;Global.TEntry&#34;,
-            # padding=(5, 5, 5, 5),
-            border_radius=&#34;1px solid&#34;,
-            # background=&#34;#4d4d4d&#34;,
-        )
-        style.configure(
-            &#34;Global.TLabel&#34;, background=&#34;#b32015&#34;, foreground=&#34;blue&#34;, cursor=&#34;hand2&#34;
-        )
-        style.configure(
-            &#34;Footer.TButton&#34;,
-            # padding=(2, 1, 2, 1),
-            width=12,
-        )
         style.configure(&#34;Grey.TCheckbutton&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Main.TOption&#34;, width=100)
-        style.configure(&#34;Header.TFrame&#34;)
-        style.configure(&#34;Main.TFrame&#34;)
-        style.configure(&#34;Footer.TFrame&#34;)
 
         # LAYOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -830,6 +812,9 @@ is the name of the widget class.</p></div>
 <pre><code class="python">class GUI(tk.Tk):
     &#34;&#34;&#34;The user interface of the app.&#34;&#34;&#34;
 
+    HEIGHT = 470
+    WIDTH = 365
+
     def __init__(self) -&gt; None:
         tk.Tk.__init__(self)
 
@@ -895,36 +880,15 @@ is the name of the widget class.</p></div>
         self.default_font.configure(family=&#34;Segoe UI&#34;, size=10)
         self.report_callback_exception = self.error_handler.exceptions_callback
 
-        window_height = 470
-        window_width = 365
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
-        x_coordinate = int((screen_width / 2) - (window_width / 2))
-        y_coordinate = int((screen_height / 2) - (window_height / 2))
-        self.geometry(f&#34;{window_width}x{window_height}+{x_coordinate}+{y_coordinate}&#34;)
+        x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
+        y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
+        self.geometry(f&#34;{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}&#34;)
 
         # STYLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        # TTK Padding: ipad_left ipad_top ipad_right ipad_bottom
         style = ttk.Style(self)
-        style.configure(
-            &#34;Global.TEntry&#34;,
-            # padding=(5, 5, 5, 5),
-            border_radius=&#34;1px solid&#34;,
-            # background=&#34;#4d4d4d&#34;,
-        )
-        style.configure(
-            &#34;Global.TLabel&#34;, background=&#34;#b32015&#34;, foreground=&#34;blue&#34;, cursor=&#34;hand2&#34;
-        )
-        style.configure(
-            &#34;Footer.TButton&#34;,
-            # padding=(2, 1, 2, 1),
-            width=12,
-        )
         style.configure(&#34;Grey.TCheckbutton&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Main.TOption&#34;, width=100)
-        style.configure(&#34;Header.TFrame&#34;)
-        style.configure(&#34;Main.TFrame&#34;)
-        style.configure(&#34;Footer.TFrame&#34;)
 
         # LAYOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1557,6 +1521,17 @@ is the name of the widget class.</p></div>
 <li>tkinter.Misc</li>
 <li>tkinter.Wm</li>
 </ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pytia_bounding_box.ui.GUI.HEIGHT"><code class="name">var <span class="ident">HEIGHT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pytia_bounding_box.ui.GUI.WIDTH"><code class="name">var <span class="ident">WIDTH</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
 <dt id="pytia_bounding_box.ui.GUI.bindings"><code class="name flex">
@@ -2137,6 +2112,8 @@ the OK button accordingly to the validation result.</p></div>
 <li>
 <h4><code><a title="pytia_bounding_box.ui.GUI" href="#pytia_bounding_box.ui.GUI">GUI</a></code></h4>
 <ul class="">
+<li><code><a title="pytia_bounding_box.ui.GUI.HEIGHT" href="#pytia_bounding_box.ui.GUI.HEIGHT">HEIGHT</a></code></li>
+<li><code><a title="pytia_bounding_box.ui.GUI.WIDTH" href="#pytia_bounding_box.ui.GUI.WIDTH">WIDTH</a></code></li>
 <li><code><a title="pytia_bounding_box.ui.GUI.bindings" href="#pytia_bounding_box.ui.GUI.bindings">bindings</a></code></li>
 <li><code><a title="pytia_bounding_box.ui.GUI.callback_combobox_axis" href="#pytia_bounding_box.ui.GUI.callback_combobox_axis">callback_combobox_axis</a></code></li>
 <li><code><a title="pytia_bounding_box.ui.GUI.callback_combobox_preset" href="#pytia_bounding_box.ui.GUI.callback_combobox_preset">callback_combobox_preset</a></code></li>
