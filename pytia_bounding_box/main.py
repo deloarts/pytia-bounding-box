@@ -5,9 +5,10 @@
     Main module for the app.
 """
 
+import atexit
 import os
 
-from const import APP_VERSION, LOG, LOGS
+from const import APP_VERSION, LOG, LOGS, PID, PID_FILE
 from dependencies import deps
 from resources import resource
 
@@ -25,12 +26,16 @@ def main() -> None:
 
     from ui import GUI  # pylint: disable=C0415
 
+    with open(PID_FILE, "w") as f:
+        f.write(str(PID))
+    atexit.register(lambda: os.remove(PID_FILE))
+
     os.makedirs(LOGS, exist_ok=True)
     if resource.settings.debug:
         log.set_level_debug()
     log.add_stream_handler()
     log.add_file_handler(folder=LOGS, filename=LOG)
-    log.info(f"Running PYTIA Bounding Box {APP_VERSION}")
+    log.info(f"Running PYTIA Bounding Box {APP_VERSION}, PID={PID}")
 
     gui = GUI()
     gui.run()
