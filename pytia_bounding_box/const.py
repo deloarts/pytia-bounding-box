@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -20,6 +20,8 @@ TEMP = str(os.environ.get("TEMP"))
 APPDATA = f"{str(os.environ.get('APPDATA'))}\\{PYTIA}\\{PYTIA_BOUNDING_BOX}"
 LOGS = f"{APPDATA}\\logs"
 LOG = "app.log"
+PID = os.getpid()
+PID_FILE = f"{TEMP}\\{PYTIA_BOUNDING_BOX}.pid"
 VENV = f"\\.env\\{APP_VERSION}"
 VENV_PYTHON = VENV + "\\Scripts\\python.exe"
 VENV_PYTHONW = VENV + "\\Scripts\\pythonw.exe"

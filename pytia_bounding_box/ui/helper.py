@@ -213,12 +213,13 @@ def sort_base_size(
                 if thickness_value:
                     try:
                         thickness_value = float(thickness_value)
-                        thickness_value = (
-                            int(thickness_value)
-                            if thickness_value.is_integer()
-                            else thickness_value
-                        )
-                        sorted_list.append(str(thickness_value))
+                        if thickness_value > 0:
+                            thickness_value = (
+                                int(thickness_value)
+                                if thickness_value.is_integer()
+                                else thickness_value
+                            )
+                            sorted_list.append(str(thickness_value))
                     except ValueError:
                         log.warning("Parameter 'thickness' cannot be casted to float.")
 
@@ -323,8 +324,8 @@ class LazyPartHelper:
         Returns:
             Optional[str]: The value of the property as string.
         """
-        if self.part_document.parameters.exists(name):
-            param = str(self.part_document.parameters.get(name).value)
+        if self.part_document.properties.exists(name):
+            param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f"Retrieved property {name} ({param}) from part.")
             return param
         else:

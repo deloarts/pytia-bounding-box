@@ -42,6 +42,9 @@ t0 = time.perf_counter()
 class GUI(tk.Tk):
     """The user interface of the app."""
 
+    HEIGHT = 470
+    WIDTH = 365
+
     def __init__(self) -> None:
         tk.Tk.__init__(self)
 
@@ -107,36 +110,15 @@ class GUI(tk.Tk):
         self.default_font.configure(family="Segoe UI", size=10)
         self.report_callback_exception = self.error_handler.exceptions_callback
 
-        window_height = 470
-        window_width = 365
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
-        x_coordinate = int((screen_width / 2) - (window_width / 2))
-        y_coordinate = int((screen_height / 2) - (window_height / 2))
-        self.geometry(f"{window_width}x{window_height}+{x_coordinate}+{y_coordinate}")
+        x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
+        y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
+        self.geometry(f"{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}")
 
         # STYLES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        # TTK Padding: ipad_left ipad_top ipad_right ipad_bottom
         style = ttk.Style(self)
-        style.configure(
-            "Global.TEntry",
-            # padding=(5, 5, 5, 5),
-            border_radius="1px solid",
-            # background="#4d4d4d",
-        )
-        style.configure(
-            "Global.TLabel", background="#b32015", foreground="blue", cursor="hand2"
-        )
-        style.configure(
-            "Footer.TButton",
-            # padding=(2, 1, 2, 1),
-            width=12,
-        )
         style.configure("Grey.TCheckbutton", foreground="grey")
-        style.configure("Main.TOption", width=100)
-        style.configure("Header.TFrame")
-        style.configure("Main.TFrame")
-        style.configure("Footer.TFrame")
 
         # LAYOUT ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
