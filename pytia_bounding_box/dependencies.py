@@ -221,7 +221,7 @@ class VisualInstaller(tk.Tk):
         super().__init__()
 
         self.packages: dict
-        self.message = tk.StringVar()
+        self.message = tk.StringVar(name="message")
         self.progress = tk.IntVar(value=1)
 
         self.title = f"{resource.settings.title} | Installer"

@@ -53,20 +53,20 @@ class GUI(tk.Tk):
         self.y_measure = 0.0
         self.z_measure = 0.0
 
-        self.scale_offset_value = tk.IntVar()
-        self.scale_step_value = tk.IntVar()
-        self.thickness_value = tk.BooleanVar()
+        self.scale_offset_value = tk.IntVar(name="scale_offset_value")
+        self.scale_step_value = tk.IntVar(name="scale_step_value")
+        self.thickness_value = tk.BooleanVar(name="thickness_value")
 
-        self.entry_measure_x_text = tk.StringVar()
-        self.entry_measure_y_text = tk.StringVar()
-        self.entry_measure_z_text = tk.StringVar()
+        self.entry_measure_x_text = tk.StringVar(name="entry_measure_x_text")
+        self.entry_measure_y_text = tk.StringVar(name="entry_measure_y_text")
+        self.entry_measure_z_text = tk.StringVar(name="entry_measure_z_text")
 
-        self.entry_value_x_text = tk.StringVar()
-        self.entry_value_y_text = tk.StringVar()
-        self.entry_value_z_text = tk.StringVar()
+        self.entry_value_x_text = tk.StringVar(name="entry_value_x_text")
+        self.entry_value_y_text = tk.StringVar(name="entry_value_y_text")
+        self.entry_value_z_text = tk.StringVar(name="entry_value_z_text")
 
-        self.entry_result_current_text = tk.StringVar()
-        self.entry_result_new_text = tk.StringVar()
+        self.entry_result_current_text = tk.StringVar(name="entry_result_current_text")
+        self.entry_result_new_text = tk.StringVar(name="entry_result_new_text")
 
         self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
         self.selected_preset = resource.presets[0]
