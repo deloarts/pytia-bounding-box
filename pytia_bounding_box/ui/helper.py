@@ -2,6 +2,7 @@
     Helper functions and classes for the UI.
 """
 
+import atexit
 import functools
 import re
 import time
@@ -253,6 +254,7 @@ class LazyPartHelper:
         # pylint: disable=C0415
         # pylint: disable=C0103
         t0 = time.perf_counter()
+        from pytia.framework import framework
         from pytia.wrapper.documents.part_documents import PyPartDocument
 
         t1 = time.perf_counter()
@@ -260,9 +262,24 @@ class LazyPartHelper:
         # pylint: enable=C0415
         # pylint: enable=C0103
 
+        self.framework = framework
         self.part_document = PyPartDocument()
         self.part_document.current()
         self.part_name = self.part_document.document.name
+
+        self._lock_catia(True)
+        atexit.register(lambda: self._lock_catia(False))
+
+    def _lock_catia(self, value: bool) -> None:
+        log.debug(f"Setting catia lock to {value!r}")
+        self.framework.catia.refresh_display = not value
+        self.framework.catia.interactive = not value
+        self.framework.catia.display_file_alerts = value
+        self.framework.catia.undo_redo_lock = value
+        if value:
+            self.framework.catia.disable_new_undo_redo_transaction()
+        else:
+            self.framework.catia.enable_new_undo_redo_transaction()
 
     def _part_changed(self) -> bool:
         """Returns True if the current part document has changed, False if not."""
