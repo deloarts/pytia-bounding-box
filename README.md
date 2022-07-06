@@ -3,7 +3,7 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-Alpha-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.1.2-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/badge/Version-0.2.0-orange.svg?style=for-the-badge)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
@@ -199,6 +199,7 @@ The result area is for a last check before saving the bounding box value to the 
 
 ## 5 changelog
 
+**v0.2.0**: Add workspace.  
 **v0.1.2**: Create pid file in tempfolder.  
 **v0.1.1**: Automatically restart app after update.  
 **v0.1.0**: Initial commit.  

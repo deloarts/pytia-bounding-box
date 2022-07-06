@@ -261,7 +261,7 @@ class VisualInstaller(tk.Tk):
         super().__init__()
 
         self.packages: dict
-        self.message = tk.StringVar()
+        self.message = tk.StringVar(name=&#34;message&#34;)
         self.progress = tk.IntVar(value=1)
 
         self.title = f&#34;{resource.settings.title} | Installer&#34;
@@ -657,7 +657,7 @@ is the name of the widget class.</p></div>
         super().__init__()
 
         self.packages: dict
-        self.message = tk.StringVar()
+        self.message = tk.StringVar(name=&#34;message&#34;)
         self.progress = tk.IntVar(value=1)
 
         self.title = f&#34;{resource.settings.title} | Installer&#34;

@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pytia_bounding_box.app.loaders API documentation</title>
+<meta name="description" content="The loaders submodule of the app. Holds all loader methods in the Loaders class." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pytia_bounding_box.app.loaders</code></h1>
+</header>
+<section id="section-intro">
+<p>The loaders submodule of the app. Holds all loader methods in the Loaders class.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+    The loaders submodule of the app. Holds all loader methods in the Loaders class.
+&#34;&#34;&#34;
+
+import tkinter as tk
+
+from const import Axes
+from pytia_ui_tools.widgets.tooltips import ToolTip
+from resources import resource
+
+from app.helper import LazyPartHelper, get_offset, get_preferred_axis, sort_base_size
+from app.layout import Layout
+from app.state import UISetter
+from app.validators import Validators
+from app.vars import Variables
+
+
+class Loaders:
+    &#34;&#34;&#34;The Loaders class. Provides access to the loader methods.&#34;&#34;&#34;
+
+    def __init__(
+        self,
+        root: tk.Tk,
+        variables: Variables,
+        validators: Validators,
+        lazy_part_helper: LazyPartHelper,
+        layout: Layout,
+        ui_setter: UISetter,
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Inits the Loaders class. This class is responsible for providing the loader methods.
+
+        Args:
+            root (tk.Tk): The main window of the application.
+            vars (Variables): The variables of the main window.
+            validators (Validators): The validators instance.
+            lazy_part_helper (LazyPartHelper): The lazy part helper instance.
+            layout (Layout): The main layout of the application.
+            ui_setter (UISetter): The ui setter of the main window.
+        &#34;&#34;&#34;
+        self.root = root
+        self.vars = variables
+        self.validators = validators
+        self.part_helper = lazy_part_helper
+        self.layout = layout
+        self.set_ui = ui_setter
+
+    def load_existing_base_size(self) -&gt; None:
+        &#34;&#34;&#34;Loads the pre-existing base size from the part document to the UI.&#34;&#34;&#34;
+        if prop := self.part_helper.get_property(resource.props.base_size):
+            self.vars.entry_result_current_text.set(prop)
+        else:
+            self.vars.entry_result_current_text.set(&#34;&#34;)
+
+    def load_measurements(self) -&gt; None:
+        &#34;&#34;&#34;Retrieves the base size from the body and writes the values to the UI.&#34;&#34;&#34;
+        self.set_ui.busy()
+
+        # Late importing improves the GUI loading time.
+        # pylint: disable=C0415
+        from pytia.utilities.bounding_box import get_bounding_box
+
+        # pylint: enable=C0415
+
+        (
+            self.vars.x_measure,
+            self.vars.y_measure,
+            self.vars.z_measure,
+        ) = get_bounding_box(n_digits=resource.settings.precision)
+
+        self.vars.entry_measure_x_text.set(str(self.vars.x_measure))
+        self.vars.entry_measure_y_text.set(str(self.vars.y_measure))
+        self.vars.entry_measure_z_text.set(str(self.vars.z_measure))
+        self.set_ui.normal()
+
+    def load_process(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the process property from the part document.
+        Pre-selects the preset-combobox by this process or
+        on an the existing preset from the parts properties.
+
+        Always favors the existing preset from the parts properties.
+        &#34;&#34;&#34;
+        self.set_ui.busy()
+
+        preset_property = self.part_helper.get_property(resource.props.base_size_preset)
+        if preset_property and resource.preset_exists(preset_property):
+            self.layout.combo_preset.set(preset_property)
+            self.vars.pre_selected_preset_reason = (
+                &#34;This preset has been pre-selected because it &#34;
+                &#34;already existed in the part properties.\n\n&#34;
+            )
+            self.set_ui.normal()
+            return
+
+        process_property = self.part_helper.get_property(resource.props.process)
+        if process_property and resource.process_exists(process_property):
+            process = resource.get_process_by_name(process_property)
+            if resource.preset_exists(process.preset):
+                self.layout.combo_preset.set(process.preset)
+                self.vars.pre_selected_preset_reason = (
+                    f&#34;This preset has been pre-selected because of the process &#34;
+                    f&#34;property {process_property!r}.\n\n&#34;
+                )
+                self.set_ui.normal()
+                return
+
+        self.set_ui.normal()
+
+    def load_combobox_preset(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the selected preset from the preset-combobox to the UI.
+        Pre-selects the axis based on the preference from the presets config file.
+
+        Requires valid measurements.
+        &#34;&#34;&#34;
+        self.vars.selected_preset = resource.get_preset_by_name(
+            self.layout.combo_preset.get()
+        )
+        self.layout.combo_axis.set(
+            get_preferred_axis(
+                self.vars.x_measure,
+                self.vars.y_measure,
+                self.vars.z_measure,
+                self.vars.selected_preset,
+            ).value
+        )
+        ToolTip(
+            self.layout.combo_preset,
+            text=self.vars.pre_selected_preset_reason
+            + self.vars.selected_preset.tooltip,
+        )
+
+    def load_combobox_axis(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the selected axis based on the preference from the
+        presets config file to the UI.
+
+        Disables the axis-combobox when no preference is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.preference:
+            self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
+            self.vars.selected_axis = Axes(self.layout.combo_axis.get())
+        else:
+            self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
+            self.vars.selected_axis = Axes.X
+
+    def load_scale_offset(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the offset value according to the presets config file to the UI.
+        Disables the offset-scale when no offset is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.offset:
+            self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
+            self.vars.scale_offset_value.set(self.vars.selected_preset.offset)
+        else:
+            self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
+            self.vars.scale_offset_value.set(0)
+
+    def load_scale_step(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the step value according to the presets config file to the UI.
+        Disables the offset-scale when no offset is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.offset:
+            self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
+            self.vars.scale_step_value.set(self.vars.selected_preset.step)
+        else:
+            self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
+            self.vars.scale_step_value.set(0)
+
+    def load_chkbox_thickness(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the thickness checkbox depending on the presets config file and
+        the available part parameters.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.coord == 4:
+            thickness_param = self.part_helper.get_parameter(
+                resource.settings.parameters.thickness
+            )
+            if thickness_param:
+                self.vars.thickness_value.set(True)
+                self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
+                self.layout.chkbox_thickness[
+                    &#34;text&#34;
+                ] = f&#34;({resource.settings.parameters.thickness}: {thickness_param})&#34;
+                return
+
+        self.vars.thickness_value.set(False)
+        self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
+        self.layout.chkbox_thickness[&#34;text&#34;] = &#34;&#34;
+
+    def load_calculated(self) -&gt; None:
+        &#34;&#34;&#34;
+        Calculates the offset for the measurements according to the preset
+        config file. Loads the calculated values to the UI.
+
+        Requires valid measurements.
+        &#34;&#34;&#34;
+        x_calc, y_calc, z_calc = get_offset(
+            self.vars.x_measure,
+            self.vars.y_measure,
+            self.vars.z_measure,
+            self.vars.selected_preset,
+            self.vars.selected_axis,
+            self.vars.scale_offset_value,
+            self.vars.scale_step_value,
+        )
+        self.vars.entry_value_x_text.set(str(x_calc))
+        self.vars.entry_value_y_text.set(str(y_calc))
+        self.vars.entry_value_z_text.set(str(z_calc))
+
+    def load_result(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the result from the calculated values to the UI.
+        Validates the calculated values according to the filter
+        specified in the preset config file.
+
+        Requires valid calculated values.
+        &#34;&#34;&#34;
+        value = sort_base_size(
+            self.vars.entry_value_x_text.get(),
+            self.vars.entry_value_y_text.get(),
+            self.vars.entry_value_z_text.get(),
+            self.vars.selected_preset,
+            self.vars.selected_axis,
+            self.vars.thickness_value,
+        )
+        self.vars.entry_result_new_text.set(value)
+        self.validators.validate_result()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pytia_bounding_box.app.loaders.Loaders"><code class="flex name class">
+<span>class <span class="ident">Loaders</span></span>
+<span>(</span><span>root: tkinter.Tk, variables: app.vars.Variables, validators: app.validators.Validators, lazy_part_helper: app.helper.LazyPartHelper, layout: app.layout.Layout, ui_setter: app.state.UISetter)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The Loaders class. Provides access to the loader methods.</p>
+<p>Inits the Loaders class. This class is responsible for providing the loader methods.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>root</code></strong> :&ensp;<code>tk.Tk</code></dt>
+<dd>The main window of the application.</dd>
+<dt><strong><code>vars</code></strong> :&ensp;<code>Variables</code></dt>
+<dd>The variables of the main window.</dd>
+<dt><strong><code>validators</code></strong> :&ensp;<code>Validators</code></dt>
+<dd>The validators instance.</dd>
+<dt><strong><code>lazy_part_helper</code></strong> :&ensp;<code>LazyPartHelper</code></dt>
+<dd>The lazy part helper instance.</dd>
+<dt><strong><code>layout</code></strong> :&ensp;<code>Layout</code></dt>
+<dd>The main layout of the application.</dd>
+<dt><strong><code>ui_setter</code></strong> :&ensp;<code>UISetter</code></dt>
+<dd>The ui setter of the main window.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Loaders:
+    &#34;&#34;&#34;The Loaders class. Provides access to the loader methods.&#34;&#34;&#34;
+
+    def __init__(
+        self,
+        root: tk.Tk,
+        variables: Variables,
+        validators: Validators,
+        lazy_part_helper: LazyPartHelper,
+        layout: Layout,
+        ui_setter: UISetter,
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Inits the Loaders class. This class is responsible for providing the loader methods.
+
+        Args:
+            root (tk.Tk): The main window of the application.
+            vars (Variables): The variables of the main window.
+            validators (Validators): The validators instance.
+            lazy_part_helper (LazyPartHelper): The lazy part helper instance.
+            layout (Layout): The main layout of the application.
+            ui_setter (UISetter): The ui setter of the main window.
+        &#34;&#34;&#34;
+        self.root = root
+        self.vars = variables
+        self.validators = validators
+        self.part_helper = lazy_part_helper
+        self.layout = layout
+        self.set_ui = ui_setter
+
+    def load_existing_base_size(self) -&gt; None:
+        &#34;&#34;&#34;Loads the pre-existing base size from the part document to the UI.&#34;&#34;&#34;
+        if prop := self.part_helper.get_property(resource.props.base_size):
+            self.vars.entry_result_current_text.set(prop)
+        else:
+            self.vars.entry_result_current_text.set(&#34;&#34;)
+
+    def load_measurements(self) -&gt; None:
+        &#34;&#34;&#34;Retrieves the base size from the body and writes the values to the UI.&#34;&#34;&#34;
+        self.set_ui.busy()
+
+        # Late importing improves the GUI loading time.
+        # pylint: disable=C0415
+        from pytia.utilities.bounding_box import get_bounding_box
+
+        # pylint: enable=C0415
+
+        (
+            self.vars.x_measure,
+            self.vars.y_measure,
+            self.vars.z_measure,
+        ) = get_bounding_box(n_digits=resource.settings.precision)
+
+        self.vars.entry_measure_x_text.set(str(self.vars.x_measure))
+        self.vars.entry_measure_y_text.set(str(self.vars.y_measure))
+        self.vars.entry_measure_z_text.set(str(self.vars.z_measure))
+        self.set_ui.normal()
+
+    def load_process(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the process property from the part document.
+        Pre-selects the preset-combobox by this process or
+        on an the existing preset from the parts properties.
+
+        Always favors the existing preset from the parts properties.
+        &#34;&#34;&#34;
+        self.set_ui.busy()
+
+        preset_property = self.part_helper.get_property(resource.props.base_size_preset)
+        if preset_property and resource.preset_exists(preset_property):
+            self.layout.combo_preset.set(preset_property)
+            self.vars.pre_selected_preset_reason = (
+                &#34;This preset has been pre-selected because it &#34;
+                &#34;already existed in the part properties.\n\n&#34;
+            )
+            self.set_ui.normal()
+            return
+
+        process_property = self.part_helper.get_property(resource.props.process)
+        if process_property and resource.process_exists(process_property):
+            process = resource.get_process_by_name(process_property)
+            if resource.preset_exists(process.preset):
+                self.layout.combo_preset.set(process.preset)
+                self.vars.pre_selected_preset_reason = (
+                    f&#34;This preset has been pre-selected because of the process &#34;
+                    f&#34;property {process_property!r}.\n\n&#34;
+                )
+                self.set_ui.normal()
+                return
+
+        self.set_ui.normal()
+
+    def load_combobox_preset(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the selected preset from the preset-combobox to the UI.
+        Pre-selects the axis based on the preference from the presets config file.
+
+        Requires valid measurements.
+        &#34;&#34;&#34;
+        self.vars.selected_preset = resource.get_preset_by_name(
+            self.layout.combo_preset.get()
+        )
+        self.layout.combo_axis.set(
+            get_preferred_axis(
+                self.vars.x_measure,
+                self.vars.y_measure,
+                self.vars.z_measure,
+                self.vars.selected_preset,
+            ).value
+        )
+        ToolTip(
+            self.layout.combo_preset,
+            text=self.vars.pre_selected_preset_reason
+            + self.vars.selected_preset.tooltip,
+        )
+
+    def load_combobox_axis(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the selected axis based on the preference from the
+        presets config file to the UI.
+
+        Disables the axis-combobox when no preference is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.preference:
+            self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
+            self.vars.selected_axis = Axes(self.layout.combo_axis.get())
+        else:
+            self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
+            self.vars.selected_axis = Axes.X
+
+    def load_scale_offset(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the offset value according to the presets config file to the UI.
+        Disables the offset-scale when no offset is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.offset:
+            self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
+            self.vars.scale_offset_value.set(self.vars.selected_preset.offset)
+        else:
+            self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
+            self.vars.scale_offset_value.set(0)
+
+    def load_scale_step(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the step value according to the presets config file to the UI.
+        Disables the offset-scale when no offset is specified.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.offset:
+            self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
+            self.vars.scale_step_value.set(self.vars.selected_preset.step)
+        else:
+            self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
+            self.vars.scale_step_value.set(0)
+
+    def load_chkbox_thickness(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the thickness checkbox depending on the presets config file and
+        the available part parameters.
+        &#34;&#34;&#34;
+        if self.vars.selected_preset.coord == 4:
+            thickness_param = self.part_helper.get_parameter(
+                resource.settings.parameters.thickness
+            )
+            if thickness_param:
+                self.vars.thickness_value.set(True)
+                self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
+                self.layout.chkbox_thickness[
+                    &#34;text&#34;
+                ] = f&#34;({resource.settings.parameters.thickness}: {thickness_param})&#34;
+                return
+
+        self.vars.thickness_value.set(False)
+        self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
+        self.layout.chkbox_thickness[&#34;text&#34;] = &#34;&#34;
+
+    def load_calculated(self) -&gt; None:
+        &#34;&#34;&#34;
+        Calculates the offset for the measurements according to the preset
+        config file. Loads the calculated values to the UI.
+
+        Requires valid measurements.
+        &#34;&#34;&#34;
+        x_calc, y_calc, z_calc = get_offset(
+            self.vars.x_measure,
+            self.vars.y_measure,
+            self.vars.z_measure,
+            self.vars.selected_preset,
+            self.vars.selected_axis,
+            self.vars.scale_offset_value,
+            self.vars.scale_step_value,
+        )
+        self.vars.entry_value_x_text.set(str(x_calc))
+        self.vars.entry_value_y_text.set(str(y_calc))
+        self.vars.entry_value_z_text.set(str(z_calc))
+
+    def load_result(self) -&gt; None:
+        &#34;&#34;&#34;
+        Loads the result from the calculated values to the UI.
+        Validates the calculated values according to the filter
+        specified in the preset config file.
+
+        Requires valid calculated values.
+        &#34;&#34;&#34;
+        value = sort_base_size(
+            self.vars.entry_value_x_text.get(),
+            self.vars.entry_value_y_text.get(),
+            self.vars.entry_value_z_text.get(),
+            self.vars.selected_preset,
+            self.vars.selected_axis,
+            self.vars.thickness_value,
+        )
+        self.vars.entry_result_new_text.set(value)
+        self.validators.validate_result()</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_calculated"><code class="name flex">
+<span>def <span class="ident">load_calculated</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculates the offset for the measurements according to the preset
+config file. Loads the calculated values to the UI.</p>
+<p>Requires valid measurements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_calculated(self) -&gt; None:
+    &#34;&#34;&#34;
+    Calculates the offset for the measurements according to the preset
+    config file. Loads the calculated values to the UI.
+
+    Requires valid measurements.
+    &#34;&#34;&#34;
+    x_calc, y_calc, z_calc = get_offset(
+        self.vars.x_measure,
+        self.vars.y_measure,
+        self.vars.z_measure,
+        self.vars.selected_preset,
+        self.vars.selected_axis,
+        self.vars.scale_offset_value,
+        self.vars.scale_step_value,
+    )
+    self.vars.entry_value_x_text.set(str(x_calc))
+    self.vars.entry_value_y_text.set(str(y_calc))
+    self.vars.entry_value_z_text.set(str(z_calc))</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_chkbox_thickness"><code class="name flex">
+<span>def <span class="ident">load_chkbox_thickness</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the thickness checkbox depending on the presets config file and
+the available part parameters.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_chkbox_thickness(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the thickness checkbox depending on the presets config file and
+    the available part parameters.
+    &#34;&#34;&#34;
+    if self.vars.selected_preset.coord == 4:
+        thickness_param = self.part_helper.get_parameter(
+            resource.settings.parameters.thickness
+        )
+        if thickness_param:
+            self.vars.thickness_value.set(True)
+            self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
+            self.layout.chkbox_thickness[
+                &#34;text&#34;
+            ] = f&#34;({resource.settings.parameters.thickness}: {thickness_param})&#34;
+            return
+
+    self.vars.thickness_value.set(False)
+    self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
+    self.layout.chkbox_thickness[&#34;text&#34;] = &#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_combobox_axis"><code class="name flex">
+<span>def <span class="ident">load_combobox_axis</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the selected axis based on the preference from the
+presets config file to the UI.</p>
+<p>Disables the axis-combobox when no preference is specified.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_combobox_axis(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the selected axis based on the preference from the
+    presets config file to the UI.
+
+    Disables the axis-combobox when no preference is specified.
+    &#34;&#34;&#34;
+    if self.vars.selected_preset.preference:
+        self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
+        self.vars.selected_axis = Axes(self.layout.combo_axis.get())
+    else:
+        self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
+        self.vars.selected_axis = Axes.X</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_combobox_preset"><code class="name flex">
+<span>def <span class="ident">load_combobox_preset</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the selected preset from the preset-combobox to the UI.
+Pre-selects the axis based on the preference from the presets config file.</p>
+<p>Requires valid measurements.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_combobox_preset(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the selected preset from the preset-combobox to the UI.
+    Pre-selects the axis based on the preference from the presets config file.
+
+    Requires valid measurements.
+    &#34;&#34;&#34;
+    self.vars.selected_preset = resource.get_preset_by_name(
+        self.layout.combo_preset.get()
+    )
+    self.layout.combo_axis.set(
+        get_preferred_axis(
+            self.vars.x_measure,
+            self.vars.y_measure,
+            self.vars.z_measure,
+            self.vars.selected_preset,
+        ).value
+    )
+    ToolTip(
+        self.layout.combo_preset,
+        text=self.vars.pre_selected_preset_reason
+        + self.vars.selected_preset.tooltip,
+    )</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_existing_base_size"><code class="name flex">
+<span>def <span class="ident">load_existing_base_size</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the pre-existing base size from the part document to the UI.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_existing_base_size(self) -&gt; None:
+    &#34;&#34;&#34;Loads the pre-existing base size from the part document to the UI.&#34;&#34;&#34;
+    if prop := self.part_helper.get_property(resource.props.base_size):
+        self.vars.entry_result_current_text.set(prop)
+    else:
+        self.vars.entry_result_current_text.set(&#34;&#34;)</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_measurements"><code class="name flex">
+<span>def <span class="ident">load_measurements</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves the base size from the body and writes the values to the UI.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_measurements(self) -&gt; None:
+    &#34;&#34;&#34;Retrieves the base size from the body and writes the values to the UI.&#34;&#34;&#34;
+    self.set_ui.busy()
+
+    # Late importing improves the GUI loading time.
+    # pylint: disable=C0415
+    from pytia.utilities.bounding_box import get_bounding_box
+
+    # pylint: enable=C0415
+
+    (
+        self.vars.x_measure,
+        self.vars.y_measure,
+        self.vars.z_measure,
+    ) = get_bounding_box(n_digits=resource.settings.precision)
+
+    self.vars.entry_measure_x_text.set(str(self.vars.x_measure))
+    self.vars.entry_measure_y_text.set(str(self.vars.y_measure))
+    self.vars.entry_measure_z_text.set(str(self.vars.z_measure))
+    self.set_ui.normal()</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_process"><code class="name flex">
+<span>def <span class="ident">load_process</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the process property from the part document.
+Pre-selects the preset-combobox by this process or
+on an the existing preset from the parts properties.</p>
+<p>Always favors the existing preset from the parts properties.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_process(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the process property from the part document.
+    Pre-selects the preset-combobox by this process or
+    on an the existing preset from the parts properties.
+
+    Always favors the existing preset from the parts properties.
+    &#34;&#34;&#34;
+    self.set_ui.busy()
+
+    preset_property = self.part_helper.get_property(resource.props.base_size_preset)
+    if preset_property and resource.preset_exists(preset_property):
+        self.layout.combo_preset.set(preset_property)
+        self.vars.pre_selected_preset_reason = (
+            &#34;This preset has been pre-selected because it &#34;
+            &#34;already existed in the part properties.\n\n&#34;
+        )
+        self.set_ui.normal()
+        return
+
+    process_property = self.part_helper.get_property(resource.props.process)
+    if process_property and resource.process_exists(process_property):
+        process = resource.get_process_by_name(process_property)
+        if resource.preset_exists(process.preset):
+            self.layout.combo_preset.set(process.preset)
+            self.vars.pre_selected_preset_reason = (
+                f&#34;This preset has been pre-selected because of the process &#34;
+                f&#34;property {process_property!r}.\n\n&#34;
+            )
+            self.set_ui.normal()
+            return
+
+    self.set_ui.normal()</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_result"><code class="name flex">
+<span>def <span class="ident">load_result</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the result from the calculated values to the UI.
+Validates the calculated values according to the filter
+specified in the preset config file.</p>
+<p>Requires valid calculated values.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_result(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the result from the calculated values to the UI.
+    Validates the calculated values according to the filter
+    specified in the preset config file.
+
+    Requires valid calculated values.
+    &#34;&#34;&#34;
+    value = sort_base_size(
+        self.vars.entry_value_x_text.get(),
+        self.vars.entry_value_y_text.get(),
+        self.vars.entry_value_z_text.get(),
+        self.vars.selected_preset,
+        self.vars.selected_axis,
+        self.vars.thickness_value,
+    )
+    self.vars.entry_result_new_text.set(value)
+    self.validators.validate_result()</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_scale_offset"><code class="name flex">
+<span>def <span class="ident">load_scale_offset</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the offset value according to the presets config file to the UI.
+Disables the offset-scale when no offset is specified.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_scale_offset(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the offset value according to the presets config file to the UI.
+    Disables the offset-scale when no offset is specified.
+    &#34;&#34;&#34;
+    if self.vars.selected_preset.offset:
+        self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
+        self.vars.scale_offset_value.set(self.vars.selected_preset.offset)
+    else:
+        self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
+        self.vars.scale_offset_value.set(0)</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.loaders.Loaders.load_scale_step"><code class="name flex">
+<span>def <span class="ident">load_scale_step</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads the step value according to the presets config file to the UI.
+Disables the offset-scale when no offset is specified.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_scale_step(self) -&gt; None:
+    &#34;&#34;&#34;
+    Loads the step value according to the presets config file to the UI.
+    Disables the offset-scale when no offset is specified.
+    &#34;&#34;&#34;
+    if self.vars.selected_preset.offset:
+        self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
+        self.vars.scale_step_value.set(self.vars.selected_preset.step)
+    else:
+        self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
+        self.vars.scale_step_value.set(0)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pytia_bounding_box.app" href="index.html">pytia_bounding_box.app</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pytia_bounding_box.app.loaders.Loaders" href="#pytia_bounding_box.app.loaders.Loaders">Loaders</a></code></h4>
+<ul class="">
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_calculated" href="#pytia_bounding_box.app.loaders.Loaders.load_calculated">load_calculated</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_chkbox_thickness" href="#pytia_bounding_box.app.loaders.Loaders.load_chkbox_thickness">load_chkbox_thickness</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_combobox_axis" href="#pytia_bounding_box.app.loaders.Loaders.load_combobox_axis">load_combobox_axis</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_combobox_preset" href="#pytia_bounding_box.app.loaders.Loaders.load_combobox_preset">load_combobox_preset</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_existing_base_size" href="#pytia_bounding_box.app.loaders.Loaders.load_existing_base_size">load_existing_base_size</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_measurements" href="#pytia_bounding_box.app.loaders.Loaders.load_measurements">load_measurements</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_process" href="#pytia_bounding_box.app.loaders.Loaders.load_process">load_process</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_result" href="#pytia_bounding_box.app.loaders.Loaders.load_result">load_result</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_scale_offset" href="#pytia_bounding_box.app.loaders.Loaders.load_scale_offset">load_scale_offset</a></code></li>
+<li><code><a title="pytia_bounding_box.app.loaders.Loaders.load_scale_step" href="#pytia_bounding_box.app.loaders.Loaders.load_scale_step">load_scale_step</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
