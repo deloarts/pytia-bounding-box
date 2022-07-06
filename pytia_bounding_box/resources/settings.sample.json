@@ -15,9 +15,14 @@
     "parameters": {
         "thickness": "section_thickness"
     },
-    "enable_information": true,
-    "allow_all_users": false,
-    "allow_property_creation": true,
+    "restrictions": {
+        "allow_all_users": true,
+        "allow_all_editors": true,
+        "allow_unsaved": true,
+        "allow_outside_workspace": true,
+        "allow_property_creation": true,
+        "enable_information": true
+    },
     "save_modifier_by": "%id% | %name%",
     "paths": {
         "catia": "C:\\CATIA\\V5-6R2017\\B27",
@@ -26,7 +31,8 @@
     },
     "files": {
         "app": "pytia_bounding_box.pyz",
-        "launcher": "pytia_bounding_box.catvbs"
+        "launcher": "pytia_bounding_box.catvbs",
+        "workspace": "workspace.yml"
     },
     "urls": {
         "help": "https://github.com/deloarts/pytia-bounding-box"

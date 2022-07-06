@@ -10,7 +10,7 @@ import pytest
 from pytia.exceptions import PytiaValueError
 from pytia_bounding_box.const import CONFIG_PRESETS_DEFAULT, Axes
 from pytia_bounding_box.resources import Preset, resource
-from pytia_bounding_box.ui import helper
+from pytia_bounding_box.app import helper
 
 root = Tk()
 

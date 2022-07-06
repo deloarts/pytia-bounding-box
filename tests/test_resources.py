@@ -30,8 +30,13 @@ def test_settings():
     assert isinstance(resource.settings.step.tick, int)
 
     assert isinstance(resource.settings.parameters.thickness, str)
-    assert isinstance(resource.settings.enable_information, bool)
-    assert isinstance(resource.settings.allow_all_users, bool)
+
+    assert isinstance(resource.settings.restrictions.allow_all_users, bool)
+    assert isinstance(resource.settings.restrictions.allow_all_editors, bool)
+    assert isinstance(resource.settings.restrictions.allow_unsaved, bool)
+    assert isinstance(resource.settings.restrictions.allow_outside_workspace, bool)
+    assert isinstance(resource.settings.restrictions.allow_property_creation, bool)
+    assert isinstance(resource.settings.restrictions.enable_information, bool)
 
     assert isinstance(resource.settings.save_modifier_by, str)
 

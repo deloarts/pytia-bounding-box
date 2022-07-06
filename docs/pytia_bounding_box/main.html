@@ -53,7 +53,7 @@ def main() -&gt; None:
 
     from pytia.log import log  # pylint: disable=C0415
 
-    from ui import GUI  # pylint: disable=C0415
+    from app import GUI  # pylint: disable=C0415
 
     with open(PID_FILE, &#34;w&#34;) as f:
         f.write(str(PID))
@@ -101,7 +101,7 @@ if __name__ == &#34;__main__&#34;:
 
     from pytia.log import log  # pylint: disable=C0415
 
-    from ui import GUI  # pylint: disable=C0415
+    from app import GUI  # pylint: disable=C0415
 
     with open(PID_FILE, &#34;w&#34;) as f:
         f.write(str(PID))

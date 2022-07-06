@@ -2,7 +2,9 @@
     Helper functions and classes for the UI.
 """
 
+import atexit
 import functools
+import os
 import re
 import time
 import webbrowser
@@ -14,6 +16,7 @@ from const import Axes, Preference
 from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaDifferentDocumentError,
+    PytiaDocumentNotSavedError,
     PytiaPropertyNotFoundError,
     PytiaValueError,
 )
@@ -253,6 +256,7 @@ class LazyPartHelper:
         # pylint: disable=C0415
         # pylint: disable=C0103
         t0 = time.perf_counter()
+        from pytia.framework import framework
         from pytia.wrapper.documents.part_documents import PyPartDocument
 
         t1 = time.perf_counter()
@@ -260,9 +264,40 @@ class LazyPartHelper:
         # pylint: enable=C0415
         # pylint: enable=C0103
 
-        self.part_document = PyPartDocument()
+        self.framework = framework
+        self.part_document = PyPartDocument(strict_naming=False)
         self.part_document.current()
+        self.part_document.product.part_number = self.part_document.document.name.split(
+            ".CATP"
+        )[0]
         self.part_name = self.part_document.document.name
+
+        self._lock_catia(True)
+        atexit.register(lambda: self._lock_catia(False))
+
+        if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
+            self.part_document.document.full_name
+        ):
+            raise PytiaDocumentNotSavedError(
+                "It is not allowed to edit the parameters of an unsaved document. "
+                "Please save the document first."
+            )
+
+    @property
+    def path(self) -> str:
+        """Returns the path of the document."""
+        return self.part_document.document.full_name
+
+    def _lock_catia(self, value: bool) -> None:
+        log.debug(f"Setting catia lock to {value!r}")
+        self.framework.catia.refresh_display = not value
+        self.framework.catia.interactive = not value
+        self.framework.catia.display_file_alerts = value
+        self.framework.catia.undo_redo_lock = value
+        if value:
+            self.framework.catia.disable_new_undo_redo_transaction()
+        else:
+            self.framework.catia.enable_new_undo_redo_transaction()
 
     def _part_changed(self) -> bool:
         """Returns True if the current part document has changed, False if not."""
@@ -309,9 +344,9 @@ class LazyPartHelper:
             param = str(self.part_document.parameters.get(name).value)
             log.info(f"Retrieved parameter {name} ({param}) from part.")
             return param
-        else:
-            log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
-            return None
+
+        log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
+        return None
 
     @_ensure_part_not_changed
     def get_property(self, name: str) -> Optional[str]:
@@ -328,9 +363,9 @@ class LazyPartHelper:
             param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f"Retrieved property {name} ({param}) from part.")
             return param
-        else:
-            log.info(f"Couldn't retrieve property {name} from part: Doesn't exists.")
-            return None
+
+        log.info(f"Couldn't retrieve property {name} from part: Doesn't exists.")
+        return None
 
     @_ensure_part_not_changed
     def write_property(self, name: str, value: str) -> None:
@@ -342,10 +377,10 @@ class LazyPartHelper:
             value (str): The value of the property.
         """
         if not self.part_document.properties.exists(name):
-            if not resource.settings.allow_property_creation:
+            if not resource.settings.restrictions.allow_property_creation:
                 raise PytiaPropertyNotFoundError(
-                    f"The app doesn't have the permission to create properties at runtime. "
-                    f"All required properties must be created before running this app."
+                    "The app doesn't have the permission to create properties at runtime. "
+                    "All required properties must be created before running this app."
                 )
             self.part_document.properties.create(name, value)
         self.part_document.properties.set_value(name, value)

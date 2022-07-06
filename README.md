@@ -3,7 +3,7 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-Alpha-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.1.2-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/badge/Version-0.2.0-orange.svg?style=for-the-badge)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
@@ -75,7 +75,7 @@ Some dependencies are not publicly available on PyPi or GitHub (because they are
 Name | Link | Version
 --- | --- | ---
 **pytia** | <https://github.com/deloarts/pytia> | [0.1.0](https://github.com/deloarts/pytia/releases/tag/v0.1.0)
-**pytia-ui-tools** | <https://github.com/deloarts/pytia-ui-tools> | [0.1.2](https://github.com/deloarts/pytia-ui-tools/releases/tag/v0.1.2)
+**pytia-ui-tools** | <https://github.com/deloarts/pytia-ui-tools> | [0.4.1](https://github.com/deloarts/pytia-ui-tools/releases/tag/v0.4.1)
 
 > ❗️ The folder where you provide the local dependencies must match the **paths.local_dependencies** entry of the **settings.json**. The user must have at least read access on this folder.
 >
@@ -199,6 +199,7 @@ The result area is for a last check before saving the bounding box value to the 
 
 ## 5 changelog
 
+**v0.2.0**: Add workspace.  
 **v0.1.2**: Create pid file in tempfolder.  
 **v0.1.1**: Automatically restart app after update.  
 **v0.1.0**: Initial commit.  

@@ -94,6 +94,7 @@ class SettingsFiles:
 
     app: str
     launcher: str
+    workspace: str
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -110,6 +111,18 @@ class SettingsMails:
     admin: str
 
 
+@dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsRestrictions:
+    &#34;&#34;&#34;Dataclass for restrictive settings.&#34;&#34;&#34;
+
+    allow_all_users: bool
+    allow_all_editors: bool
+    allow_unsaved: bool
+    allow_outside_workspace: bool
+    allow_property_creation: bool
+    enable_information: bool
+
+
 @dataclass(slots=True, kw_only=True)
 class Settings:  # pylint: disable=R0902
     &#34;&#34;&#34;Dataclass for settings (settings.json).&#34;&#34;&#34;
@@ -120,9 +133,7 @@ class Settings:  # pylint: disable=R0902
     offset: SettingsScale
     step: SettingsScale
     parameters: SettingsParameters
-    enable_information: bool
-    allow_all_users: bool
-    allow_property_creation: bool
+    restrictions: SettingsRestrictions
     save_modifier_by: str
     files: SettingsFiles
     paths: SettingsPaths
@@ -133,6 +144,7 @@ class Settings:  # pylint: disable=R0902
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
+        self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore
         self.paths = SettingsPaths(**dict(self.paths))  # type: ignore
         self.urls = SettingsUrls(**dict(self.urls))  # type: ignore
@@ -524,7 +536,7 @@ resource = Resources()</code></pre>
 <dl>
 <dt id="pytia_bounding_box.resources.AppData"><code class="flex name class">
 <span>class <span class="ident">AppData</span></span>
-<span>(</span><span>*, version: str = '0.1.2', counter: int = 0, disable_volume_warning: bool = False)</span>
+<span>(</span><span>*, version: str = '0.2.0', counter: int = 0, disable_volume_warning: bool = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for appdata settings.</p></div>
@@ -1525,7 +1537,7 @@ def users(self) -&gt; List[User]:
 </dd>
 <dt id="pytia_bounding_box.resources.Settings"><code class="flex name class">
 <span>class <span class="ident">Settings</span></span>
-<span>(</span><span>*, title: str, debug: bool, precision: int, offset: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, step: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, parameters: <a title="pytia_bounding_box.resources.SettingsParameters" href="#pytia_bounding_box.resources.SettingsParameters">SettingsParameters</a>, enable_information: bool, allow_all_users: bool, allow_property_creation: bool, save_modifier_by: str, files: <a title="pytia_bounding_box.resources.SettingsFiles" href="#pytia_bounding_box.resources.SettingsFiles">SettingsFiles</a>, paths: <a title="pytia_bounding_box.resources.SettingsPaths" href="#pytia_bounding_box.resources.SettingsPaths">SettingsPaths</a>, urls: <a title="pytia_bounding_box.resources.SettingsUrls" href="#pytia_bounding_box.resources.SettingsUrls">SettingsUrls</a>, mails: <a title="pytia_bounding_box.resources.SettingsMails" href="#pytia_bounding_box.resources.SettingsMails">SettingsMails</a>)</span>
+<span>(</span><span>*, title: str, debug: bool, precision: int, offset: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, step: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, parameters: <a title="pytia_bounding_box.resources.SettingsParameters" href="#pytia_bounding_box.resources.SettingsParameters">SettingsParameters</a>, restrictions: <a title="pytia_bounding_box.resources.SettingsRestrictions" href="#pytia_bounding_box.resources.SettingsRestrictions">SettingsRestrictions</a>, save_modifier_by: str, files: <a title="pytia_bounding_box.resources.SettingsFiles" href="#pytia_bounding_box.resources.SettingsFiles">SettingsFiles</a>, paths: <a title="pytia_bounding_box.resources.SettingsPaths" href="#pytia_bounding_box.resources.SettingsPaths">SettingsPaths</a>, urls: <a title="pytia_bounding_box.resources.SettingsUrls" href="#pytia_bounding_box.resources.SettingsUrls">SettingsUrls</a>, mails: <a title="pytia_bounding_box.resources.SettingsMails" href="#pytia_bounding_box.resources.SettingsMails">SettingsMails</a>)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for settings (settings.json).</p></div>
@@ -1543,9 +1555,7 @@ class Settings:  # pylint: disable=R0902
     offset: SettingsScale
     step: SettingsScale
     parameters: SettingsParameters
-    enable_information: bool
-    allow_all_users: bool
-    allow_property_creation: bool
+    restrictions: SettingsRestrictions
     save_modifier_by: str
     files: SettingsFiles
     paths: SettingsPaths
@@ -1556,6 +1566,7 @@ class Settings:  # pylint: disable=R0902
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
+        self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore
         self.paths = SettingsPaths(**dict(self.paths))  # type: ignore
         self.urls = SettingsUrls(**dict(self.urls))  # type: ignore
@@ -1563,19 +1574,7 @@ class Settings:  # pylint: disable=R0902
 </details>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pytia_bounding_box.resources.Settings.allow_all_users"><code class="name">var <span class="ident">allow_all_users</span> : bool</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="pytia_bounding_box.resources.Settings.allow_property_creation"><code class="name">var <span class="ident">allow_property_creation</span> : bool</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
 <dt id="pytia_bounding_box.resources.Settings.debug"><code class="name">var <span class="ident">debug</span> : bool</code></dt>
-<dd>
-<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
-</dd>
-<dt id="pytia_bounding_box.resources.Settings.enable_information"><code class="name">var <span class="ident">enable_information</span> : bool</code></dt>
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
@@ -1603,6 +1602,10 @@ class Settings:  # pylint: disable=R0902
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
+<dt id="pytia_bounding_box.resources.Settings.restrictions"><code class="name">var <span class="ident">restrictions</span> : <a title="pytia_bounding_box.resources.SettingsRestrictions" href="#pytia_bounding_box.resources.SettingsRestrictions">SettingsRestrictions</a></code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
 <dt id="pytia_bounding_box.resources.Settings.save_modifier_by"><code class="name">var <span class="ident">save_modifier_by</span> : str</code></dt>
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
@@ -1623,7 +1626,7 @@ class Settings:  # pylint: disable=R0902
 </dd>
 <dt id="pytia_bounding_box.resources.SettingsFiles"><code class="flex name class">
 <span>class <span class="ident">SettingsFiles</span></span>
-<span>(</span><span>*, app: str, launcher: str)</span>
+<span>(</span><span>*, app: str, launcher: str, workspace: str)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for files (settings.json).</p></div>
@@ -1636,7 +1639,8 @@ class SettingsFiles:
     &#34;&#34;&#34;Dataclass for files (settings.json).&#34;&#34;&#34;
 
     app: str
-    launcher: str</code></pre>
+    launcher: str
+    workspace: str</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -1645,6 +1649,10 @@ class SettingsFiles:
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
 <dt id="pytia_bounding_box.resources.SettingsFiles.launcher"><code class="name">var <span class="ident">launcher</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsFiles.workspace"><code class="name">var <span class="ident">workspace</span> : str</code></dt>
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
@@ -1727,6 +1735,55 @@ class SettingsPaths:
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
 <dt id="pytia_bounding_box.resources.SettingsPaths.release"><code class="name">var <span class="ident">release</span> : pathlib.Path</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions"><code class="flex name class">
+<span>class <span class="ident">SettingsRestrictions</span></span>
+<span>(</span><span>*, allow_all_users: bool, allow_all_editors: bool, allow_unsaved: bool, allow_outside_workspace: bool, allow_property_creation: bool, enable_information: bool)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dataclass for restrictive settings.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsRestrictions:
+    &#34;&#34;&#34;Dataclass for restrictive settings.&#34;&#34;&#34;
+
+    allow_all_users: bool
+    allow_all_editors: bool
+    allow_unsaved: bool
+    allow_outside_workspace: bool
+    allow_property_creation: bool
+    enable_information: bool</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.allow_all_editors"><code class="name">var <span class="ident">allow_all_editors</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.allow_all_users"><code class="name">var <span class="ident">allow_all_users</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.allow_outside_workspace"><code class="name">var <span class="ident">allow_outside_workspace</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.allow_property_creation"><code class="name">var <span class="ident">allow_property_creation</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.allow_unsaved"><code class="name">var <span class="ident">allow_unsaved</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsRestrictions.enable_information"><code class="name">var <span class="ident">enable_information</span> : bool</code></dt>
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
@@ -1957,17 +2014,15 @@ def values(self) -&gt; List[str]:
 </li>
 <li>
 <h4><code><a title="pytia_bounding_box.resources.Settings" href="#pytia_bounding_box.resources.Settings">Settings</a></code></h4>
-<ul class="">
-<li><code><a title="pytia_bounding_box.resources.Settings.allow_all_users" href="#pytia_bounding_box.resources.Settings.allow_all_users">allow_all_users</a></code></li>
-<li><code><a title="pytia_bounding_box.resources.Settings.allow_property_creation" href="#pytia_bounding_box.resources.Settings.allow_property_creation">allow_property_creation</a></code></li>
+<ul class="two-column">
 <li><code><a title="pytia_bounding_box.resources.Settings.debug" href="#pytia_bounding_box.resources.Settings.debug">debug</a></code></li>
-<li><code><a title="pytia_bounding_box.resources.Settings.enable_information" href="#pytia_bounding_box.resources.Settings.enable_information">enable_information</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.files" href="#pytia_bounding_box.resources.Settings.files">files</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.mails" href="#pytia_bounding_box.resources.Settings.mails">mails</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.offset" href="#pytia_bounding_box.resources.Settings.offset">offset</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.parameters" href="#pytia_bounding_box.resources.Settings.parameters">parameters</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.paths" href="#pytia_bounding_box.resources.Settings.paths">paths</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.precision" href="#pytia_bounding_box.resources.Settings.precision">precision</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.Settings.restrictions" href="#pytia_bounding_box.resources.Settings.restrictions">restrictions</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.save_modifier_by" href="#pytia_bounding_box.resources.Settings.save_modifier_by">save_modifier_by</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.step" href="#pytia_bounding_box.resources.Settings.step">step</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.title" href="#pytia_bounding_box.resources.Settings.title">title</a></code></li>
@@ -1979,6 +2034,7 @@ def values(self) -&gt; List[str]:
 <ul class="">
 <li><code><a title="pytia_bounding_box.resources.SettingsFiles.app" href="#pytia_bounding_box.resources.SettingsFiles.app">app</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.SettingsFiles.launcher" href="#pytia_bounding_box.resources.SettingsFiles.launcher">launcher</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsFiles.workspace" href="#pytia_bounding_box.resources.SettingsFiles.workspace">workspace</a></code></li>
 </ul>
 </li>
 <li>
@@ -1999,6 +2055,17 @@ def values(self) -&gt; List[str]:
 <li><code><a title="pytia_bounding_box.resources.SettingsPaths.catia" href="#pytia_bounding_box.resources.SettingsPaths.catia">catia</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.SettingsPaths.local_dependencies" href="#pytia_bounding_box.resources.SettingsPaths.local_dependencies">local_dependencies</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.SettingsPaths.release" href="#pytia_bounding_box.resources.SettingsPaths.release">release</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pytia_bounding_box.resources.SettingsRestrictions" href="#pytia_bounding_box.resources.SettingsRestrictions">SettingsRestrictions</a></code></h4>
+<ul class="">
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.allow_all_editors" href="#pytia_bounding_box.resources.SettingsRestrictions.allow_all_editors">allow_all_editors</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.allow_all_users" href="#pytia_bounding_box.resources.SettingsRestrictions.allow_all_users">allow_all_users</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.allow_outside_workspace" href="#pytia_bounding_box.resources.SettingsRestrictions.allow_outside_workspace">allow_outside_workspace</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.allow_property_creation" href="#pytia_bounding_box.resources.SettingsRestrictions.allow_property_creation">allow_property_creation</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.allow_unsaved" href="#pytia_bounding_box.resources.SettingsRestrictions.allow_unsaved">allow_unsaved</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsRestrictions.enable_information" href="#pytia_bounding_box.resources.SettingsRestrictions.enable_information">enable_information</a></code></li>
 </ul>
 </li>
 <li>

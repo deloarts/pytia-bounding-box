@@ -24,7 +24,7 @@ def main() -> None:
 
     from pytia.log import log  # pylint: disable=C0415
 
-    from ui import GUI  # pylint: disable=C0415
+    from app import GUI  # pylint: disable=C0415
 
     with open(PID_FILE, "w") as f:
         f.write(str(PID))

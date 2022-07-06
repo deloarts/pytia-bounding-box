@@ -31,17 +31,24 @@ This file contains the basic settings for the app.
     "parameters": {
         "thickness": "section_thickness"
     },
-    "enable_information": true,
-    "allow_all_users": false,
-    "allow_property_creation": true,
+    "restrictions": {
+        "allow_all_users": true,
+        "allow_all_editors": true,
+        "allow_unsaved": true,
+        "allow_outside_workspace": true,
+        "allow_property_creation": true,
+        "enable_information": true
+    },
     "save_modifier_by": "%id% | %name%",
     "paths": {
+        "catia": "C:\\CATIA\\V5-6R2017\\B27",
         "local_dependencies": "C:\\pytia\\local_deps",
         "release": "C:\\pytia\\release"
     },
     "files": {
         "app": "pytia_bounding_box.pyz",
-        "launcher": "pytia_bounding_box.catvbs"
+        "launcher": "pytia_bounding_box.catvbs",
+        "workspace": "workspace.yml"
     },
     "urls": {
         "help": "https://github.com/deloarts/pytia-bounding-box"
@@ -66,14 +73,19 @@ step.min | `int` | The minimum step the user can apply via the step slider.
 step.max | `int` | The maximum step the user can apply via the step slider.
 step.tick | `int` | The steps which the slider can move.
 parameters.thickness | `str` | The name of the thickness parameter in a part.
-enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
-allow_all_users | `bool` | If set to true any user can save the bounding box result to the part properties. If set to false only those users from the **users.json** file can modify the part properties.
-allow_property_creation | `bool` | If set to true, the app is allowed to create part properties, if they don't exist. If set to false, all required properties must be created before running the app.
+restrictions.allow_all_users | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users from the **users.json** file can modify the properties.
+restrictions.allow_all_editors | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users which are declared in the **workspace** file can modify the properties. If no workspace file is found, or no **editors** list-item is inside the workspace file, then this is omitted, and everyone can make changes.
+restrictions.allow_unsaved | `bool` | If set to `false` an unsaved document (a document which doesn't have a path yet) cannot be modified.
+restrictions.allow_outside_workspace | `bool` | If set to `false` a **workspace** file must be provided somewhere in the folder structure where the document is saved. This also means, that an unsaved document (a document which doesn't have a path yet) cannot be modified.
+restrictions.allow_property_creation | `bool` | If set to true, the app is allowed to create part properties, if they don't exist. If set to false, all required properties must be created before running the app.
+restrictions.enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
 save_modifier_by | `str` | The way the modifier is saved to the part properties. Available options are: `%logon%`, `%id%`, `%name%` and `%mail%`, or any combination, like `%id% | %name%`.
+path.catia | `str` | The absolute path to the CATIA executables.
 paths.local_dependencies | `str` | The folder where local local_dependencies (python wheel files) for the installer are stored.
 paths.release | `str` | The folder where the launcher and the app are released into.
 files.app | `str` | The name of the released python app file.
 files.launcher | `str` | The name of the release catvbs launcher file.
+files.workspace | `str` | The name of the workspace file.
 urls.help | `str` or `null` | The help page for the app. If set to null the user will receive a message, that no help page is provided.
 mails.admin | `str` | The mail address of the sys admin. Required for error mails.
 
