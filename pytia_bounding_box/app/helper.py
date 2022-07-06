@@ -285,6 +285,7 @@ class LazyPartHelper:
 
     @property
     def path(self) -> str:
+        """Returns the path of the document."""
         return self.part_document.document.full_name
 
     def _lock_catia(self, value: bool) -> None:
@@ -343,9 +344,9 @@ class LazyPartHelper:
             param = str(self.part_document.parameters.get(name).value)
             log.info(f"Retrieved parameter {name} ({param}) from part.")
             return param
-        else:
-            log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
-            return None
+
+        log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
+        return None
 
     @_ensure_part_not_changed
     def get_property(self, name: str) -> Optional[str]:
@@ -362,9 +363,9 @@ class LazyPartHelper:
             param = str(self.part_document.properties.get_by_name(name).value)
             log.info(f"Retrieved property {name} ({param}) from part.")
             return param
-        else:
-            log.info(f"Couldn't retrieve property {name} from part: Doesn't exists.")
-            return None
+
+        log.info(f"Couldn't retrieve property {name} from part: Doesn't exists.")
+        return None
 
     @_ensure_part_not_changed
     def write_property(self, name: str, value: str) -> None:
@@ -378,8 +379,8 @@ class LazyPartHelper:
         if not self.part_document.properties.exists(name):
             if not resource.settings.restrictions.allow_property_creation:
                 raise PytiaPropertyNotFoundError(
-                    f"The app doesn't have the permission to create properties at runtime. "
-                    f"All required properties must be created before running this app."
+                    "The app doesn't have the permission to create properties at runtime. "
+                    "All required properties must be created before running this app."
                 )
             self.part_document.properties.create(name, value)
         self.part_document.properties.set_value(name, value)
