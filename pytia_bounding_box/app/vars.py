@@ -5,9 +5,8 @@
 from dataclasses import dataclass
 from tkinter import BooleanVar, IntVar, StringVar, Tk
 
+import resources
 from const import Axes
-from pytia_bounding_box import resources
-from resources import resource
 
 
 @dataclass(slots=True, kw_only=True)
@@ -62,6 +61,6 @@ class Variables:
             master=root, name="entry_result_new_text"
         )
 
-        self.selected_preset = resource.presets[0]
+        self.selected_preset = resources.resource.presets[0]
         self.selected_axis = Axes.X
         self.pre_selected_preset_reason = ""
