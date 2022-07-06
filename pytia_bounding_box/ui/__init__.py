@@ -14,13 +14,16 @@ from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaBodyEmptyError,
     PytiaDifferentDocumentError,
+    PytiaDocumentNotSavedError,
     PytiaNoDocumentOpenError,
     PytiaPropertyNotFoundError,
     PytiaWrongDocumentTypeError,
 )
 from pytia.log import log
+from pytia_ui_tools.exceptions import PytiaUiToolsOutsideWorkspaceError
 from pytia_ui_tools.handlers.error_handler import ErrorHandler
 from pytia_ui_tools.handlers.mail_handler import MailHandler
+from pytia_ui_tools.handlers.workspace_handler import Workspace
 from pytia_ui_tools.widgets.entries import NumberEntry
 from pytia_ui_tools.widgets.scales import SnapScale
 from pytia_ui_tools.widgets.tooltips import ToolTip
@@ -49,6 +52,12 @@ class GUI(tk.Tk):
         tk.Tk.__init__(self)
 
         # CLASS VARS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
+        self.workspace: Workspace  # The workspace can only be read after the lazy_document_helper
+        # has been instantiated. The reason is that the workspace depends on the
+        # 'document.full_name' property, which is only available after the lazy_document_helper has
+        # been instantiated.
+
         self.x_measure = 0.0
         self.y_measure = 0.0
         self.z_measure = 0.0
@@ -68,13 +77,13 @@ class GUI(tk.Tk):
         self.entry_result_current_text = tk.StringVar(name="entry_result_current_text")
         self.entry_result_new_text = tk.StringVar(name="entry_result_new_text")
 
-        self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
         self.selected_preset = resource.presets[0]
         self.selected_axis: Axes = Axes.X
         self.pre_selected_preset_reason = ""
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME) and not resource.settings.allow_all_users
+            not resource.user_exists(USERNAME)
+            and not resource.settings.restrictions.allow_all_users
         )
 
         # UI TOOLS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -93,6 +102,8 @@ class GUI(tk.Tk):
                 PytiaBodyEmptyError,
                 PytiaPropertyNotFoundError,
                 PytiaDifferentDocumentError,
+                PytiaDocumentNotSavedError,
+                PytiaUiToolsOutsideWorkspaceError,
             ],
         )
 
@@ -442,6 +453,12 @@ class GUI(tk.Tk):
     def run_controller(self) -> None:
         """Runs all controllers. Initializes all lazy loaders."""
         self.part_helper = LazyPartHelper()
+        self.workspace = Workspace(
+            path=self.part_helper.path,
+            filename=resource.settings.files.workspace,
+            allow_outside_workspace=resource.settings.restrictions.allow_outside_workspace,
+        )
+        self.workspace.read_yaml()
         self.main_controller()
 
     def main_controller(self) -> None:
@@ -473,36 +490,57 @@ class GUI(tk.Tk):
         """Event handler for the OK button."""
         log.info("User pressed OK button.")
 
-        if not self.readonly:
-            self.part_helper.write_property(
-                resource.props.base_size, self.entry_result_new.get()
+        if not self.workspace.elements.active:
+            tkmsg.showinfo(
+                message=(
+                    f"This workspace is disabled. You cannot make changes to this document."
+                )
             )
-            self.part_helper.write_property(
-                resource.props.base_size_preset, self.selected_preset.name
-            )
-            self.part_helper.write_modifier()
+            return
 
-            if resource.settings.enable_information:
-                for msg in resource.get_info_msg_by_counter():
-                    tkmsg.showinfo(
-                        title=resource.settings.title, message=f"Did you know:\n\n{msg}"
-                    )
-
-            self.withdraw()
-            self.destroy()
-
-        else:
+        if self.readonly:
             log.warning(
                 f"Did not save values to the part properties: {USERNAME} is not available in the "
                 f"user configuration."
             )
-            tkmsg.showwarning(
+            tkmsg.showinfo(
                 title=resource.settings.title,
                 message=(
                     f"You are not allowed to save to the part properties: {USERNAME} is not "
                     f"available in the user configuration."
                 ),
             )
+            return
+
+        if (
+            self.workspace.elements.editors
+            and USERNAME not in self.workspace.elements.editors
+            and not resource.settings.restrictions.allow_all_editors
+        ):
+            tkmsg.showinfo(
+                message=(
+                    f"You are not allowed to make changes to the part properties: {USERNAME} is "
+                    f"not available in the workspace configuration."
+                )
+            )
+            return
+
+        self.part_helper.write_property(
+            resource.props.base_size, self.entry_result_new.get()
+        )
+        self.part_helper.write_property(
+            resource.props.base_size_preset, self.selected_preset.name
+        )
+        self.part_helper.write_modifier()
+
+        if resource.settings.restrictions.enable_information:
+            for msg in resource.get_info_msg_by_counter():
+                tkmsg.showinfo(
+                    title=resource.settings.title, message=f"Did you know:\n\n{msg}"
+                )
+
+        self.withdraw()
+        self.destroy()
 
     def on_btn_abort(self) -> None:
         """Event handler for the abort button."""

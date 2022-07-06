@@ -4,6 +4,7 @@
 
 import atexit
 import functools
+import os
 import re
 import time
 import webbrowser
@@ -15,6 +16,7 @@ from const import Axes, Preference
 from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaDifferentDocumentError,
+    PytiaDocumentNotSavedError,
     PytiaPropertyNotFoundError,
     PytiaValueError,
 )
@@ -263,12 +265,27 @@ class LazyPartHelper:
         # pylint: enable=C0103
 
         self.framework = framework
-        self.part_document = PyPartDocument()
+        self.part_document = PyPartDocument(strict_naming=False)
         self.part_document.current()
+        self.part_document.product.part_number = self.part_document.document.name.split(
+            ".CATP"
+        )[0]
         self.part_name = self.part_document.document.name
 
         self._lock_catia(True)
         atexit.register(lambda: self._lock_catia(False))
+
+        if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
+            self.part_document.document.full_name
+        ):
+            raise PytiaDocumentNotSavedError(
+                "It is not allowed to edit the parameters of an unsaved document. "
+                "Please save the document first."
+            )
+
+    @property
+    def path(self) -> str:
+        return self.part_document.document.full_name
 
     def _lock_catia(self, value: bool) -> None:
         log.debug(f"Setting catia lock to {value!r}")
@@ -359,7 +376,7 @@ class LazyPartHelper:
             value (str): The value of the property.
         """
         if not self.part_document.properties.exists(name):
-            if not resource.settings.allow_property_creation:
+            if not resource.settings.restrictions.allow_property_creation:
                 raise PytiaPropertyNotFoundError(
                     f"The app doesn't have the permission to create properties at runtime. "
                     f"All required properties must be created before running this app."

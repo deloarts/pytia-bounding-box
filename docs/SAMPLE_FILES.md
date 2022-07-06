@@ -66,9 +66,12 @@ step.min | `int` | The minimum step the user can apply via the step slider.
 step.max | `int` | The maximum step the user can apply via the step slider.
 step.tick | `int` | The steps which the slider can move.
 parameters.thickness | `str` | The name of the thickness parameter in a part.
-enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
-allow_all_users | `bool` | If set to true any user can save the bounding box result to the part properties. If set to false only those users from the **users.json** file can modify the part properties.
-allow_property_creation | `bool` | If set to true, the app is allowed to create part properties, if they don't exist. If set to false, all required properties must be created before running the app.
+restrictions.allow_all_users | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users from the **users.json** file can modify the properties.
+restrictions.allow_all_editors | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users which are declared in the **workspace** file can modify the properties. If no workspace file is found, or no **editors** list-item is inside the workspace file, then this is omitted, and everyone can make changes.
+restrictions.allow_unsaved | `bool` | If set to `false` an unsaved document (a document which doesn't have a path yet) cannot be modified.
+restrictions.allow_outside_workspace | `bool` | If set to `false` a **workspace** file must be provided somewhere in the folder structure where the document is saved. This also means, that an unsaved document (a document which doesn't have a path yet) cannot be modified.
+restrictions.allow_property_creation | `bool` | If set to true, the app is allowed to create part properties, if they don't exist. If set to false, all required properties must be created before running the app.
+restrictions.enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
 save_modifier_by | `str` | The way the modifier is saved to the part properties. Available options are: `%logon%`, `%id%`, `%name%` and `%mail%`, or any combination, like `%id% | %name%`.
 paths.local_dependencies | `str` | The folder where local local_dependencies (python wheel files) for the installer are stored.
 paths.release | `str` | The folder where the launcher and the app are released into.

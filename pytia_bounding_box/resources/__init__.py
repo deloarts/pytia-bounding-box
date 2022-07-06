@@ -63,6 +63,7 @@ class SettingsFiles:
 
     app: str
     launcher: str
+    workspace: str
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -79,6 +80,18 @@ class SettingsMails:
     admin: str
 
 
+@dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsRestrictions:
+    """Dataclass for restrictive settings."""
+
+    allow_all_users: bool
+    allow_all_editors: bool
+    allow_unsaved: bool
+    allow_outside_workspace: bool
+    allow_property_creation: bool
+    enable_information: bool
+
+
 @dataclass(slots=True, kw_only=True)
 class Settings:  # pylint: disable=R0902
     """Dataclass for settings (settings.json)."""
@@ -89,9 +102,7 @@ class Settings:  # pylint: disable=R0902
     offset: SettingsScale
     step: SettingsScale
     parameters: SettingsParameters
-    enable_information: bool
-    allow_all_users: bool
-    allow_property_creation: bool
+    restrictions: SettingsRestrictions
     save_modifier_by: str
     files: SettingsFiles
     paths: SettingsPaths
@@ -102,6 +113,7 @@ class Settings:  # pylint: disable=R0902
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
+        self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore
         self.paths = SettingsPaths(**dict(self.paths))  # type: ignore
         self.urls = SettingsUrls(**dict(self.urls))  # type: ignore
