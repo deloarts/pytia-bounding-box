@@ -13,6 +13,7 @@ from resources import resource
 from app.helper import LazyPartHelper
 from app.layout import Layout
 from app.loaders import Loaders
+from app.state import UISetter
 from app.vars import Variables
 
 
@@ -27,6 +28,7 @@ class Callbacks:
         layout: Layout,
         loaders: Loaders,
         workspace: Workspace,
+        ui_setter: UISetter,
     ) -> None:
         """
         Inits the Callbacks class. Adds callbacks and bindings to the widgets on instantiation.
@@ -45,6 +47,7 @@ class Callbacks:
         self.layout = layout
         self.loaders = loaders
         self.workspace = workspace
+        self.set_parent_state = ui_setter
 
         self.readonly = bool(
             not resource.user_exists(USERNAME)
@@ -108,6 +111,7 @@ class Callbacks:
             )
             return
 
+        self.set_parent_state.busy()
         self.part_helper.write_property(
             resource.props.base_size, self.layout.entry_result_new.get()
         )

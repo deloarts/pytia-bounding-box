@@ -138,6 +138,7 @@ class GUI(tk.Tk):
 
     def main_controller(self) -> None:
         """The main controller: Loads and calculates the bounding box."""
+        self.set_ui.busy()
         self.loaders.load_process()
         self.loaders.load_measurements()
         self.loaders.load_combobox_preset()
@@ -148,6 +149,7 @@ class GUI(tk.Tk):
         self.loaders.load_existing_base_size()
         self.loaders.load_calculated()
         self.loaders.load_result()
+        self.set_ui.normal()
 
     def bindings(self) -> None:
         """Key bindings."""
@@ -177,6 +179,7 @@ class GUI(tk.Tk):
             layout=self.layout,
             loaders=self.loaders,
             workspace=self.workspace,
+            ui_setter=self.set_ui,
         )
 
     def traces(self) -> None:

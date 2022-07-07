@@ -38,7 +38,7 @@ class Layout:
             frames.selection,
             values=[ts.name for ts in resource.presets],
             width=35,
-            state="readonly",
+            state=DISABLED,
         )
         self.combo_preset.current(0)
 
@@ -54,7 +54,7 @@ class Layout:
             frames.selection,
             values=[a.value for a in Axes],
             width=35,
-            state="readonly",
+            state=DISABLED,
         )
         self.combo_axis.current(0)
 
@@ -73,7 +73,7 @@ class Layout:
             tick=resource.settings.offset.tick,
             length=180,
             orient="horizontal",
-            # command=self.callback_scale_offset,
+            state=DISABLED,
         )
         self.lbl_offset_value = ttk.Label(
             frames.selection,
@@ -101,7 +101,7 @@ class Layout:
             tick=resource.settings.step.tick,
             length=180,
             orient="horizontal",
-            # command=self.callback_scale_step,
+            state=DISABLED,
         )
         self.lbl_step_value = ttk.Label(
             frames.selection,
@@ -127,7 +127,7 @@ class Layout:
             onvalue=1,
             offvalue=0,
             style="Grey.TCheckbutton",
-            # command=self.callback_thickness,
+            state=DISABLED,
         )
         self.lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky="w")
         self.chkbox_thickness.grid(
@@ -165,6 +165,7 @@ class Layout:
             frames.values,
             width=12,
             style="Global.TEntry",
+            state=DISABLED,
             string_var=variables.entry_value_x_text,
         )
 
@@ -196,6 +197,7 @@ class Layout:
             frames.values,
             width=12,
             style="Global.TEntry",
+            state=DISABLED,
             string_var=variables.entry_value_y_text,
         )
 
@@ -227,6 +229,7 @@ class Layout:
             frames.values,
             width=12,
             style="Global.TEntry",
+            state=DISABLED,
             string_var=variables.entry_value_z_text,
         )
 
@@ -266,6 +269,7 @@ class Layout:
             frames.result,
             width=38,
             style="Global.TEntry",
+            state=DISABLED,
             textvariable=variables.entry_result_new_text,
         )
 
@@ -286,13 +290,13 @@ class Layout:
         self.btn_save = ttk.Button(
             frames.footer,
             text="Save",
-            # command=self.on_btn_save,
+            state=DISABLED,
             style="Footer.TButton",
         )
         self.btn_abort = ttk.Button(
             frames.footer,
             text="Abort",
-            # command=self.on_btn_abort,
+            state=DISABLED,
             style="Footer.TButton",
         )
 

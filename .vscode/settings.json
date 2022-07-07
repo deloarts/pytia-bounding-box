@@ -14,6 +14,7 @@
         "customtkinter",
         "dataclass",
         "deps",
+        "endregion",
         "gaierror",
         "getpid",
         "nametofont",
