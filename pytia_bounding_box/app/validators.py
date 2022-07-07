@@ -36,13 +36,13 @@ class Validators:
             self.vars.selected_preset.result_filter,
             self.vars.entry_result_new_text.get(),
         ):
-            self.layout.btn_save["state"] = tk.NORMAL
-            ToolTip(self.layout.btn_save, "")
+            self.layout.button_save["state"] = tk.NORMAL
+            ToolTip(self.layout.button_save, "")
         else:
-            self.layout.btn_save["state"] = tk.DISABLED
+            self.layout.button_save["state"] = tk.DISABLED
             examples = [f"\n  {e}" for e in self.vars.selected_preset.filter_examples]
             ToolTip(
-                self.layout.btn_save,
+                self.layout.button_save,
                 f"Value cannot be validated against the filter:\n\n"
                 f"{self.vars.selected_preset.result_filter}\n\n"
                 f"Examples for this filter:{''.join(examples)}\n\n"

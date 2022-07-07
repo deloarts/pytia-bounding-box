@@ -59,18 +59,18 @@ class Callbacks:
 
     def _add_callbacks(self) -> None:
         """Adds callbacks to the widgets."""
-        self.layout.scale_offset.configure(command=self.callback_scale_offset)
-        self.layout.scale_step.configure(command=self.callback_scale_step)
-        self.layout.chkbox_thickness.configure(command=self.callback_thickness)
-        self.layout.btn_save.configure(command=self.on_btn_save)
-        self.layout.btn_abort.configure(command=self.on_btn_abort)
+        self.layout.input_offset.configure(command=self.callback_scale_offset)
+        self.layout.input_step.configure(command=self.callback_scale_step)
+        self.layout.input_thickness.configure(command=self.callback_thickness)
+        self.layout.button_save.configure(command=self.on_btn_save)
+        self.layout.button_abort.configure(command=self.on_btn_abort)
 
     def _add_bindings(self) -> None:
         """Adds bindings to the widgets."""
-        self.layout.combo_preset.bind(
+        self.layout.input_preset.bind(
             "<<ComboboxSelected>>", self.callback_combobox_preset
         )
-        self.layout.combo_axis.bind("<<ComboboxSelected>>", self.callback_combobox_axis)
+        self.layout.input_axis.bind("<<ComboboxSelected>>", self.callback_combobox_axis)
 
     def on_btn_save(self) -> None:
         """Event handler for the OK button."""
@@ -113,7 +113,7 @@ class Callbacks:
 
         self.set_parent_state.busy()
         self.part_helper.write_property(
-            resource.props.base_size, self.layout.entry_result_new.get()
+            resource.props.base_size, self.layout.input_result.get()
         )
         self.part_helper.write_property(
             resource.props.base_size_preset, self.vars.selected_preset.name
@@ -138,7 +138,7 @@ class Callbacks:
     def callback_combobox_preset(self, _: tk.Event) -> None:
         """Callback for the presets combo box widget."""
         log.info(
-            f"Callback Combobox Preset: User selected {self.layout.combo_preset.get()!r}"
+            f"Callback Combobox Preset: User selected {self.layout.input_preset.get()!r}"
         )
         self.vars.pre_selected_preset_reason = ""
 
@@ -153,7 +153,7 @@ class Callbacks:
     def callback_combobox_axis(self, _: tk.Event) -> None:
         """Callback for the axis combo box widget."""
         log.info(
-            f"Callback Combobox Axis: User selected {self.layout.combo_axis.get()!r}"
+            f"Callback Combobox Axis: User selected {self.layout.input_axis.get()!r}"
         )
         self.loaders.load_combobox_axis()
         self.loaders.load_calculated()
@@ -162,14 +162,14 @@ class Callbacks:
     def callback_scale_offset(self) -> None:
         """Callback for the offset scale widget."""
         log.info(
-            f"Callback Scale Offset: User selected {self.layout.scale_offset.get()!r}"
+            f"Callback Scale Offset: User selected {self.layout.input_offset.get()!r}"
         )
         self.loaders.load_calculated()
         self.loaders.load_result()
 
     def callback_scale_step(self) -> None:
         """Callback for the step scale widget."""
-        log.info(f"Callback Scale Step: User selected: {self.layout.scale_step.get()}")
+        log.info(f"Callback Scale Step: User selected: {self.layout.input_step.get()}")
         self.loaders.load_calculated()
         self.loaders.load_result()
 

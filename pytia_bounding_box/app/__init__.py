@@ -157,16 +157,10 @@ class GUI(tk.Tk):
         self.bind("<F1>", lambda _: show_help())
         self.bind("<F5>", lambda _: self.main_controller())
 
-        self.layout.entry_value_x.bind(
-            "<KeyRelease>", lambda _: self.loaders.load_result()
-        )
-        self.layout.entry_value_y.bind(
-            "<KeyRelease>", lambda _: self.loaders.load_result()
-        )
-        self.layout.entry_value_z.bind(
-            "<KeyRelease>", lambda _: self.loaders.load_result()
-        )
-        self.layout.entry_result_new.bind(
+        self.layout.input_x.bind("<KeyRelease>", lambda _: self.loaders.load_result())
+        self.layout.input_y.bind("<KeyRelease>", lambda _: self.loaders.load_result())
+        self.layout.input_z.bind("<KeyRelease>", lambda _: self.loaders.load_result())
+        self.layout.input_result.bind(
             "<KeyRelease>", lambda _: self.validators.validate_result()
         )
 
