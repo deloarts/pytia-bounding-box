@@ -11,8 +11,7 @@ directory = os.path.dirname(os.path.realpath("__file__"))
 
 
 def test_versions():
-    from pytia_bounding_box.resources import resource
-
+    """Test if the versions from the pyproject file are matching the versions of the deps json."""
     with open(
         os.path.join(directory, "pytia_bounding_box\\resources\\dependencies.json"), "r"
     ) as f:
