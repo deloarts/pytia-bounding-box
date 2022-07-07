@@ -2,7 +2,6 @@
     The layout submodule of the app. Holds the layout of the main window.
 """
 
-from ast import Num
 from tkinter import DISABLED, SE, ttk
 
 from const import Axes
@@ -296,60 +295,75 @@ class Layout:
 
     @property
     def input_preset(self) -> ttk.Combobox:
+        """Returns the preset combobox widget."""
         return self._combo_preset
 
     @property
     def input_axis(self) -> ttk.Combobox:
+        """Returns the axis combobox widget."""
         return self._combo_axis
 
     @property
     def input_offset(self) -> SnapScale:
+        """Returns the offset scale widget."""
         return self._scale_offset
 
     @property
     def input_step(self) -> SnapScale:
+        """Returns the step scale widget."""
         return self._scale_step
 
     @property
     def input_thickness(self) -> ttk.Checkbutton:
+        """Returns the thickness checkbox widget."""
         return self._chkbox_thickness
 
     @property
     def measure_x(self) -> NumberEntry:
+        """Returns the measure entry for the x axis."""
         return self._entry_measure_x
 
     @property
     def input_x(self) -> NumberEntry:
+        """Returns the input entry for the x axis."""
         return self._entry_value_x
 
     @property
     def measure_y(self) -> NumberEntry:
+        """Returns the measure entry for the y axis."""
         return self._entry_measure_y
 
     @property
     def input_y(self) -> NumberEntry:
+        """Returns the input entry for the y axis."""
         return self._entry_value_y
 
     @property
     def measure_z(self) -> NumberEntry:
+        """Returns the measure entry for the z axis."""
         return self._entry_measure_z
 
     @property
     def input_z(self) -> NumberEntry:
+        """Returns the input entry for the z axis."""
         return self._entry_value_z
 
     @property
     def stored_result(self) -> ttk.Entry:
+        """Returns the entry for the previous result."""
         return self._entry_result_current
 
     @property
     def input_result(self) -> ttk.Entry:
+        """Returns the input entry for the result."""
         return self._entry_result_new
 
     @property
     def button_save(self) -> ttk.Button:
+        """Returns the save button."""
         return self._btn_save
 
     @property
     def button_abort(self) -> ttk.Button:
+        """Returns the abort button."""
         return self._btn_abort
