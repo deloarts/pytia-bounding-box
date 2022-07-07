@@ -193,11 +193,34 @@ The result area is for a last check before saving the bounding box value to the 
 - **Current value**: Shows an applied current bounding box value, if the app has been run before.
 - **New value**: Shows the newly calculated bounding box value. This input is tested against a filter. If the value doesn't pass the test, the user can hover over the input field to get an explanation why the new value doesn't match the filter criteria.
 
-## 4 license
+## 4 workspace
+
+The workspace is an **optional** config file, that can be used to alter the behavior of the app. The workspace file is a yaml-file, which must be saved somewhere in the project directory, where the CATPart, from which to retrieve the base size, is also stored:
+
+```bash
+your-fancy-project
+├─── subfolder-A
+│    ├─── product-A.CATProduct
+│    ├─── part-A-01.CATPart
+│    └─── part-A-02.CATPart
+├─── subfolder-B
+│    ├─── product-B.CATProduct
+│    ├─── part-B-01.CATPart
+│    └─── part-B-02.CATPart
+└─── workspace.yml
+```
+
+As long as the workspace file is located somewhere in the project, and as long as this file is in the same folder, or any folder above the CATPart file, it will be used.
+
+For a detailed description of the workspace config file, see [WORKSPACE_FILE](docs/WORKSPACE_FILE.md).
+
+The filename of the workspace file can be changed in the **settings.json** file, see [SAMPLE_FILES](docs/SAMPLE_FILES.md).
+
+## 5 license
 
 [MIT License](LICENSE)
 
-## 5 changelog
+## 6 changelog
 
 **v0.2.0**: Add workspace.  
 **v0.1.2**: Create pid file in tempfolder.  
