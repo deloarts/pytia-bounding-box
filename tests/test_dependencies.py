@@ -28,3 +28,14 @@ def test_versions():
             assert f"v{item['version']}" == pyproject["pytia"]["tag"]
         if item["name"] == "pytia_ui_tools":
             assert f"v{item['version']}" == pyproject["pytia-ui-tools"]["tag"]
+
+
+def test_imports():
+    """Tests if no third party imports are in the dependencies file."""
+    with open(
+        os.path.join(directory, "pytia_bounding_box\\dependencies.py"),
+        "r",
+    ) as f:
+        for line in f.readlines():
+            assert "pytia" not in line
+            assert "pytia_ui_tools" not in line
