@@ -17,6 +17,7 @@
         "endregion",
         "gaierror",
         "getpid",
+        "mainloop",
         "nametofont",
         "offvalue",
         "onvalue",
