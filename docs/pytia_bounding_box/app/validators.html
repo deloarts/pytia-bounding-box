@@ -65,13 +65,13 @@ class Validators:
             self.vars.selected_preset.result_filter,
             self.vars.entry_result_new_text.get(),
         ):
-            self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-            ToolTip(self.layout.btn_save, &#34;&#34;)
+            self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+            ToolTip(self.layout.button_save, &#34;&#34;)
         else:
-            self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
+            self.layout.button_save[&#34;state&#34;] = tk.DISABLED
             examples = [f&#34;\n  {e}&#34; for e in self.vars.selected_preset.filter_examples]
             ToolTip(
-                self.layout.btn_save,
+                self.layout.button_save,
                 f&#34;Value cannot be validated against the filter:\n\n&#34;
                 f&#34;{self.vars.selected_preset.result_filter}\n\n&#34;
                 f&#34;Examples for this filter:{&#39;&#39;.join(examples)}\n\n&#34;
@@ -132,13 +132,13 @@ class Validators:
             self.vars.selected_preset.result_filter,
             self.vars.entry_result_new_text.get(),
         ):
-            self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-            ToolTip(self.layout.btn_save, &#34;&#34;)
+            self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+            ToolTip(self.layout.button_save, &#34;&#34;)
         else:
-            self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
+            self.layout.button_save[&#34;state&#34;] = tk.DISABLED
             examples = [f&#34;\n  {e}&#34; for e in self.vars.selected_preset.filter_examples]
             ToolTip(
-                self.layout.btn_save,
+                self.layout.button_save,
                 f&#34;Value cannot be validated against the filter:\n\n&#34;
                 f&#34;{self.vars.selected_preset.result_filter}\n\n&#34;
                 f&#34;Examples for this filter:{&#39;&#39;.join(examples)}\n\n&#34;
@@ -170,13 +170,13 @@ the OK button accordingly to the validation result.</p></div>
         self.vars.selected_preset.result_filter,
         self.vars.entry_result_new_text.get(),
     ):
-        self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-        ToolTip(self.layout.btn_save, &#34;&#34;)
+        self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+        ToolTip(self.layout.button_save, &#34;&#34;)
     else:
-        self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
+        self.layout.button_save[&#34;state&#34;] = tk.DISABLED
         examples = [f&#34;\n  {e}&#34; for e in self.vars.selected_preset.filter_examples]
         ToolTip(
-            self.layout.btn_save,
+            self.layout.button_save,
             f&#34;Value cannot be validated against the filter:\n\n&#34;
             f&#34;{self.vars.selected_preset.result_filter}\n\n&#34;
             f&#34;Examples for this filter:{&#39;&#39;.join(examples)}\n\n&#34;

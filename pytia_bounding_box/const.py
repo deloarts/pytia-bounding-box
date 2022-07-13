@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -30,7 +30,6 @@ PY_VERSION = APPDATA + "\\pyversion.txt"
 CONFIG_APPDATA = "config.json"
 CONFIG_SETTINGS = "settings.json"
 CONFIG_DEPS = "dependencies.json"
-CONFIG_DEPS_DEFAULT = "dependencies.default.json"
 CONFIG_PROPS = "properties.json"
 CONFIG_PROPS_DEFAULT = "properties.default.json"
 CONFIG_PRESETS = "presets.json"

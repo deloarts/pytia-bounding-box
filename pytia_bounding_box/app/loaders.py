@@ -85,7 +85,7 @@ class Loaders:
 
         preset_property = self.part_helper.get_property(resource.props.base_size_preset)
         if preset_property and resource.preset_exists(preset_property):
-            self.layout.combo_preset.set(preset_property)
+            self.layout.input_preset.set(preset_property)
             self.vars.pre_selected_preset_reason = (
                 "This preset has been pre-selected because it "
                 "already existed in the part properties.\n\n"
@@ -97,7 +97,7 @@ class Loaders:
         if process_property and resource.process_exists(process_property):
             process = resource.get_process_by_name(process_property)
             if resource.preset_exists(process.preset):
-                self.layout.combo_preset.set(process.preset)
+                self.layout.input_preset.set(process.preset)
                 self.vars.pre_selected_preset_reason = (
                     f"This preset has been pre-selected because of the process "
                     f"property {process_property!r}.\n\n"
@@ -115,9 +115,9 @@ class Loaders:
         Requires valid measurements.
         """
         self.vars.selected_preset = resource.get_preset_by_name(
-            self.layout.combo_preset.get()
+            self.layout.input_preset.get()
         )
-        self.layout.combo_axis.set(
+        self.layout.input_axis.set(
             get_preferred_axis(
                 self.vars.x_measure,
                 self.vars.y_measure,
@@ -126,7 +126,7 @@ class Loaders:
             ).value
         )
         ToolTip(
-            self.layout.combo_preset,
+            self.layout.input_preset,
             text=self.vars.pre_selected_preset_reason
             + self.vars.selected_preset.tooltip,
         )
@@ -139,10 +139,10 @@ class Loaders:
         Disables the axis-combobox when no preference is specified.
         """
         if self.vars.selected_preset.preference:
-            self.layout.combo_axis["state"] = "readonly"
-            self.vars.selected_axis = Axes(self.layout.combo_axis.get())
+            self.layout.input_axis["state"] = "readonly"
+            self.vars.selected_axis = Axes(self.layout.input_axis.get())
         else:
-            self.layout.combo_axis["state"] = tk.DISABLED
+            self.layout.input_axis["state"] = tk.DISABLED
             self.vars.selected_axis = Axes.X
 
     def load_scale_offset(self) -> None:
@@ -151,10 +151,10 @@ class Loaders:
         Disables the offset-scale when no offset is specified.
         """
         if self.vars.selected_preset.offset:
-            self.layout.scale_offset["state"] = tk.NORMAL
+            self.layout.input_offset["state"] = tk.NORMAL
             self.vars.scale_offset_value.set(self.vars.selected_preset.offset)
         else:
-            self.layout.scale_offset["state"] = tk.DISABLED
+            self.layout.input_offset["state"] = tk.DISABLED
             self.vars.scale_offset_value.set(0)
 
     def load_scale_step(self) -> None:
@@ -163,10 +163,10 @@ class Loaders:
         Disables the offset-scale when no offset is specified.
         """
         if self.vars.selected_preset.offset:
-            self.layout.scale_step["state"] = tk.NORMAL
+            self.layout.input_step["state"] = tk.NORMAL
             self.vars.scale_step_value.set(self.vars.selected_preset.step)
         else:
-            self.layout.scale_step["state"] = tk.DISABLED
+            self.layout.input_step["state"] = tk.DISABLED
             self.vars.scale_step_value.set(0)
 
     def load_chkbox_thickness(self) -> None:
@@ -180,15 +180,15 @@ class Loaders:
             )
             if thickness_param:
                 self.vars.thickness_value.set(True)
-                self.layout.chkbox_thickness["state"] = tk.NORMAL
-                self.layout.chkbox_thickness[
+                self.layout.input_thickness["state"] = tk.NORMAL
+                self.layout.input_thickness[
                     "text"
                 ] = f"({resource.settings.parameters.thickness}: {thickness_param})"
                 return
 
         self.vars.thickness_value.set(False)
-        self.layout.chkbox_thickness["state"] = tk.DISABLED
-        self.layout.chkbox_thickness["text"] = ""
+        self.layout.input_thickness["state"] = tk.DISABLED
+        self.layout.input_thickness["text"] = ""
 
     def load_calculated(self) -> None:
         """

@@ -37,7 +37,7 @@ responsible | `str` | The name of the person that is responsible for the project
 delegate | `str` | The name of the person that is representative for the responsible person.
 editors | `List[str]` or `str` | The list of editors that are allowed to make changes to the part properties. If the value of the **settings.json** key `restrictions.allow_all_editors` is set to `false`, only those editors are allowed to make changes to the part properties. If set to `true`, the editors list will be ignored.
 
-## 1 example file
+## 3 example file
 
 This example file is with comments, so any person involved in this project can edit the file easily.
 

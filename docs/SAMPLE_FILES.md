@@ -89,7 +89,7 @@ files.workspace | `str` | The name of the workspace file.
 urls.help | `str` or `null` | The help page for the app. If set to null the user will receive a message, that no help page is provided.
 mails.admin | `str` | The mail address of the sys admin. Required for error mails.
 
-## 2.1 users.sample.json
+## 2 users.sample.json
 
 This file contains a list of users known to the system.
 
