@@ -58,36 +58,34 @@ class UISetter:
         &#34;&#34;&#34;Sets the main windows state to busy.&#34;&#34;&#34;
         self.root.config(cursor=&#34;wait&#34;)
         self.root.update()
-        self.layout.combo_preset[&#34;state&#34;] = tk.DISABLED
-        self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
-        self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
-        self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
-        self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_x[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_y[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_z[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_result_current[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_result_new[&#34;state&#34;] = tk.DISABLED
-        self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
-        self.layout.btn_abort[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_preset[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_axis[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_offset[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_step[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_x[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_y[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_z[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_result[&#34;state&#34;] = tk.DISABLED
+        self.layout.button_save[&#34;state&#34;] = tk.DISABLED
+        self.layout.button_abort[&#34;state&#34;] = tk.DISABLED
         self.root.update()
 
     def normal(self) -&gt; None:
         &#34;&#34;&#34;Sets the main windows state to normal.&#34;&#34;&#34;
         self.root.config(cursor=&#34;wait&#34;)
         self.root.update()
-        self.layout.combo_preset[&#34;state&#34;] = &#34;readonly&#34;
-        self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
-        self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
-        self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
-        self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_x[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_y[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_z[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_result_current[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_result_new[&#34;state&#34;] = tk.NORMAL
-        self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-        self.layout.btn_abort[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_preset[&#34;state&#34;] = &#34;readonly&#34;
+        self.layout.input_axis[&#34;state&#34;] = &#34;readonly&#34;
+        self.layout.input_offset[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_step[&#34;state&#34;] = tk.NORMAL
+        # self.layout.input_thickness[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_x[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_y[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_z[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_result[&#34;state&#34;] = tk.NORMAL
+        self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+        self.layout.button_abort[&#34;state&#34;] = tk.NORMAL
         self.root.config(cursor=&#34;arrow&#34;)
         self.root.update()</code></pre>
 </details>
@@ -141,36 +139,34 @@ class UISetter:
         &#34;&#34;&#34;Sets the main windows state to busy.&#34;&#34;&#34;
         self.root.config(cursor=&#34;wait&#34;)
         self.root.update()
-        self.layout.combo_preset[&#34;state&#34;] = tk.DISABLED
-        self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
-        self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
-        self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
-        self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_x[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_y[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_value_z[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_result_current[&#34;state&#34;] = tk.DISABLED
-        self.layout.entry_result_new[&#34;state&#34;] = tk.DISABLED
-        self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
-        self.layout.btn_abort[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_preset[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_axis[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_offset[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_step[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_x[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_y[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_z[&#34;state&#34;] = tk.DISABLED
+        self.layout.input_result[&#34;state&#34;] = tk.DISABLED
+        self.layout.button_save[&#34;state&#34;] = tk.DISABLED
+        self.layout.button_abort[&#34;state&#34;] = tk.DISABLED
         self.root.update()
 
     def normal(self) -&gt; None:
         &#34;&#34;&#34;Sets the main windows state to normal.&#34;&#34;&#34;
         self.root.config(cursor=&#34;wait&#34;)
         self.root.update()
-        self.layout.combo_preset[&#34;state&#34;] = &#34;readonly&#34;
-        self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
-        self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
-        self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
-        self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_x[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_y[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_value_z[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_result_current[&#34;state&#34;] = tk.NORMAL
-        self.layout.entry_result_new[&#34;state&#34;] = tk.NORMAL
-        self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-        self.layout.btn_abort[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_preset[&#34;state&#34;] = &#34;readonly&#34;
+        self.layout.input_axis[&#34;state&#34;] = &#34;readonly&#34;
+        self.layout.input_offset[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_step[&#34;state&#34;] = tk.NORMAL
+        # self.layout.input_thickness[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_x[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_y[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_z[&#34;state&#34;] = tk.NORMAL
+        self.layout.input_result[&#34;state&#34;] = tk.NORMAL
+        self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+        self.layout.button_abort[&#34;state&#34;] = tk.NORMAL
         self.root.config(cursor=&#34;arrow&#34;)
         self.root.update()</code></pre>
 </details>
@@ -189,18 +185,17 @@ class UISetter:
     &#34;&#34;&#34;Sets the main windows state to busy.&#34;&#34;&#34;
     self.root.config(cursor=&#34;wait&#34;)
     self.root.update()
-    self.layout.combo_preset[&#34;state&#34;] = tk.DISABLED
-    self.layout.combo_axis[&#34;state&#34;] = tk.DISABLED
-    self.layout.scale_offset[&#34;state&#34;] = tk.DISABLED
-    self.layout.scale_step[&#34;state&#34;] = tk.DISABLED
-    self.layout.chkbox_thickness[&#34;state&#34;] = tk.DISABLED
-    self.layout.entry_value_x[&#34;state&#34;] = tk.DISABLED
-    self.layout.entry_value_y[&#34;state&#34;] = tk.DISABLED
-    self.layout.entry_value_z[&#34;state&#34;] = tk.DISABLED
-    self.layout.entry_result_current[&#34;state&#34;] = tk.DISABLED
-    self.layout.entry_result_new[&#34;state&#34;] = tk.DISABLED
-    self.layout.btn_save[&#34;state&#34;] = tk.DISABLED
-    self.layout.btn_abort[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_preset[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_axis[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_offset[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_step[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_x[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_y[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_z[&#34;state&#34;] = tk.DISABLED
+    self.layout.input_result[&#34;state&#34;] = tk.DISABLED
+    self.layout.button_save[&#34;state&#34;] = tk.DISABLED
+    self.layout.button_abort[&#34;state&#34;] = tk.DISABLED
     self.root.update()</code></pre>
 </details>
 </dd>
@@ -217,18 +212,17 @@ class UISetter:
     &#34;&#34;&#34;Sets the main windows state to normal.&#34;&#34;&#34;
     self.root.config(cursor=&#34;wait&#34;)
     self.root.update()
-    self.layout.combo_preset[&#34;state&#34;] = &#34;readonly&#34;
-    self.layout.combo_axis[&#34;state&#34;] = &#34;readonly&#34;
-    self.layout.scale_offset[&#34;state&#34;] = tk.NORMAL
-    self.layout.scale_step[&#34;state&#34;] = tk.NORMAL
-    self.layout.chkbox_thickness[&#34;state&#34;] = tk.NORMAL
-    self.layout.entry_value_x[&#34;state&#34;] = tk.NORMAL
-    self.layout.entry_value_y[&#34;state&#34;] = tk.NORMAL
-    self.layout.entry_value_z[&#34;state&#34;] = tk.NORMAL
-    self.layout.entry_result_current[&#34;state&#34;] = tk.NORMAL
-    self.layout.entry_result_new[&#34;state&#34;] = tk.NORMAL
-    self.layout.btn_save[&#34;state&#34;] = tk.NORMAL
-    self.layout.btn_abort[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_preset[&#34;state&#34;] = &#34;readonly&#34;
+    self.layout.input_axis[&#34;state&#34;] = &#34;readonly&#34;
+    self.layout.input_offset[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_step[&#34;state&#34;] = tk.NORMAL
+    # self.layout.input_thickness[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_x[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_y[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_z[&#34;state&#34;] = tk.NORMAL
+    self.layout.input_result[&#34;state&#34;] = tk.NORMAL
+    self.layout.button_save[&#34;state&#34;] = tk.NORMAL
+    self.layout.button_abort[&#34;state&#34;] = tk.NORMAL
     self.root.config(cursor=&#34;arrow&#34;)
     self.root.update()</code></pre>
 </details>

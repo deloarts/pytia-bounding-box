@@ -48,53 +48,51 @@ class Layout:
     def __init__(self, frames: Frames, variables: Variables) -&gt; None:
         &#34;&#34;&#34;Initialize the Layout class.&#34;&#34;&#34;
         # SELECTIONS
-        self.lbl_selection_header = ttk.Label(
+        lbl_selection_header = ttk.Label(
             frames.selection_header,
             text=&#34;Selection&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_selection_header.grid(
+        lbl_selection_header.grid(
             row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;
         )
 
         # PRESET SELECTION
-        self.lbl_preset = ttk.Label(
+        lbl_preset = ttk.Label(
             frames.selection, text=&#34;Preset&#34;, cursor=&#34;arrow&#34;, width=12
         )
 
-        self.combo_preset = ttk.Combobox(
+        self._combo_preset = ttk.Combobox(
             frames.selection,
             values=[ts.name for ts in resource.presets],
             width=35,
-            state=&#34;readonly&#34;,
+            state=DISABLED,
         )
-        self.combo_preset.current(0)
+        self._combo_preset.current(0)
 
-        self.lbl_preset.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.combo_preset.grid(row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_preset.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._combo_preset.grid(row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
 
         # AXIS SELECTION
-        self.lbl_axis = ttk.Label(
-            frames.selection, text=&#34;Axis&#34;, cursor=&#34;arrow&#34;, width=12
-        )
+        lbl_axis = ttk.Label(frames.selection, text=&#34;Axis&#34;, cursor=&#34;arrow&#34;, width=12)
 
-        self.combo_axis = ttk.Combobox(
+        self._combo_axis = ttk.Combobox(
             frames.selection,
             values=[a.value for a in Axes],
             width=35,
-            state=&#34;readonly&#34;,
+            state=DISABLED,
         )
-        self.combo_axis.current(0)
+        self._combo_axis.current(0)
 
-        self.lbl_axis.grid(row=1, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.combo_axis.grid(row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_axis.grid(row=1, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._combo_axis.grid(row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
 
         # OFFSET SELECTION
-        self.lbl_offset = ttk.Label(
+        lbl_offset = ttk.Label(
             frames.selection, text=&#34;Offset&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.scale_offset = SnapScale(
+        self._scale_offset = SnapScale(
             frames.selection,
             int_var=variables.scale_offset_value,
             from_=resource.settings.offset.min,
@@ -102,27 +100,25 @@ class Layout:
             tick=resource.settings.offset.tick,
             length=180,
             orient=&#34;horizontal&#34;,
-            # command=self.callback_scale_offset,
+            state=DISABLED,
         )
-        self.lbl_offset_value = ttk.Label(
+        lbl_offset_value = ttk.Label(
             frames.selection,
             textvariable=variables.scale_offset_value,
             cursor=&#34;arrow&#34;,
             width=2,
             anchor=&#34;e&#34;,
         )
-        self.lbl_offset_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_offset_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
 
-        self.lbl_offset.grid(row=2, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.scale_offset.grid(row=2, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
-        self.lbl_offset_value.place(x=300, y=55)
-        self.lbl_offset_unit.place(x=318, y=55)
+        lbl_offset.grid(row=2, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._scale_offset.grid(row=2, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
+        lbl_offset_value.place(x=300, y=55)
+        lbl_offset_unit.place(x=318, y=55)
 
         # STEP SELECTION
-        self.lbl_step = ttk.Label(
-            frames.selection, text=&#34;Step&#34;, cursor=&#34;arrow&#34;, width=12
-        )
-        self.scale_step = SnapScale(
+        lbl_step = ttk.Label(frames.selection, text=&#34;Step&#34;, cursor=&#34;arrow&#34;, width=12)
+        self._scale_step = SnapScale(
             frames.selection,
             int_var=variables.scale_step_value,
             from_=resource.settings.step.min,
@@ -130,203 +126,276 @@ class Layout:
             tick=resource.settings.step.tick,
             length=180,
             orient=&#34;horizontal&#34;,
-            # command=self.callback_scale_step,
+            state=DISABLED,
         )
-        self.lbl_step_value = ttk.Label(
+        lbl_step_value = ttk.Label(
             frames.selection,
             textvariable=variables.scale_step_value,
             cursor=&#34;arrow&#34;,
             width=2,
             anchor=&#34;e&#34;,
         )
-        self.lbl_step_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_step_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
 
-        self.lbl_step.grid(row=3, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.scale_step.grid(row=3, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
-        self.lbl_step_value.place(x=300, y=84)
-        self.lbl_step_unit.place(x=318, y=84)
+        lbl_step.grid(row=3, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._scale_step.grid(row=3, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
+        lbl_step_value.place(x=300, y=84)
+        lbl_step_unit.place(x=318, y=84)
 
         # THICKNESS
-        self.lbl_thickness = ttk.Label(
+        lbl_thickness = ttk.Label(
             frames.selection, text=&#34;Thickness&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.chkbox_thickness = ttk.Checkbutton(
+        self._chkbox_thickness = ttk.Checkbutton(
             frames.selection,
             variable=variables.thickness_value,
             onvalue=1,
             offvalue=0,
             style=&#34;Grey.TCheckbutton&#34;,
-            # command=self.callback_thickness,
+            state=DISABLED,
         )
-        self.lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.chkbox_thickness.grid(
+        lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._chkbox_thickness.grid(
             row=4, column=1, padx=(3, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
         # MEASURE AND SELECTED VALUE
-        self.lbl_values_header = ttk.Label(
+        lbl_values_header = ttk.Label(
             frames.values_header,
             text=&#34;Measured / Selected&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_values_header.grid(
-            row=0, column=0, padx=(15, 5), pady=(15, 5), sticky=&#34;w&#34;
-        )
+        lbl_values_header.grid(row=0, column=0, padx=(15, 5), pady=(15, 5), sticky=&#34;w&#34;)
 
         # X-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_x = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_x = ttk.Label(
             frames.values,
             text=Axes.X.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_x = NumberEntry(
+        self._entry_measure_x = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_x_text,
         )
-        self.entry_value_x = NumberEntry(
+        self._entry_value_x = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_x_text,
         )
 
-        self.lbl_value_x.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_x.grid(row=0, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=0, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_x.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_x.grid(
+            row=0, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_x.grid(row=0, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=0, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=0, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_x.grid(row=0, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=0, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # Y-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_y = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_y = ttk.Label(
             frames.values,
             text=Axes.Y.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_y = NumberEntry(
+        self._entry_measure_y = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_y_text,
         )
-        self.entry_value_y = NumberEntry(
+        self._entry_value_y = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_y_text,
         )
 
-        self.lbl_value_y.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_y.grid(row=1, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=1, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_y.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_y.grid(
+            row=1, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_y.grid(row=1, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=1, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=1, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_y.grid(row=1, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=1, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # Z-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_z = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_z = ttk.Label(
             frames.values,
             text=Axes.Z.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_z = NumberEntry(
+        self._entry_measure_z = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_z_text,
         )
-        self.entry_value_z = NumberEntry(
+        self._entry_value_z = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_z_text,
         )
 
-        self.lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_z.grid(row=2, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=2, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_z.grid(
+            row=2, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=2, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # RESULTS
-        self.lbl_result_header = ttk.Label(
+        lbl_result_header = ttk.Label(
             frames.result_header,
             text=&#34;Result&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_result_header.grid(
-            row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;
-        )
+        lbl_result_header.grid(row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;)
 
-        self.lbl_result_current = ttk.Label(
+        lbl_result_current = ttk.Label(
             frames.result, text=&#34;Current value&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.entry_result_current = ttk.Entry(
+        self._entry_result_current = ttk.Entry(
             frames.result,
             width=38,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             textvariable=variables.entry_result_current_text,
         )
-        self.lbl_result_new = ttk.Label(
+        lbl_result_new = ttk.Label(
             frames.result, text=&#34;New value&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.entry_result_new = ttk.Entry(
+        self._entry_result_new = ttk.Entry(
             frames.result,
             width=38,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             textvariable=variables.entry_result_new_text,
         )
 
-        self.lbl_result_current.grid(
-            row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;
-        )
-        self.entry_result_current.grid(
+        lbl_result_current.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_result_current.grid(
             row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
-        self.lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_result_new.grid(
+        lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_result_new.grid(
             row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
         # FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        self.btn_save = ttk.Button(
+        self._btn_save = ttk.Button(
             frames.footer,
             text=&#34;Save&#34;,
-            # command=self.on_btn_save,
+            state=DISABLED,
             style=&#34;Footer.TButton&#34;,
         )
-        self.btn_abort = ttk.Button(
+        self._btn_abort = ttk.Button(
             frames.footer,
             text=&#34;Abort&#34;,
-            # command=self.on_btn_abort,
+            state=DISABLED,
             style=&#34;Footer.TButton&#34;,
         )
 
-        self.btn_save.place(rely=1.0, relx=1.0, x=-115, y=-15, anchor=SE)
-        self.btn_abort.place(rely=1.0, relx=1.0, x=-15, y=-15, anchor=SE)</code></pre>
+        self._btn_save.place(rely=1.0, relx=1.0, x=-115, y=-15, anchor=SE)
+        self._btn_abort.place(rely=1.0, relx=1.0, x=-15, y=-15, anchor=SE)
+
+    @property
+    def input_preset(self) -&gt; ttk.Combobox:
+        &#34;&#34;&#34;Returns the preset combobox widget.&#34;&#34;&#34;
+        return self._combo_preset
+
+    @property
+    def input_axis(self) -&gt; ttk.Combobox:
+        &#34;&#34;&#34;Returns the axis combobox widget.&#34;&#34;&#34;
+        return self._combo_axis
+
+    @property
+    def input_offset(self) -&gt; SnapScale:
+        &#34;&#34;&#34;Returns the offset scale widget.&#34;&#34;&#34;
+        return self._scale_offset
+
+    @property
+    def input_step(self) -&gt; SnapScale:
+        &#34;&#34;&#34;Returns the step scale widget.&#34;&#34;&#34;
+        return self._scale_step
+
+    @property
+    def input_thickness(self) -&gt; ttk.Checkbutton:
+        &#34;&#34;&#34;Returns the thickness checkbox widget.&#34;&#34;&#34;
+        return self._chkbox_thickness
+
+    @property
+    def measure_x(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the x axis.&#34;&#34;&#34;
+        return self._entry_measure_x
+
+    @property
+    def input_x(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the x axis.&#34;&#34;&#34;
+        return self._entry_value_x
+
+    @property
+    def measure_y(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the y axis.&#34;&#34;&#34;
+        return self._entry_measure_y
+
+    @property
+    def input_y(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the y axis.&#34;&#34;&#34;
+        return self._entry_value_y
+
+    @property
+    def measure_z(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the z axis.&#34;&#34;&#34;
+        return self._entry_measure_z
+
+    @property
+    def input_z(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the z axis.&#34;&#34;&#34;
+        return self._entry_value_z
+
+    @property
+    def stored_result(self) -&gt; ttk.Entry:
+        &#34;&#34;&#34;Returns the entry for the previous result.&#34;&#34;&#34;
+        return self._entry_result_current
+
+    @property
+    def input_result(self) -&gt; ttk.Entry:
+        &#34;&#34;&#34;Returns the input entry for the result.&#34;&#34;&#34;
+        return self._entry_result_new
+
+    @property
+    def button_save(self) -&gt; ttk.Button:
+        &#34;&#34;&#34;Returns the save button.&#34;&#34;&#34;
+        return self._btn_save
+
+    @property
+    def button_abort(self) -&gt; ttk.Button:
+        &#34;&#34;&#34;Returns the abort button.&#34;&#34;&#34;
+        return self._btn_abort</code></pre>
 </details>
 </section>
 <section>
@@ -355,53 +424,51 @@ class Layout:
     def __init__(self, frames: Frames, variables: Variables) -&gt; None:
         &#34;&#34;&#34;Initialize the Layout class.&#34;&#34;&#34;
         # SELECTIONS
-        self.lbl_selection_header = ttk.Label(
+        lbl_selection_header = ttk.Label(
             frames.selection_header,
             text=&#34;Selection&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_selection_header.grid(
+        lbl_selection_header.grid(
             row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;
         )
 
         # PRESET SELECTION
-        self.lbl_preset = ttk.Label(
+        lbl_preset = ttk.Label(
             frames.selection, text=&#34;Preset&#34;, cursor=&#34;arrow&#34;, width=12
         )
 
-        self.combo_preset = ttk.Combobox(
+        self._combo_preset = ttk.Combobox(
             frames.selection,
             values=[ts.name for ts in resource.presets],
             width=35,
-            state=&#34;readonly&#34;,
+            state=DISABLED,
         )
-        self.combo_preset.current(0)
+        self._combo_preset.current(0)
 
-        self.lbl_preset.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.combo_preset.grid(row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_preset.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._combo_preset.grid(row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
 
         # AXIS SELECTION
-        self.lbl_axis = ttk.Label(
-            frames.selection, text=&#34;Axis&#34;, cursor=&#34;arrow&#34;, width=12
-        )
+        lbl_axis = ttk.Label(frames.selection, text=&#34;Axis&#34;, cursor=&#34;arrow&#34;, width=12)
 
-        self.combo_axis = ttk.Combobox(
+        self._combo_axis = ttk.Combobox(
             frames.selection,
             values=[a.value for a in Axes],
             width=35,
-            state=&#34;readonly&#34;,
+            state=DISABLED,
         )
-        self.combo_axis.current(0)
+        self._combo_axis.current(0)
 
-        self.lbl_axis.grid(row=1, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.combo_axis.grid(row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_axis.grid(row=1, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._combo_axis.grid(row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;)
 
         # OFFSET SELECTION
-        self.lbl_offset = ttk.Label(
+        lbl_offset = ttk.Label(
             frames.selection, text=&#34;Offset&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.scale_offset = SnapScale(
+        self._scale_offset = SnapScale(
             frames.selection,
             int_var=variables.scale_offset_value,
             from_=resource.settings.offset.min,
@@ -409,27 +476,25 @@ class Layout:
             tick=resource.settings.offset.tick,
             length=180,
             orient=&#34;horizontal&#34;,
-            # command=self.callback_scale_offset,
+            state=DISABLED,
         )
-        self.lbl_offset_value = ttk.Label(
+        lbl_offset_value = ttk.Label(
             frames.selection,
             textvariable=variables.scale_offset_value,
             cursor=&#34;arrow&#34;,
             width=2,
             anchor=&#34;e&#34;,
         )
-        self.lbl_offset_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_offset_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
 
-        self.lbl_offset.grid(row=2, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.scale_offset.grid(row=2, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
-        self.lbl_offset_value.place(x=300, y=55)
-        self.lbl_offset_unit.place(x=318, y=55)
+        lbl_offset.grid(row=2, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._scale_offset.grid(row=2, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
+        lbl_offset_value.place(x=300, y=55)
+        lbl_offset_unit.place(x=318, y=55)
 
         # STEP SELECTION
-        self.lbl_step = ttk.Label(
-            frames.selection, text=&#34;Step&#34;, cursor=&#34;arrow&#34;, width=12
-        )
-        self.scale_step = SnapScale(
+        lbl_step = ttk.Label(frames.selection, text=&#34;Step&#34;, cursor=&#34;arrow&#34;, width=12)
+        self._scale_step = SnapScale(
             frames.selection,
             int_var=variables.scale_step_value,
             from_=resource.settings.step.min,
@@ -437,204 +502,475 @@ class Layout:
             tick=resource.settings.step.tick,
             length=180,
             orient=&#34;horizontal&#34;,
-            # command=self.callback_scale_step,
+            state=DISABLED,
         )
-        self.lbl_step_value = ttk.Label(
+        lbl_step_value = ttk.Label(
             frames.selection,
             textvariable=variables.scale_step_value,
             cursor=&#34;arrow&#34;,
             width=2,
             anchor=&#34;e&#34;,
         )
-        self.lbl_step_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_step_unit = ttk.Label(frames.selection, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
 
-        self.lbl_step.grid(row=3, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.scale_step.grid(row=3, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
-        self.lbl_step_value.place(x=300, y=84)
-        self.lbl_step_unit.place(x=318, y=84)
+        lbl_step.grid(row=3, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._scale_step.grid(row=3, column=1, padx=(5, 5), pady=(1, 1), sticky=&#34;w&#34;)
+        lbl_step_value.place(x=300, y=84)
+        lbl_step_unit.place(x=318, y=84)
 
         # THICKNESS
-        self.lbl_thickness = ttk.Label(
+        lbl_thickness = ttk.Label(
             frames.selection, text=&#34;Thickness&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.chkbox_thickness = ttk.Checkbutton(
+        self._chkbox_thickness = ttk.Checkbutton(
             frames.selection,
             variable=variables.thickness_value,
             onvalue=1,
             offvalue=0,
             style=&#34;Grey.TCheckbutton&#34;,
-            # command=self.callback_thickness,
+            state=DISABLED,
         )
-        self.lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
-        self.chkbox_thickness.grid(
+        lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky=&#34;w&#34;)
+        self._chkbox_thickness.grid(
             row=4, column=1, padx=(3, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
         # MEASURE AND SELECTED VALUE
-        self.lbl_values_header = ttk.Label(
+        lbl_values_header = ttk.Label(
             frames.values_header,
             text=&#34;Measured / Selected&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_values_header.grid(
-            row=0, column=0, padx=(15, 5), pady=(15, 5), sticky=&#34;w&#34;
-        )
+        lbl_values_header.grid(row=0, column=0, padx=(15, 5), pady=(15, 5), sticky=&#34;w&#34;)
 
         # X-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_x = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_x = ttk.Label(
             frames.values,
             text=Axes.X.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_x = NumberEntry(
+        self._entry_measure_x = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_x_text,
         )
-        self.entry_value_x = NumberEntry(
+        self._entry_value_x = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_x_text,
         )
 
-        self.lbl_value_x.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_x.grid(row=0, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=0, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_x.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_x.grid(
+            row=0, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_x.grid(row=0, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=0, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=0, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_x.grid(row=0, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=0, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # Y-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_y = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_y = ttk.Label(
             frames.values,
             text=Axes.Y.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_y = NumberEntry(
+        self._entry_measure_y = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_y_text,
         )
-        self.entry_value_y = NumberEntry(
+        self._entry_value_y = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_y_text,
         )
 
-        self.lbl_value_y.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_y.grid(row=1, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=1, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_y.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_y.grid(
+            row=1, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_y.grid(row=1, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=1, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=1, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_y.grid(row=1, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=1, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # Z-AXIS
-        self.lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
-        self.lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
-        self.lbl_value_z = ttk.Label(
+        lbl_values_unit = ttk.Label(frames.values, text=&#34;mm&#34;, cursor=&#34;arrow&#34;)
+        lbl_values_slash = ttk.Label(frames.values, text=&#34;mm  / &#34;, cursor=&#34;arrow&#34;)
+        lbl_value_z = ttk.Label(
             frames.values,
             text=Axes.Z.value,
             cursor=&#34;arrow&#34;,
             width=12,
         )
-        self.entry_measure_z = NumberEntry(
+        self._entry_measure_z = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             string_var=variables.entry_measure_z_text,
         )
-        self.entry_value_z = NumberEntry(
+        self._entry_value_z = NumberEntry(
             frames.values,
             width=12,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             string_var=variables.entry_value_z_text,
         )
 
-        self.lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_measure_z.grid(row=2, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_slash.grid(
-            row=2, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;
+        lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_measure_z.grid(
+            row=2, column=1, padx=(5, 1), pady=(3, 3), sticky=&#34;w&#34;
         )
-        self.entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
-        self.lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_slash.grid(row=2, column=2, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
+        lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 3), sticky=&#34;w&#34;)
 
         # RESULTS
-        self.lbl_result_header = ttk.Label(
+        lbl_result_header = ttk.Label(
             frames.result_header,
             text=&#34;Result&#34;,
             cursor=&#34;arrow&#34;,
             font=(&#34;Segoe UI&#34;, 10, &#34;bold&#34;),
         )
-        self.lbl_result_header.grid(
-            row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;
-        )
+        lbl_result_header.grid(row=0, column=0, padx=(15, 3), pady=(15, 3), sticky=&#34;w&#34;)
 
-        self.lbl_result_current = ttk.Label(
+        lbl_result_current = ttk.Label(
             frames.result, text=&#34;Current value&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.entry_result_current = ttk.Entry(
+        self._entry_result_current = ttk.Entry(
             frames.result,
             width=38,
             style=&#34;Global.TEntry&#34;,
             state=DISABLED,
             textvariable=variables.entry_result_current_text,
         )
-        self.lbl_result_new = ttk.Label(
+        lbl_result_new = ttk.Label(
             frames.result, text=&#34;New value&#34;, cursor=&#34;arrow&#34;, width=12
         )
-        self.entry_result_new = ttk.Entry(
+        self._entry_result_new = ttk.Entry(
             frames.result,
             width=38,
             style=&#34;Global.TEntry&#34;,
+            state=DISABLED,
             textvariable=variables.entry_result_new_text,
         )
 
-        self.lbl_result_current.grid(
-            row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;
-        )
-        self.entry_result_current.grid(
+        lbl_result_current.grid(row=0, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_result_current.grid(
             row=0, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
-        self.lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
-        self.entry_result_new.grid(
+        lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky=&#34;w&#34;)
+        self._entry_result_new.grid(
             row=1, column=1, padx=(5, 5), pady=(3, 3), sticky=&#34;w&#34;
         )
 
         # FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        self.btn_save = ttk.Button(
+        self._btn_save = ttk.Button(
             frames.footer,
             text=&#34;Save&#34;,
-            # command=self.on_btn_save,
+            state=DISABLED,
             style=&#34;Footer.TButton&#34;,
         )
-        self.btn_abort = ttk.Button(
+        self._btn_abort = ttk.Button(
             frames.footer,
             text=&#34;Abort&#34;,
-            # command=self.on_btn_abort,
+            state=DISABLED,
             style=&#34;Footer.TButton&#34;,
         )
 
-        self.btn_save.place(rely=1.0, relx=1.0, x=-115, y=-15, anchor=SE)
-        self.btn_abort.place(rely=1.0, relx=1.0, x=-15, y=-15, anchor=SE)</code></pre>
+        self._btn_save.place(rely=1.0, relx=1.0, x=-115, y=-15, anchor=SE)
+        self._btn_abort.place(rely=1.0, relx=1.0, x=-15, y=-15, anchor=SE)
+
+    @property
+    def input_preset(self) -&gt; ttk.Combobox:
+        &#34;&#34;&#34;Returns the preset combobox widget.&#34;&#34;&#34;
+        return self._combo_preset
+
+    @property
+    def input_axis(self) -&gt; ttk.Combobox:
+        &#34;&#34;&#34;Returns the axis combobox widget.&#34;&#34;&#34;
+        return self._combo_axis
+
+    @property
+    def input_offset(self) -&gt; SnapScale:
+        &#34;&#34;&#34;Returns the offset scale widget.&#34;&#34;&#34;
+        return self._scale_offset
+
+    @property
+    def input_step(self) -&gt; SnapScale:
+        &#34;&#34;&#34;Returns the step scale widget.&#34;&#34;&#34;
+        return self._scale_step
+
+    @property
+    def input_thickness(self) -&gt; ttk.Checkbutton:
+        &#34;&#34;&#34;Returns the thickness checkbox widget.&#34;&#34;&#34;
+        return self._chkbox_thickness
+
+    @property
+    def measure_x(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the x axis.&#34;&#34;&#34;
+        return self._entry_measure_x
+
+    @property
+    def input_x(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the x axis.&#34;&#34;&#34;
+        return self._entry_value_x
+
+    @property
+    def measure_y(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the y axis.&#34;&#34;&#34;
+        return self._entry_measure_y
+
+    @property
+    def input_y(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the y axis.&#34;&#34;&#34;
+        return self._entry_value_y
+
+    @property
+    def measure_z(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the measure entry for the z axis.&#34;&#34;&#34;
+        return self._entry_measure_z
+
+    @property
+    def input_z(self) -&gt; NumberEntry:
+        &#34;&#34;&#34;Returns the input entry for the z axis.&#34;&#34;&#34;
+        return self._entry_value_z
+
+    @property
+    def stored_result(self) -&gt; ttk.Entry:
+        &#34;&#34;&#34;Returns the entry for the previous result.&#34;&#34;&#34;
+        return self._entry_result_current
+
+    @property
+    def input_result(self) -&gt; ttk.Entry:
+        &#34;&#34;&#34;Returns the input entry for the result.&#34;&#34;&#34;
+        return self._entry_result_new
+
+    @property
+    def button_save(self) -&gt; ttk.Button:
+        &#34;&#34;&#34;Returns the save button.&#34;&#34;&#34;
+        return self._btn_save
+
+    @property
+    def button_abort(self) -&gt; ttk.Button:
+        &#34;&#34;&#34;Returns the abort button.&#34;&#34;&#34;
+        return self._btn_abort</code></pre>
 </details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pytia_bounding_box.app.layout.Layout.button_abort"><code class="name">var <span class="ident">button_abort</span> : tkinter.ttk.Button</code></dt>
+<dd>
+<div class="desc"><p>Returns the abort button.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def button_abort(self) -&gt; ttk.Button:
+    &#34;&#34;&#34;Returns the abort button.&#34;&#34;&#34;
+    return self._btn_abort</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.button_save"><code class="name">var <span class="ident">button_save</span> : tkinter.ttk.Button</code></dt>
+<dd>
+<div class="desc"><p>Returns the save button.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def button_save(self) -&gt; ttk.Button:
+    &#34;&#34;&#34;Returns the save button.&#34;&#34;&#34;
+    return self._btn_save</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_axis"><code class="name">var <span class="ident">input_axis</span> : tkinter.ttk.Combobox</code></dt>
+<dd>
+<div class="desc"><p>Returns the axis combobox widget.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_axis(self) -&gt; ttk.Combobox:
+    &#34;&#34;&#34;Returns the axis combobox widget.&#34;&#34;&#34;
+    return self._combo_axis</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_offset"><code class="name">var <span class="ident">input_offset</span> : pytia_ui_tools.widgets.scales.SnapScale</code></dt>
+<dd>
+<div class="desc"><p>Returns the offset scale widget.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_offset(self) -&gt; SnapScale:
+    &#34;&#34;&#34;Returns the offset scale widget.&#34;&#34;&#34;
+    return self._scale_offset</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_preset"><code class="name">var <span class="ident">input_preset</span> : tkinter.ttk.Combobox</code></dt>
+<dd>
+<div class="desc"><p>Returns the preset combobox widget.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_preset(self) -&gt; ttk.Combobox:
+    &#34;&#34;&#34;Returns the preset combobox widget.&#34;&#34;&#34;
+    return self._combo_preset</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_result"><code class="name">var <span class="ident">input_result</span> : tkinter.ttk.Entry</code></dt>
+<dd>
+<div class="desc"><p>Returns the input entry for the result.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_result(self) -&gt; ttk.Entry:
+    &#34;&#34;&#34;Returns the input entry for the result.&#34;&#34;&#34;
+    return self._entry_result_new</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_step"><code class="name">var <span class="ident">input_step</span> : pytia_ui_tools.widgets.scales.SnapScale</code></dt>
+<dd>
+<div class="desc"><p>Returns the step scale widget.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_step(self) -&gt; SnapScale:
+    &#34;&#34;&#34;Returns the step scale widget.&#34;&#34;&#34;
+    return self._scale_step</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_thickness"><code class="name">var <span class="ident">input_thickness</span> : tkinter.ttk.Checkbutton</code></dt>
+<dd>
+<div class="desc"><p>Returns the thickness checkbox widget.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_thickness(self) -&gt; ttk.Checkbutton:
+    &#34;&#34;&#34;Returns the thickness checkbox widget.&#34;&#34;&#34;
+    return self._chkbox_thickness</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_x"><code class="name">var <span class="ident">input_x</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the input entry for the x axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_x(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the input entry for the x axis.&#34;&#34;&#34;
+    return self._entry_value_x</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_y"><code class="name">var <span class="ident">input_y</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the input entry for the y axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_y(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the input entry for the y axis.&#34;&#34;&#34;
+    return self._entry_value_y</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.input_z"><code class="name">var <span class="ident">input_z</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the input entry for the z axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def input_z(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the input entry for the z axis.&#34;&#34;&#34;
+    return self._entry_value_z</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.measure_x"><code class="name">var <span class="ident">measure_x</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the measure entry for the x axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def measure_x(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the measure entry for the x axis.&#34;&#34;&#34;
+    return self._entry_measure_x</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.measure_y"><code class="name">var <span class="ident">measure_y</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the measure entry for the y axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def measure_y(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the measure entry for the y axis.&#34;&#34;&#34;
+    return self._entry_measure_y</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.measure_z"><code class="name">var <span class="ident">measure_z</span> : pytia_ui_tools.widgets.entries.NumberEntry</code></dt>
+<dd>
+<div class="desc"><p>Returns the measure entry for the z axis.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def measure_z(self) -&gt; NumberEntry:
+    &#34;&#34;&#34;Returns the measure entry for the z axis.&#34;&#34;&#34;
+    return self._entry_measure_z</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.layout.Layout.stored_result"><code class="name">var <span class="ident">stored_result</span> : tkinter.ttk.Entry</code></dt>
+<dd>
+<div class="desc"><p>Returns the entry for the previous result.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def stored_result(self) -&gt; ttk.Entry:
+    &#34;&#34;&#34;Returns the entry for the previous result.&#34;&#34;&#34;
+    return self._entry_result_current</code></pre>
+</details>
+</dd>
+</dl>
 </dd>
 </dl>
 </section>
@@ -654,6 +990,23 @@ class Layout:
 <ul>
 <li>
 <h4><code><a title="pytia_bounding_box.app.layout.Layout" href="#pytia_bounding_box.app.layout.Layout">Layout</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pytia_bounding_box.app.layout.Layout.button_abort" href="#pytia_bounding_box.app.layout.Layout.button_abort">button_abort</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.button_save" href="#pytia_bounding_box.app.layout.Layout.button_save">button_save</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_axis" href="#pytia_bounding_box.app.layout.Layout.input_axis">input_axis</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_offset" href="#pytia_bounding_box.app.layout.Layout.input_offset">input_offset</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_preset" href="#pytia_bounding_box.app.layout.Layout.input_preset">input_preset</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_result" href="#pytia_bounding_box.app.layout.Layout.input_result">input_result</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_step" href="#pytia_bounding_box.app.layout.Layout.input_step">input_step</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_thickness" href="#pytia_bounding_box.app.layout.Layout.input_thickness">input_thickness</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_x" href="#pytia_bounding_box.app.layout.Layout.input_x">input_x</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_y" href="#pytia_bounding_box.app.layout.Layout.input_y">input_y</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.input_z" href="#pytia_bounding_box.app.layout.Layout.input_z">input_z</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.measure_x" href="#pytia_bounding_box.app.layout.Layout.measure_x">measure_x</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.measure_y" href="#pytia_bounding_box.app.layout.Layout.measure_y">measure_y</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.measure_z" href="#pytia_bounding_box.app.layout.Layout.measure_z">measure_z</a></code></li>
+<li><code><a title="pytia_bounding_box.app.layout.Layout.stored_result" href="#pytia_bounding_box.app.layout.Layout.stored_result">stored_result</a></code></li>
+</ul>
 </li>
 </ul>
 </li>
