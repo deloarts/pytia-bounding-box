@@ -4,6 +4,7 @@
 
 import time
 import tkinter as tk
+from pathlib import Path
 from tkinter import font, ttk
 
 from pytia.const import USERNAME
@@ -67,7 +68,7 @@ class GUI(tk.Tk):
             standard_receiver=resource.settings.mails.admin,
             app_title=resource.settings.title,
             app_version=APP_VERSION,
-            logfile=f"{LOGS}\\{LOG}",
+            logfile=Path(LOGS, LOG),
         )
         self.error_handler = ErrorHandler(
             mail_handler=self.mail_handler,
