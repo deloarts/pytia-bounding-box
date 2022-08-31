@@ -33,6 +33,7 @@
 
 import time
 import tkinter as tk
+from pathlib import Path
 from tkinter import font, ttk
 
 from pytia.const import USERNAME
@@ -96,7 +97,7 @@ class GUI(tk.Tk):
             standard_receiver=resource.settings.mails.admin,
             app_title=resource.settings.title,
             app_version=APP_VERSION,
-            logfile=f&#34;{LOGS}\\{LOG}&#34;,
+            logfile=Path(LOGS, LOG),
         )
         self.error_handler = ErrorHandler(
             mail_handler=self.mail_handler,
@@ -263,7 +264,7 @@ is the name of the widget class.</p></div>
             standard_receiver=resource.settings.mails.admin,
             app_title=resource.settings.title,
             app_version=APP_VERSION,
-            logfile=f&#34;{LOGS}\\{LOG}&#34;,
+            logfile=Path(LOGS, LOG),
         )
         self.error_handler = ErrorHandler(
             mail_handler=self.mail_handler,

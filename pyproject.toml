@@ -4,12 +4,12 @@ classifiers = ["Operating System :: Windows"]
 description = "A visual tool for retrieving the bounding box of a CATIA part."
 name = "pytia-bounding-box"
 readme = "README.md"
-version = "0.2.1"
+version = "0.2.2"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 pytia = {git = "ssh://git@github.com/deloarts/pytia.git", tag = "v0.1.1"}
-pytia-ui-tools = {git = "ssh://git@github.com/deloarts/pytia-ui-tools.git", tag = "v0.4.1"}
+pytia-ui-tools = {git = "ssh://git@github.com/deloarts/pytia-ui-tools.git", tag = "v0.5.1"}
 
 [tool.poetry.dev-dependencies]
 Jinja2 = "^3.1.2"
