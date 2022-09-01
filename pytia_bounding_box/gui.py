@@ -89,6 +89,7 @@ class GUI(tk.Tk):
             f"{' (READ ONLY)' if self.readonly else ''}"
         )
         self.attributes("-topmost", True)
+        self.attributes("-toolwindow", True)
         self.resizable(False, False)
         self.config(cursor="wait")
         self.default_font = font.nametofont("TkDefaultFont")
