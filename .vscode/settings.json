@@ -27,6 +27,7 @@
         "pdoc",
         "phili",
         "Processus",
+        "pygit",
         "pylint",
         "pylintrc",
         "pyproject",
