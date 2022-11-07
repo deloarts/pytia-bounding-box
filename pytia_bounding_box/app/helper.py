@@ -272,8 +272,11 @@ class LazyPartHelper:
         )[0]
         self.part_name = self.part_document.document.name
 
-        self._lock_catia(True)
-        atexit.register(lambda: self._lock_catia(False))
+        # FIXME: Locking CATIA prevents the ability to detect changes on the document.
+        # This means that the part or product won't be saved, even if the user tries to manually
+        # save it.
+        # self._lock_catia(True)
+        # atexit.register(lambda: self._lock_catia(False))
 
         if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
             self.part_document.document.full_name
