@@ -27,6 +27,7 @@
         "pdoc",
         "phili",
         "Processus",
+        "pygit",
         "pylint",
         "pylintrc",
         "pyproject",
@@ -43,6 +44,7 @@
         "tempfolder",
         "textvariable",
         "tkmsg",
+        "toolwindow",
         "winfo",
         "zipfile"
     ]

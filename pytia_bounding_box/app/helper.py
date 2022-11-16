@@ -2,12 +2,12 @@
     Helper functions and classes for the UI.
 """
 
-import atexit
 import functools
 import os
 import re
 import time
 import webbrowser
+from pathlib import Path
 from tkinter import BooleanVar, IntVar
 from tkinter import messagebox as tkmsg
 from typing import Optional, Tuple
@@ -272,8 +272,11 @@ class LazyPartHelper:
         )[0]
         self.part_name = self.part_document.document.name
 
-        self._lock_catia(True)
-        atexit.register(lambda: self._lock_catia(False))
+        # FIXME: Locking CATIA prevents the ability to detect changes on the document.
+        # This means that the part or product won't be saved, even if the user tries to manually
+        # save it.
+        # self._lock_catia(True)
+        # atexit.register(lambda: self._lock_catia(False))
 
         if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
             self.part_document.document.full_name
@@ -284,9 +287,9 @@ class LazyPartHelper:
             )
 
     @property
-    def path(self) -> str:
+    def path(self) -> Path:
         """Returns the path of the document."""
-        return self.part_document.document.full_name
+        return Path(self.part_document.document.full_name)
 
     def _lock_catia(self, value: bool) -> None:
         log.debug(f"Setting catia lock to {value!r}")

@@ -31,12 +31,12 @@
     Helper functions and classes for the UI.
 &#34;&#34;&#34;
 
-import atexit
 import functools
 import os
 import re
 import time
 import webbrowser
+from pathlib import Path
 from tkinter import BooleanVar, IntVar
 from tkinter import messagebox as tkmsg
 from typing import Optional, Tuple
@@ -301,8 +301,11 @@ class LazyPartHelper:
         )[0]
         self.part_name = self.part_document.document.name
 
-        self._lock_catia(True)
-        atexit.register(lambda: self._lock_catia(False))
+        # FIXME: Locking CATIA prevents the ability to detect changes on the document.
+        # This means that the part or product won&#39;t be saved, even if the user tries to manually
+        # save it.
+        # self._lock_catia(True)
+        # atexit.register(lambda: self._lock_catia(False))
 
         if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
             self.part_document.document.full_name
@@ -313,9 +316,9 @@ class LazyPartHelper:
             )
 
     @property
-    def path(self) -&gt; str:
+    def path(self) -&gt; Path:
         &#34;&#34;&#34;Returns the path of the document.&#34;&#34;&#34;
-        return self.part_document.document.full_name
+        return Path(self.part_document.document.full_name)
 
     def _lock_catia(self, value: bool) -&gt; None:
         log.debug(f&#34;Setting catia lock to {value!r}&#34;)
@@ -819,8 +822,11 @@ document changes all operations will be made on the original document.</p>
         )[0]
         self.part_name = self.part_document.document.name
 
-        self._lock_catia(True)
-        atexit.register(lambda: self._lock_catia(False))
+        # FIXME: Locking CATIA prevents the ability to detect changes on the document.
+        # This means that the part or product won&#39;t be saved, even if the user tries to manually
+        # save it.
+        # self._lock_catia(True)
+        # atexit.register(lambda: self._lock_catia(False))
 
         if not resource.settings.restrictions.allow_unsaved and not os.path.isabs(
             self.part_document.document.full_name
@@ -831,9 +837,9 @@ document changes all operations will be made on the original document.</p>
             )
 
     @property
-    def path(self) -&gt; str:
+    def path(self) -&gt; Path:
         &#34;&#34;&#34;Returns the path of the document.&#34;&#34;&#34;
-        return self.part_document.document.full_name
+        return Path(self.part_document.document.full_name)
 
     def _lock_catia(self, value: bool) -&gt; None:
         log.debug(f&#34;Setting catia lock to {value!r}&#34;)
@@ -968,7 +974,7 @@ document changes all operations will be made on the original document.</p>
 </details>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pytia_bounding_box.app.helper.LazyPartHelper.path"><code class="name">var <span class="ident">path</span> : str</code></dt>
+<dt id="pytia_bounding_box.app.helper.LazyPartHelper.path"><code class="name">var <span class="ident">path</span> : pathlib.Path</code></dt>
 <dd>
 <div class="desc"><p>Returns the path of the document.</p></div>
 <details class="source">
@@ -976,9 +982,9 @@ document changes all operations will be made on the original document.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def path(self) -&gt; str:
+def path(self) -&gt; Path:
     &#34;&#34;&#34;Returns the path of the document.&#34;&#34;&#34;
-    return self.part_document.document.full_name</code></pre>
+    return Path(self.part_document.document.full_name)</code></pre>
 </details>
 </dd>
 </dl>
