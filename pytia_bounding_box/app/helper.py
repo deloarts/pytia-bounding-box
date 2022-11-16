@@ -2,7 +2,6 @@
     Helper functions and classes for the UI.
 """
 
-import atexit
 import functools
 import os
 import re
