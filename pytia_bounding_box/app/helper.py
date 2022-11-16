@@ -8,6 +8,7 @@ import os
 import re
 import time
 import webbrowser
+from pathlib import Path
 from tkinter import BooleanVar, IntVar
 from tkinter import messagebox as tkmsg
 from typing import Optional, Tuple
@@ -287,9 +288,9 @@ class LazyPartHelper:
             )
 
     @property
-    def path(self) -> str:
+    def path(self) -> Path:
         """Returns the path of the document."""
-        return self.part_document.document.full_name
+        return Path(self.part_document.document.full_name)
 
     def _lock_catia(self, value: bool) -> None:
         log.debug(f"Setting catia lock to {value!r}")
