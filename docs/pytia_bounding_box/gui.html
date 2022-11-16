@@ -118,6 +118,7 @@ class GUI(tk.Tk):
             f&#34;{&#39; (READ ONLY)&#39; if self.readonly else &#39;&#39;}&#34;
         )
         self.attributes(&#34;-topmost&#34;, True)
+        self.attributes(&#34;-toolwindow&#34;, True)
         self.resizable(False, False)
         self.config(cursor=&#34;wait&#34;)
         self.default_font = font.nametofont(&#34;TkDefaultFont&#34;)
@@ -285,6 +286,7 @@ is the name of the widget class.</p></div>
             f&#34;{&#39; (READ ONLY)&#39; if self.readonly else &#39;&#39;}&#34;
         )
         self.attributes(&#34;-topmost&#34;, True)
+        self.attributes(&#34;-toolwindow&#34;, True)
         self.resizable(False, False)
         self.config(cursor=&#34;wait&#34;)
         self.default_font = font.nametofont(&#34;TkDefaultFont&#34;)

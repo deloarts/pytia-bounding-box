@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
