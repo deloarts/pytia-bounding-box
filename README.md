@@ -21,6 +21,44 @@ Check out the pytia ecosystem:
 - [pytia-quick-export](https://github.com/deloarts/pytia-quick-export): An app for quick data exports from a part or product.
 - [pytia-ui-tools](https://github.com/deloarts/pytia-ui-tools): A toolbox for all pytia apps.
 
+Table of contents:
+
+- [pytia bounding box](#pytia-bounding-box)
+  - [1 installation](#1-installation)
+    - [1.1 user](#11-user)
+    - [1.2 developer](#12-developer)
+  - [2 setup](#2-setup)
+    - [2.1 resource files](#21-resource-files)
+      - [2.1.1 default files](#211-default-files)
+      - [2.1.2 sample files](#212-sample-files)
+      - [2.1.3 static files](#213-static-files)
+    - [2.2 provide local dependencies](#22-provide-local-dependencies)
+    - [2.3 provide a release folder](#23-provide-a-release-folder)
+    - [2.4 build](#24-build)
+    - [2.5 release](#25-release)
+    - [2.6 docs](#26-docs)
+  - [3 usage](#3-usage)
+    - [3.1 selection](#31-selection)
+    - [3.2 measured / selected](#32-measured--selected)
+    - [3.3 result](#33-result)
+  - [4 workspace](#4-workspace)
+  - [5 developing](#5-developing)
+    - [5.1 repository](#51-repository)
+      - [5.1.1 cloning](#511-cloning)
+      - [5.1.2 main branch protection](#512-main-branch-protection)
+      - [5.1.3 branch naming convention](#513-branch-naming-convention)
+      - [5.1.4 issues](#514-issues)
+    - [5.2 poetry](#52-poetry)
+      - [5.2.1 setup](#521-setup)
+      - [5.2.2 install](#522-install)
+      - [5.2.3 tests](#523-tests)
+    - [5.3 pre-commit hooks](#53-pre-commit-hooks)
+    - [5.4 docs](#54-docs)
+    - [5.5 new revision checklist](#55-new-revision-checklist)
+  - [6 license](#6-license)
+  - [7 changelog](#7-changelog)
+  - [8 to dos](#8-to-dos)
+
 ## 1 installation
 
 ### 1.1 user
@@ -119,15 +157,7 @@ You can always change the path of the release folder by editing the value from t
 
 > ⚠️ Once you built and released the app you cannot move the python app nor the catvbs script to another location, because absolute paths will be written to those files. If you have to move the location of the files you have to change the paths in the **settings.json** config file, build the app again and release it to the new destination.
 
-### 2.6 pre-commit hooks
-
-Don't forget to install the pre-commit hooks:
-
-```powershell
-pre-commit install
-```
-
-### 2.7 docs
+### 2.6 docs
 
 You can find the documentation in the [docs folder](/docs).
 
