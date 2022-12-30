@@ -42,7 +42,6 @@ This file contains the basic settings for the app.
     "save_modifier_by": "%id% | %name%",
     "paths": {
         "catia": "C:\\CATIA\\V5-6R2017\\B27",
-        "local_dependencies": "C:\\pytia\\local_deps",
         "release": "C:\\pytia\\release"
     },
     "files": {
@@ -81,7 +80,6 @@ restrictions.allow_property_creation | `bool` | If set to true, the app is allow
 restrictions.enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
 save_modifier_by | `str` | The way the modifier is saved to the part properties. Available options are: `%logon%`, `%id%`, `%name%` and `%mail%`, or any combination, like `%id% | %name%`.
 path.catia | `str` | The absolute path to the CATIA executables.
-paths.local_dependencies | `str` | The folder where local local_dependencies (python wheel files) for the installer are stored.
 paths.release | `str` | The folder where the launcher and the app are released into.
 files.app | `str` | The name of the released python app file.
 files.launcher | `str` | The name of the release catvbs launcher file.
