@@ -7,7 +7,7 @@ from __future__ import annotations
 import os
 from enum import Enum
 
-__version__ = "0.2.4"
+__version__ = "0.3.0"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -40,7 +40,7 @@ CONFIG_INFOS = "information.json"
 CONFIG_INFOS_DEFAULT = "information.default.json"
 CONFIG_USERS = "users.json"
 
-WEB_PIP = "www.pypi.org"
+WEB_PIP = "https://www.pypi.org"
 
 
 class Preference(Enum):
