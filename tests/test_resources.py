@@ -40,7 +40,6 @@ def test_settings():
 
     assert isinstance(resource.settings.save_modifier_by, str)
 
-    assert isinstance(resource.settings.paths.local_dependencies, str)
     assert isinstance(resource.settings.paths.release, str)
     assert resource.settings.files.app.endswith(".pyz")
     assert resource.settings.files.launcher.endswith(".catvbs")
@@ -75,12 +74,6 @@ def test_props():
     assert "process" in resource.props.keys
 
     assert all([len(v) > 0 for v in resource.props.values])
-
-
-def test_local_dependencies_folder():
-    from pytia_bounding_box.resources import resource
-
-    assert os.path.isdir(resource.settings.paths.local_dependencies)
 
 
 def test_release_folder():
