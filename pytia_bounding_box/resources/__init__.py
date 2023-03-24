@@ -30,6 +30,7 @@ from const import (
     CONFIG_SETTINGS,
     CONFIG_USERS,
 )
+from resources.utils import expand_env_vars
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -48,12 +49,16 @@ class SettingsParameters:
     thickness: str
 
 
-@dataclass(slots=True, kw_only=True, frozen=True)
+@dataclass(slots=True, kw_only=True)
 class SettingsPaths:
     """Dataclass for paths (settings.json)."""
 
     catia: Path
     release: Path
+
+    def __post_init__(self) -> None:
+        self.catia = Path(expand_env_vars(str(self.catia)))
+        self.release = Path(expand_env_vars(str(self.release)))
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -362,7 +367,7 @@ class Resources:  # pylint: disable=R0902
         Returns:
             List[str]: The list of keys.
         """
-        return [f.name for f in fields(c)]
+        return [f.name for f in fields(c)]  # type: ignore
 
     @staticmethod
     def get_values(c: Callable) -> List[str]:
@@ -375,7 +380,7 @@ class Resources:  # pylint: disable=R0902
         Returns:
             List[str]: The list of values.
         """
-        return [getattr(c, f.name) for f in fields(c)]
+        return [getattr(c, f.name) for f in fields(c)]  # type: ignore
 
     def process_exists(self, name: str) -> bool:
         """
