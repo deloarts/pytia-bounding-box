@@ -3,6 +3,7 @@
 """
 
 import os
+from pathlib import Path
 
 import validators
 
@@ -40,7 +41,7 @@ def test_settings():
 
     assert isinstance(resource.settings.save_modifier_by, str)
 
-    assert isinstance(resource.settings.paths.release, str)
+    assert isinstance(resource.settings.paths.release, Path)
     assert resource.settings.files.app.endswith(".pyz")
     assert resource.settings.files.launcher.endswith(".catvbs")
 
