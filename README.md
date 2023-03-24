@@ -3,7 +3,7 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-beta-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.3.0-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/badge/Version-0.3.1-orange.svg?style=for-the-badge)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
@@ -25,8 +25,6 @@ Table of contents:
 
 - [pytia bounding box](#pytia-bounding-box)
   - [1 installation](#1-installation)
-    - [1.1 user](#11-user)
-    - [1.2 developer](#12-developer)
   - [2 setup](#2-setup)
     - [2.1 resource files](#21-resource-files)
       - [2.1.1 default files](#211-default-files)
@@ -60,7 +58,7 @@ Table of contents:
 
 ## 1 installation
 
-### 1.1 user
+> ✏️ For a guided installation visit [https://pytia.deloarts.com](https://pytia.deloarts.com/installation/v0.html)
 
 On the users machine you need to install the following:
 
@@ -77,21 +75,6 @@ python-installer.exe /passive PrependPath=1 Include_doc=0 Include_test=0 SimpleI
 ```
 
 For convenience there is a powershell script that will install the required python version for you, see [assets/python_installer.ps1](assets/python_installer.ps1).
-
-### 1.2 developer
-
-On the developers machine (this is you) install the following:
-
-- CATIA
-- [Python](https://www.python.org/downloads/)
-- [Poetry](https://python-poetry.org/docs/master/)
-- [Git](https://gitforwindows.org/)
-
-> ✏️ Use poetry to install all dependencies and dev-dependencies to work on this project.
->
-> 🔒 Some dependencies are from private repos. You need to have [ssh-access](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to those repositories. Test your ssh connection with `ssh -T git@github.com`
->
-> ❗️ Never develop new features and fixes in the main branch!
 
 ## 2 setup
 
@@ -344,6 +327,7 @@ On a new revision, do the following:
 
 ## 7 changelog
 
+**v0.3.1**: Add env variables to settings.  
 **v0.3.0**: Remove local dependencies.  
 **v0.2.4**: Allow multiple IDs with same logon.  
 **v0.2.3**: Remove app lock.  

@@ -6,8 +6,9 @@ from __future__ import annotations
 
 import os
 from enum import Enum
+from pathlib import Path
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -23,8 +24,8 @@ LOG = "app.log"
 PID = os.getpid()
 PID_FILE = f"{TEMP}\\{PYTIA_BOUNDING_BOX}.pid"
 VENV = f"\\.env\\{APP_VERSION}"
-VENV_PYTHON = VENV + "\\Scripts\\python.exe"
-VENV_PYTHONW = VENV + "\\Scripts\\pythonw.exe"
+VENV_PYTHON = Path(VENV, "Scripts\\python.exe")
+VENV_PYTHONW = Path(VENV, "Scripts\\pythonw.exe")
 PY_VERSION = APPDATA + "\\pyversion.txt"
 
 CONFIG_APPDATA = "config.json"
