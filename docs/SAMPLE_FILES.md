@@ -79,8 +79,8 @@ restrictions.allow_outside_workspace | `bool` | If set to `false` a **workspace*
 restrictions.allow_property_creation | `bool` | If set to true, the app is allowed to create part properties, if they don't exist. If set to false, all required properties must be created before running the app.
 restrictions.enable_information | `bool` | If set to true the user will see the notifications from the **information.json** file.
 save_modifier_by | `str` | The way the modifier is saved to the part properties. Available options are: `%logon%`, `%id%`, `%name%` and `%mail%`, or any combination, like `%id% | %name%`.
-path.catia | `str` | The absolute path to the CATIA executables.
-paths.release | `str` | The folder where the launcher and the app are released into.
+paths.catia | `str` | The absolute path to the CATIA executables. Environment variables will be expanded to their respective values. E.g: `%ONEDRIVE%\\CATIA\\Apps` will be resolved to `C:\\Users\\...\\OneDrive\\CATIA\\Apps`.
+paths.release | `str` | The folder where the launcher and the app are released into. Environment variables will be expanded to their respective values. E.g: `%ONEDRIVE%\\CATIA\\Apps` will be resolved to `C:\\Users\\...\\OneDrive\\CATIA\\Apps`.
 files.app | `str` | The name of the released python app file.
 files.launcher | `str` | The name of the release catvbs launcher file.
 files.workspace | `str` | The name of the workspace file.
