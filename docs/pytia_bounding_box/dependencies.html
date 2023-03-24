@@ -93,7 +93,7 @@ class Environment:
 
     @staticmethod
     def is_virtual() -&gt; bool:
-        return VENV_PYTHON in sys.executable or VENV_PYTHONW in sys.executable
+        return str(VENV_PYTHON) in sys.executable or str(VENV_PYTHONW) in sys.executable
 
     @classmethod
     def warn_if_not_virtual(cls) -&gt; None:
@@ -115,12 +115,8 @@ class Environment:
 class Dependencies:
     &#34;&#34;&#34;Class for managing dependencies.&#34;&#34;&#34;
 
-    __slots__ = (&#34;_required_packages&#34;, &#34;_missing_packages&#34;, &#34;_runs_in_venv&#34;)
-
     def __init__(self) -&gt; None:
-        self._runs_in_venv = (
-            VENV_PYTHON in sys.executable or VENV_PYTHONW in sys.executable
-        )
+        ...
 
     @staticmethod
     def read_dependencies_file() -&gt; List[PackageInfo]:
@@ -282,8 +278,8 @@ class VisualInstaller(tk.Tk):
 
         for index, key in enumerate(pip_commands.keys()):
             python_exe = sys.executable
-            if VENV_PYTHONW in python_exe:
-                python_exe = python_exe.replace(VENV_PYTHONW, VENV_PYTHON)
+            if str(VENV_PYTHONW) in python_exe:
+                python_exe = python_exe.replace(str(VENV_PYTHONW), str(VENV_PYTHON))
             command = f&#34;start /wait {python_exe} -m pip install {pip_commands[key]} --no-cache-dir&#34;
             self.message.set(
                 f&#34;Installing package {index+1} of {len(pip_commands)}: {key}&#34;
@@ -326,12 +322,8 @@ deps = Dependencies()</code></pre>
 <pre><code class="python">class Dependencies:
     &#34;&#34;&#34;Class for managing dependencies.&#34;&#34;&#34;
 
-    __slots__ = (&#34;_required_packages&#34;, &#34;_missing_packages&#34;, &#34;_runs_in_venv&#34;)
-
     def __init__(self) -&gt; None:
-        self._runs_in_venv = (
-            VENV_PYTHON in sys.executable or VENV_PYTHONW in sys.executable
-        )
+        ...
 
     @staticmethod
     def read_dependencies_file() -&gt; List[PackageInfo]:
@@ -629,7 +621,7 @@ def web_resource_available(address: str) -&gt; bool:
 
     @staticmethod
     def is_virtual() -&gt; bool:
-        return VENV_PYTHON in sys.executable or VENV_PYTHONW in sys.executable
+        return str(VENV_PYTHON) in sys.executable or str(VENV_PYTHONW) in sys.executable
 
     @classmethod
     def warn_if_not_virtual(cls) -&gt; None:
@@ -660,7 +652,7 @@ def web_resource_available(address: str) -&gt; bool:
 </summary>
 <pre><code class="python">@staticmethod
 def is_virtual() -&gt; bool:
-    return VENV_PYTHON in sys.executable or VENV_PYTHONW in sys.executable</code></pre>
+    return str(VENV_PYTHON) in sys.executable or str(VENV_PYTHONW) in sys.executable</code></pre>
 </details>
 </dd>
 <dt id="pytia_bounding_box.dependencies.Environment.warn_if_not_virtual"><code class="name flex">
@@ -798,8 +790,8 @@ is the name of the widget class.</p></div>
 
         for index, key in enumerate(pip_commands.keys()):
             python_exe = sys.executable
-            if VENV_PYTHONW in python_exe:
-                python_exe = python_exe.replace(VENV_PYTHONW, VENV_PYTHON)
+            if str(VENV_PYTHONW) in python_exe:
+                python_exe = python_exe.replace(str(VENV_PYTHONW), str(VENV_PYTHON))
             command = f&#34;start /wait {python_exe} -m pip install {pip_commands[key]} --no-cache-dir&#34;
             self.message.set(
                 f&#34;Installing package {index+1} of {len(pip_commands)}: {key}&#34;

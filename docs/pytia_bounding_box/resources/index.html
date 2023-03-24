@@ -61,6 +61,7 @@ from const import (
     CONFIG_SETTINGS,
     CONFIG_USERS,
 )
+from resources.utils import expand_env_vars
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -79,12 +80,16 @@ class SettingsParameters:
     thickness: str
 
 
-@dataclass(slots=True, kw_only=True, frozen=True)
+@dataclass(slots=True, kw_only=True)
 class SettingsPaths:
     &#34;&#34;&#34;Dataclass for paths (settings.json).&#34;&#34;&#34;
 
     catia: Path
     release: Path
+
+    def __post_init__(self) -&gt; None:
+        self.catia = Path(expand_env_vars(str(self.catia)))
+        self.release = Path(expand_env_vars(str(self.release)))
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
@@ -393,7 +398,7 @@ class Resources:  # pylint: disable=R0902
         Returns:
             List[str]: The list of keys.
         &#34;&#34;&#34;
-        return [f.name for f in fields(c)]
+        return [f.name for f in fields(c)]  # type: ignore
 
     @staticmethod
     def get_values(c: Callable) -&gt; List[str]:
@@ -406,7 +411,7 @@ class Resources:  # pylint: disable=R0902
         Returns:
             List[str]: The list of values.
         &#34;&#34;&#34;
-        return [getattr(c, f.name) for f in fields(c)]
+        return [getattr(c, f.name) for f in fields(c)]  # type: ignore
 
     def process_exists(self, name: str) -&gt; bool:
         &#34;&#34;&#34;
@@ -525,6 +530,13 @@ resource = Resources()</code></pre>
 </details>
 </section>
 <section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="pytia_bounding_box.resources.utils" href="utils.html">pytia_bounding_box.resources.utils</a></code></dt>
+<dd>
+<div class="desc"><p>Resource utilities …</p></div>
+</dd>
+</dl>
 </section>
 <section>
 </section>
@@ -535,7 +547,7 @@ resource = Resources()</code></pre>
 <dl>
 <dt id="pytia_bounding_box.resources.AppData"><code class="flex name class">
 <span>class <span class="ident">AppData</span></span>
-<span>(</span><span>*, version: str = '0.3.0', counter: int = 0, disable_volume_warning: bool = False)</span>
+<span>(</span><span>*, version: str = '0.3.1', counter: int = 0, disable_volume_warning: bool = False)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for appdata settings.</p></div>
@@ -978,7 +990,7 @@ def values(self) -&gt; List[str]:
         Returns:
             List[str]: The list of keys.
         &#34;&#34;&#34;
-        return [f.name for f in fields(c)]
+        return [f.name for f in fields(c)]  # type: ignore
 
     @staticmethod
     def get_values(c: Callable) -&gt; List[str]:
@@ -991,7 +1003,7 @@ def values(self) -&gt; List[str]:
         Returns:
             List[str]: The list of values.
         &#34;&#34;&#34;
-        return [getattr(c, f.name) for f in fields(c)]
+        return [getattr(c, f.name) for f in fields(c)]  # type: ignore
 
     def process_exists(self, name: str) -&gt; bool:
         &#34;&#34;&#34;
@@ -1137,7 +1149,7 @@ def get_keys(c: Callable) -&gt; List[str]:
     Returns:
         List[str]: The list of keys.
     &#34;&#34;&#34;
-    return [f.name for f in fields(c)]</code></pre>
+    return [f.name for f in fields(c)]  # type: ignore</code></pre>
 </details>
 </dd>
 <dt id="pytia_bounding_box.resources.Resources.get_values"><code class="name flex">
@@ -1170,7 +1182,7 @@ def get_values(c: Callable) -&gt; List[str]:
     Returns:
         List[str]: The list of values.
     &#34;&#34;&#34;
-    return [getattr(c, f.name) for f in fields(c)]</code></pre>
+    return [getattr(c, f.name) for f in fields(c)]  # type: ignore</code></pre>
 </details>
 </dd>
 </dl>
@@ -1715,12 +1727,16 @@ class SettingsParameters:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@dataclass(slots=True, kw_only=True, frozen=True)
+<pre><code class="python">@dataclass(slots=True, kw_only=True)
 class SettingsPaths:
     &#34;&#34;&#34;Dataclass for paths (settings.json).&#34;&#34;&#34;
 
     catia: Path
-    release: Path</code></pre>
+    release: Path
+
+    def __post_init__(self) -&gt; None:
+        self.catia = Path(expand_env_vars(str(self.catia)))
+        self.release = Path(expand_env_vars(str(self.release)))</code></pre>
 </details>
 <h3>Instance variables</h3>
 <dl>
@@ -1928,6 +1944,11 @@ def values(self) -&gt; List[str]:
 <li><h3>Super-module</h3>
 <ul>
 <li><code><a title="pytia_bounding_box" href="../index.html">pytia_bounding_box</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="pytia_bounding_box.resources.utils" href="utils.html">pytia_bounding_box.resources.utils</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
