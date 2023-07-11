@@ -343,12 +343,16 @@ class LazyPartHelper:
         Returns:
             Optional[str]: The value of the parameter as string.
         """
-        if self.part_document.parameters.exists(name):
-            param = str(self.part_document.parameters.get(name).value)
-            log.info(f"Retrieved parameter {name} ({param}) from part.")
-            return param
+        try:
+            if self.part_document.parameters.exists(name):
+                param = str(self.part_document.parameters.get(name).value)
+                log.info(f"Retrieved parameter {name} ({param}) from part.")
+                return param
 
-        log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
+            log.info(f"Couldn't retrieve parameter {name} from part: Doesn't exists.")
+        except AttributeError as e:
+            log.exception(f"Couldn't retrieve parameter {name} from part: {e}")
+
         return None
 
     @_ensure_part_not_changed
