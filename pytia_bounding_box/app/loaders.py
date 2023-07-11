@@ -4,15 +4,14 @@
 
 import tkinter as tk
 
-from const import Axes
-from pytia_ui_tools.widgets.tooltips import ToolTip
-from resources import resource
-
 from app.helper import LazyPartHelper, get_offset, get_preferred_axis, sort_base_size
 from app.layout import Layout
 from app.state import UISetter
 from app.validators import Validators
 from app.vars import Variables
+from const import Axes
+from pytia_ui_tools.widgets.tooltips import ToolTip
+from resources import resource
 
 
 class Loaders:
@@ -189,6 +188,16 @@ class Loaders:
         self.vars.thickness_value.set(False)
         self.layout.input_thickness["state"] = tk.DISABLED
         self.layout.input_thickness["text"] = ""
+
+        ToolTip(
+            self.layout.input_thickness,
+            text=(
+                "Thickness parameter not found.\n\nMake sure the parameter name is "
+                f"exactly {resource.settings.parameters.thickness!r}.\n\nKeep in mind, "
+                "that the app checks for the name, not the local name! Check this in "
+                "the properties of the thickness parameter."
+            ),
+        )
 
     def load_calculated(self) -> None:
         """

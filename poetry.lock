@@ -868,7 +868,7 @@ testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "no
 
 [[package]]
 name = "pytia"
-version = "0.3.2"
+version = "0.3.3"
 description = "A wrapper for the catia v5 api."
 optional = false
 python-versions = "^3.10"
@@ -885,8 +885,8 @@ pywin32 = "306"
 [package.source]
 type = "git"
 url = "ssh://git@github.com/deloarts/pytia.git"
-reference = "v0.3.2"
-resolved_reference = "4633c3fae1fe187482489de4d85d65679c1338b8"
+reference = "v0.3.3"
+resolved_reference = "9d9e91eba7a7cde8a7116633390364ebc57fbbae"
 
 [[package]]
 name = "pytia-ui-tools"
@@ -1164,4 +1164,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "e67e15f9b24d200fc118de5e0be60f7b5171306c5f82b08c79341a1c4f2f0a26"
+content-hash = "49b75b31c89e23ab5fee6088fd9684275d1d67bf7cd5243d4c6d0fb49819f491"
