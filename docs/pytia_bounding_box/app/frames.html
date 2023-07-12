@@ -43,52 +43,41 @@ class Frames:
 
         Args:
             root (Tk): The main window of the application.
-        &#34;&#34;&#34; &#34;&#34;&#34;&#34;&#34;&#34;
-        self._fr_main = ttk.Frame(root, style=&#34;Main.TFrame&#34;)
-        self._fr_main_selection_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_selection = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_values_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_values = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_result_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_result = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
+        &#34;&#34;&#34;
+        self._fr_main_selection = ttk.Labelframe(
+            root, style=&#34;Selection.TLabelframe&#34;, text=&#34;Selection&#34;
+        )
+        self._fr_main_values = ttk.Labelframe(
+            root, style=&#34;Values.TLabelframe&#34;, text=&#34;Values&#34;
+        )
+        self._fr_main_result = ttk.Labelframe(
+            root, style=&#34;Result.TLabelframe&#34;, text=&#34;Result&#34;
+        )
         self._fr_footer = ttk.Frame(root, height=50, style=&#34;Footer.TFrame&#34;)
 
-        self._fr_main.pack(fill=&#34;both&#34;, expand=True)
-        self._fr_main_selection_header.pack(fill=X)
-        self._fr_main_selection.pack(fill=X)
-        self._fr_main_values_header.pack(fill=X)
-        self._fr_main_values.pack(fill=X)
-        self._fr_main_result_header.pack(fill=X)
-        self._fr_main_result.pack(fill=X)
-        self._fr_footer.pack(fill=X)
+        self._fr_main_selection.grid(
+            row=0, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(10, 5)
+        )
+        self._fr_main_values.grid(
+            row=1, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_main_result.grid(
+            row=2, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_footer.grid(row=3, column=0, sticky=&#34;swe&#34;, padx=10, pady=(5, 10))
 
     @property
-    def selection_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame of the selection.&#34;&#34;&#34;
-        return self._fr_main_selection_header
-
-    @property
-    def selection(self) -&gt; ttk.Frame:
+    def selection(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
         return self._fr_main_selection
 
     @property
-    def values_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame of the values.&#34;&#34;&#34;
-        return self._fr_main_values_header
-
-    @property
-    def values(self) -&gt; ttk.Frame:
+    def values(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
         return self._fr_main_values
 
     @property
-    def result_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame.&#34;&#34;&#34;
-        return self._fr_main_result_header
-
-    @property
-    def result(self) -&gt; ttk.Frame:
+    def result(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
         return self._fr_main_result
 
@@ -132,52 +121,41 @@ class Frames:
 
         Args:
             root (Tk): The main window of the application.
-        &#34;&#34;&#34; &#34;&#34;&#34;&#34;&#34;&#34;
-        self._fr_main = ttk.Frame(root, style=&#34;Main.TFrame&#34;)
-        self._fr_main_selection_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_selection = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_values_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_values = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_result_header = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
-        self._fr_main_result = ttk.Frame(self._fr_main, style=&#34;Main.TFrame&#34;)
+        &#34;&#34;&#34;
+        self._fr_main_selection = ttk.Labelframe(
+            root, style=&#34;Selection.TLabelframe&#34;, text=&#34;Selection&#34;
+        )
+        self._fr_main_values = ttk.Labelframe(
+            root, style=&#34;Values.TLabelframe&#34;, text=&#34;Values&#34;
+        )
+        self._fr_main_result = ttk.Labelframe(
+            root, style=&#34;Result.TLabelframe&#34;, text=&#34;Result&#34;
+        )
         self._fr_footer = ttk.Frame(root, height=50, style=&#34;Footer.TFrame&#34;)
 
-        self._fr_main.pack(fill=&#34;both&#34;, expand=True)
-        self._fr_main_selection_header.pack(fill=X)
-        self._fr_main_selection.pack(fill=X)
-        self._fr_main_values_header.pack(fill=X)
-        self._fr_main_values.pack(fill=X)
-        self._fr_main_result_header.pack(fill=X)
-        self._fr_main_result.pack(fill=X)
-        self._fr_footer.pack(fill=X)
+        self._fr_main_selection.grid(
+            row=0, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(10, 5)
+        )
+        self._fr_main_values.grid(
+            row=1, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_main_result.grid(
+            row=2, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_footer.grid(row=3, column=0, sticky=&#34;swe&#34;, padx=10, pady=(5, 10))
 
     @property
-    def selection_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame of the selection.&#34;&#34;&#34;
-        return self._fr_main_selection_header
-
-    @property
-    def selection(self) -&gt; ttk.Frame:
+    def selection(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
         return self._fr_main_selection
 
     @property
-    def values_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame of the values.&#34;&#34;&#34;
-        return self._fr_main_values_header
-
-    @property
-    def values(self) -&gt; ttk.Frame:
+    def values(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
         return self._fr_main_values
 
     @property
-    def result_header(self) -&gt; ttk.Frame:
-        &#34;&#34;&#34;Return the header frame.&#34;&#34;&#34;
-        return self._fr_main_result_header
-
-    @property
-    def result(self) -&gt; ttk.Frame:
+    def result(self) -&gt; ttk.Labelframe:
         &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
         return self._fr_main_result
 
@@ -201,7 +179,7 @@ def footer(self) -&gt; ttk.Frame:
     return self._fr_footer</code></pre>
 </details>
 </dd>
-<dt id="pytia_bounding_box.app.frames.Frames.result"><code class="name">var <span class="ident">result</span> : tkinter.ttk.Frame</code></dt>
+<dt id="pytia_bounding_box.app.frames.Frames.result"><code class="name">var <span class="ident">result</span> : tkinter.ttk.Labelframe</code></dt>
 <dd>
 <div class="desc"><p>Return the frame of the result.</p></div>
 <details class="source">
@@ -209,25 +187,12 @@ def footer(self) -&gt; ttk.Frame:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def result(self) -&gt; ttk.Frame:
+def result(self) -&gt; ttk.Labelframe:
     &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
     return self._fr_main_result</code></pre>
 </details>
 </dd>
-<dt id="pytia_bounding_box.app.frames.Frames.result_header"><code class="name">var <span class="ident">result_header</span> : tkinter.ttk.Frame</code></dt>
-<dd>
-<div class="desc"><p>Return the header frame.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def result_header(self) -&gt; ttk.Frame:
-    &#34;&#34;&#34;Return the header frame.&#34;&#34;&#34;
-    return self._fr_main_result_header</code></pre>
-</details>
-</dd>
-<dt id="pytia_bounding_box.app.frames.Frames.selection"><code class="name">var <span class="ident">selection</span> : tkinter.ttk.Frame</code></dt>
+<dt id="pytia_bounding_box.app.frames.Frames.selection"><code class="name">var <span class="ident">selection</span> : tkinter.ttk.Labelframe</code></dt>
 <dd>
 <div class="desc"><p>Return the frame of the selection.</p></div>
 <details class="source">
@@ -235,25 +200,12 @@ def result_header(self) -&gt; ttk.Frame:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def selection(self) -&gt; ttk.Frame:
+def selection(self) -&gt; ttk.Labelframe:
     &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
     return self._fr_main_selection</code></pre>
 </details>
 </dd>
-<dt id="pytia_bounding_box.app.frames.Frames.selection_header"><code class="name">var <span class="ident">selection_header</span> : tkinter.ttk.Frame</code></dt>
-<dd>
-<div class="desc"><p>Return the header frame of the selection.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def selection_header(self) -&gt; ttk.Frame:
-    &#34;&#34;&#34;Return the header frame of the selection.&#34;&#34;&#34;
-    return self._fr_main_selection_header</code></pre>
-</details>
-</dd>
-<dt id="pytia_bounding_box.app.frames.Frames.values"><code class="name">var <span class="ident">values</span> : tkinter.ttk.Frame</code></dt>
+<dt id="pytia_bounding_box.app.frames.Frames.values"><code class="name">var <span class="ident">values</span> : tkinter.ttk.Labelframe</code></dt>
 <dd>
 <div class="desc"><p>Return the frame of the values.</p></div>
 <details class="source">
@@ -261,22 +213,9 @@ def selection_header(self) -&gt; ttk.Frame:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def values(self) -&gt; ttk.Frame:
+def values(self) -&gt; ttk.Labelframe:
     &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
     return self._fr_main_values</code></pre>
-</details>
-</dd>
-<dt id="pytia_bounding_box.app.frames.Frames.values_header"><code class="name">var <span class="ident">values_header</span> : tkinter.ttk.Frame</code></dt>
-<dd>
-<div class="desc"><p>Return the header frame of the values.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def values_header(self) -&gt; ttk.Frame:
-    &#34;&#34;&#34;Return the header frame of the values.&#34;&#34;&#34;
-    return self._fr_main_values_header</code></pre>
 </details>
 </dd>
 </dl>
@@ -299,14 +238,11 @@ def values_header(self) -&gt; ttk.Frame:
 <ul>
 <li>
 <h4><code><a title="pytia_bounding_box.app.frames.Frames" href="#pytia_bounding_box.app.frames.Frames">Frames</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="pytia_bounding_box.app.frames.Frames.footer" href="#pytia_bounding_box.app.frames.Frames.footer">footer</a></code></li>
 <li><code><a title="pytia_bounding_box.app.frames.Frames.result" href="#pytia_bounding_box.app.frames.Frames.result">result</a></code></li>
-<li><code><a title="pytia_bounding_box.app.frames.Frames.result_header" href="#pytia_bounding_box.app.frames.Frames.result_header">result_header</a></code></li>
 <li><code><a title="pytia_bounding_box.app.frames.Frames.selection" href="#pytia_bounding_box.app.frames.Frames.selection">selection</a></code></li>
-<li><code><a title="pytia_bounding_box.app.frames.Frames.selection_header" href="#pytia_bounding_box.app.frames.Frames.selection_header">selection_header</a></code></li>
 <li><code><a title="pytia_bounding_box.app.frames.Frames.values" href="#pytia_bounding_box.app.frames.Frames.values">values</a></code></li>
-<li><code><a title="pytia_bounding_box.app.frames.Frames.values_header" href="#pytia_bounding_box.app.frames.Frames.values_header">values_header</a></code></li>
 </ul>
 </li>
 </ul>
