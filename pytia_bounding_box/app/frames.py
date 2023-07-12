@@ -14,52 +14,41 @@ class Frames:
 
         Args:
             root (Tk): The main window of the application.
-        """ """"""
-        self._fr_main = ttk.Frame(root, style="Main.TFrame")
-        self._fr_main_selection_header = ttk.Frame(self._fr_main, style="Main.TFrame")
-        self._fr_main_selection = ttk.Frame(self._fr_main, style="Main.TFrame")
-        self._fr_main_values_header = ttk.Frame(self._fr_main, style="Main.TFrame")
-        self._fr_main_values = ttk.Frame(self._fr_main, style="Main.TFrame")
-        self._fr_main_result_header = ttk.Frame(self._fr_main, style="Main.TFrame")
-        self._fr_main_result = ttk.Frame(self._fr_main, style="Main.TFrame")
+        """
+        self._fr_main_selection = ttk.Labelframe(
+            root, style="Selection.TLabelframe", text="Selection"
+        )
+        self._fr_main_values = ttk.Labelframe(
+            root, style="Values.TLabelframe", text="Values"
+        )
+        self._fr_main_result = ttk.Labelframe(
+            root, style="Result.TLabelframe", text="Result"
+        )
         self._fr_footer = ttk.Frame(root, height=50, style="Footer.TFrame")
 
-        self._fr_main.pack(fill="both", expand=True)
-        self._fr_main_selection_header.pack(fill=X)
-        self._fr_main_selection.pack(fill=X)
-        self._fr_main_values_header.pack(fill=X)
-        self._fr_main_values.pack(fill=X)
-        self._fr_main_result_header.pack(fill=X)
-        self._fr_main_result.pack(fill=X)
-        self._fr_footer.pack(fill=X)
+        self._fr_main_selection.grid(
+            row=0, column=0, sticky="nsew", padx=(10, 10), pady=(10, 5)
+        )
+        self._fr_main_values.grid(
+            row=1, column=0, sticky="nsew", padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_main_result.grid(
+            row=2, column=0, sticky="nsew", padx=(10, 10), pady=(5, 5)
+        )
+        self._fr_footer.grid(row=3, column=0, sticky="swe", padx=10, pady=(5, 10))
 
     @property
-    def selection_header(self) -> ttk.Frame:
-        """Return the header frame of the selection."""
-        return self._fr_main_selection_header
-
-    @property
-    def selection(self) -> ttk.Frame:
+    def selection(self) -> ttk.Labelframe:
         """Return the frame of the selection."""
         return self._fr_main_selection
 
     @property
-    def values_header(self) -> ttk.Frame:
-        """Return the header frame of the values."""
-        return self._fr_main_values_header
-
-    @property
-    def values(self) -> ttk.Frame:
+    def values(self) -> ttk.Labelframe:
         """Return the frame of the values."""
         return self._fr_main_values
 
     @property
-    def result_header(self) -> ttk.Frame:
-        """Return the header frame."""
-        return self._fr_main_result_header
-
-    @property
-    def result(self) -> ttk.Frame:
+    def result(self) -> ttk.Labelframe:
         """Return the frame of the result."""
         return self._fr_main_result
 
