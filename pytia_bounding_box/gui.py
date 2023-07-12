@@ -7,6 +7,15 @@ import tkinter as tk
 from pathlib import Path
 from tkinter import font, ttk
 
+from app.callbacks import Callbacks
+from app.frames import Frames
+from app.helper import LazyPartHelper, show_help
+from app.layout import Layout
+from app.loaders import Loaders
+from app.state import UISetter
+from app.validators import Validators
+from app.vars import Variables
+from const import APP_VERSION, LOG, LOGS
 from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaBodyEmptyError,
@@ -22,16 +31,6 @@ from pytia_ui_tools.handlers.error_handler import ErrorHandler
 from pytia_ui_tools.handlers.mail_handler import MailHandler
 from pytia_ui_tools.handlers.workspace_handler import Workspace
 from pytia_ui_tools.window_manager import WindowManager
-
-from app.callbacks import Callbacks
-from app.frames import Frames
-from app.helper import LazyPartHelper, show_help
-from app.layout import Layout
-from app.loaders import Loaders
-from app.state import UISetter
-from app.validators import Validators
-from app.vars import Variables
-from const import APP_VERSION, LOG, LOGS
 from resources import resource
 
 t0 = time.perf_counter()
@@ -40,8 +39,8 @@ t0 = time.perf_counter()
 class GUI(tk.Tk):
     """The user interface of the app."""
 
-    HEIGHT = 470
-    WIDTH = 365
+    HEIGHT = 450
+    WIDTH = 380
 
     def __init__(self) -> None:
         tk.Tk.__init__(self)
@@ -103,6 +102,9 @@ class GUI(tk.Tk):
         self.geometry(f"{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}")
 
         style = ttk.Style(self)
+        style.configure("Selection.TLabelframe.Label", foreground="grey")
+        style.configure("Values.TLabelframe.Label", foreground="grey")
+        style.configure("Result.TLabelframe.Label", foreground="grey")
         style.configure("Grey.TCheckbutton", foreground="grey")
 
         self.update()

@@ -33,15 +33,14 @@
 
 import tkinter as tk
 
-from const import Axes
-from pytia_ui_tools.widgets.tooltips import ToolTip
-from resources import resource
-
 from app.helper import LazyPartHelper, get_offset, get_preferred_axis, sort_base_size
 from app.layout import Layout
 from app.state import UISetter
 from app.validators import Validators
 from app.vars import Variables
+from const import Axes
+from pytia_ui_tools.widgets.tooltips import ToolTip
+from resources import resource
 
 
 class Loaders:
@@ -218,6 +217,16 @@ class Loaders:
         self.vars.thickness_value.set(False)
         self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
         self.layout.input_thickness[&#34;text&#34;] = &#34;&#34;
+
+        ToolTip(
+            self.layout.input_thickness,
+            text=(
+                &#34;Thickness parameter not found.\n\nMake sure the parameter name is &#34;
+                f&#34;exactly {resource.settings.parameters.thickness!r}.\n\nKeep in mind, &#34;
+                &#34;that the app checks for the name, not the local name! Check this in &#34;
+                &#34;the properties of the thickness parameter.&#34;
+            ),
+        )
 
     def load_calculated(self) -&gt; None:
         &#34;&#34;&#34;
@@ -469,6 +478,16 @@ class Loaders:
         self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
         self.layout.input_thickness[&#34;text&#34;] = &#34;&#34;
 
+        ToolTip(
+            self.layout.input_thickness,
+            text=(
+                &#34;Thickness parameter not found.\n\nMake sure the parameter name is &#34;
+                f&#34;exactly {resource.settings.parameters.thickness!r}.\n\nKeep in mind, &#34;
+                &#34;that the app checks for the name, not the local name! Check this in &#34;
+                &#34;the properties of the thickness parameter.&#34;
+            ),
+        )
+
     def load_calculated(self) -&gt; None:
         &#34;&#34;&#34;
         Calculates the offset for the measurements according to the preset
@@ -571,7 +590,17 @@ the available part parameters.</p></div>
 
     self.vars.thickness_value.set(False)
     self.layout.input_thickness[&#34;state&#34;] = tk.DISABLED
-    self.layout.input_thickness[&#34;text&#34;] = &#34;&#34;</code></pre>
+    self.layout.input_thickness[&#34;text&#34;] = &#34;&#34;
+
+    ToolTip(
+        self.layout.input_thickness,
+        text=(
+            &#34;Thickness parameter not found.\n\nMake sure the parameter name is &#34;
+            f&#34;exactly {resource.settings.parameters.thickness!r}.\n\nKeep in mind, &#34;
+            &#34;that the app checks for the name, not the local name! Check this in &#34;
+            &#34;the properties of the thickness parameter.&#34;
+        ),
+    )</code></pre>
 </details>
 </dd>
 <dt id="pytia_bounding_box.app.loaders.Loaders.load_combobox_axis"><code class="name flex">
