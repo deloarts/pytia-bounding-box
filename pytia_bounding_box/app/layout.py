@@ -4,13 +4,12 @@
 
 from tkinter import DISABLED, SE, ttk
 
+from app.frames import Frames
+from app.vars import Variables
 from const import Axes
 from pytia_ui_tools.widgets.entries import NumberEntry
 from pytia_ui_tools.widgets.scales import SnapScale
 from resources import resource
-
-from app.frames import Frames
-from app.vars import Variables
 
 
 class Layout:
@@ -19,16 +18,6 @@ class Layout:
     def __init__(self, frames: Frames, variables: Variables) -> None:
         """Initialize the Layout class."""
         # SELECTIONS
-        lbl_selection_header = ttk.Label(
-            frames.selection_header,
-            text="Selection",
-            cursor="arrow",
-            font=("Segoe UI", 10, "bold"),
-        )
-        lbl_selection_header.grid(
-            row=0, column=0, padx=(15, 3), pady=(15, 3), sticky="w"
-        )
-
         # PRESET SELECTION
         lbl_preset = ttk.Label(
             frames.selection, text="Preset", cursor="arrow", width=12
@@ -64,7 +53,7 @@ class Layout:
             frames.selection, text="Offset", cursor="arrow", width=12
         )
         self._scale_offset = SnapScale(
-            frames.selection,
+            frames.selection,  # type: ignore
             int_var=variables.scale_offset_value,
             from_=resource.settings.offset.min,
             to=resource.settings.offset.max,
@@ -90,7 +79,7 @@ class Layout:
         # STEP SELECTION
         lbl_step = ttk.Label(frames.selection, text="Step", cursor="arrow", width=12)
         self._scale_step = SnapScale(
-            frames.selection,
+            frames.selection,  # type: ignore
             int_var=variables.scale_step_value,
             from_=resource.settings.step.min,
             to=resource.settings.step.max,
@@ -125,20 +114,12 @@ class Layout:
             style="Grey.TCheckbutton",
             state=DISABLED,
         )
-        lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 3), sticky="w")
+        lbl_thickness.grid(row=4, column=0, padx=(15, 3), pady=(3, 10), sticky="w")
         self._chkbox_thickness.grid(
-            row=4, column=1, padx=(3, 5), pady=(3, 3), sticky="w"
+            row=4, column=1, padx=(3, 5), pady=(3, 10), sticky="w"
         )
 
         # MEASURE AND SELECTED VALUE
-        lbl_values_header = ttk.Label(
-            frames.values_header,
-            text="Measured / Selected",
-            cursor="arrow",
-            font=("Segoe UI", 10, "bold"),
-        )
-        lbl_values_header.grid(row=0, column=0, padx=(15, 5), pady=(15, 5), sticky="w")
-
         # X-AXIS
         lbl_values_unit = ttk.Label(frames.values, text="mm", cursor="arrow")
         lbl_values_slash = ttk.Label(frames.values, text="mm  / ", cursor="arrow")
@@ -227,23 +208,15 @@ class Layout:
             string_var=variables.entry_value_z_text,
         )
 
-        lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 3), sticky="w")
+        lbl_value_z.grid(row=2, column=0, padx=(15, 5), pady=(3, 10), sticky="w")
         self._entry_measure_z.grid(
-            row=2, column=1, padx=(5, 1), pady=(3, 3), sticky="w"
+            row=2, column=1, padx=(5, 1), pady=(3, 10), sticky="w"
         )
-        lbl_values_slash.grid(row=2, column=2, padx=(1, 1), pady=(3, 3), sticky="w")
-        self._entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 3), sticky="w")
-        lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 3), sticky="w")
+        lbl_values_slash.grid(row=2, column=2, padx=(1, 1), pady=(3, 10), sticky="w")
+        self._entry_value_z.grid(row=2, column=4, padx=(1, 1), pady=(3, 10), sticky="w")
+        lbl_values_unit.grid(row=2, column=5, padx=(1, 1), pady=(3, 10), sticky="w")
 
         # RESULTS
-        lbl_result_header = ttk.Label(
-            frames.result_header,
-            text="Result",
-            cursor="arrow",
-            font=("Segoe UI", 10, "bold"),
-        )
-        lbl_result_header.grid(row=0, column=0, padx=(15, 3), pady=(15, 3), sticky="w")
-
         lbl_result_current = ttk.Label(
             frames.result, text="Current value", cursor="arrow", width=12
         )
@@ -270,9 +243,9 @@ class Layout:
             row=0, column=1, padx=(5, 5), pady=(3, 3), sticky="w"
         )
 
-        lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 3), sticky="w")
+        lbl_result_new.grid(row=1, column=0, padx=(15, 5), pady=(3, 10), sticky="w")
         self._entry_result_new.grid(
-            row=1, column=1, padx=(5, 5), pady=(3, 3), sticky="w"
+            row=1, column=1, padx=(5, 5), pady=(3, 10), sticky="w"
         )
 
         # FOOTER ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -290,8 +263,8 @@ class Layout:
             style="Footer.TButton",
         )
 
-        self._btn_save.place(rely=1.0, relx=1.0, x=-115, y=-15, anchor=SE)
-        self._btn_abort.place(rely=1.0, relx=1.0, x=-15, y=-15, anchor=SE)
+        self._btn_save.place(rely=1.0, relx=1.0, x=-90, y=-15, anchor=SE)
+        self._btn_abort.place(rely=1.0, relx=1.0, x=-0, y=-15, anchor=SE)
 
     @property
     def input_preset(self) -> ttk.Combobox:
