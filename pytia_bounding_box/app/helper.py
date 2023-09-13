@@ -12,7 +12,7 @@ from tkinter import BooleanVar, IntVar
 from tkinter import messagebox as tkmsg
 from typing import Optional, Tuple
 
-from const import Axes, Preference
+from const import STYLES, Axes, Preference
 from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaDifferentDocumentError,
@@ -22,6 +22,7 @@ from pytia.exceptions import (
 )
 from pytia.log import log
 from resources import Preset, resource
+from ttkbootstrap import Menu, Style
 
 
 def show_help() -> None:
@@ -236,6 +237,24 @@ def sort_base_size(
         del axis_values[selected_axis.value]
         diameter = max(axis_values.values())
         return f"Ø{diameter} x {length}"
+
+
+def set_appearance_menu(appearance_menu: Menu) -> None:
+    """Binds all callbacks to the appearance menubar."""
+    for index, _ in enumerate(STYLES):
+        appearance_menu.entryconfig(index, command=lambda x=index: change_theme(x))
+
+
+def change_theme(index: int) -> None:
+    """Changes the apps theme.
+
+    Args:
+        index (int): The index of the theme from the STYLES list.
+    """
+    theme_name = STYLES[index]
+    Style(theme=theme_name)
+    resource.appdata.theme = theme_name
+    log.info(f"Changed theme to {theme_name} ({index}).")
 
 
 class LazyPartHelper:
