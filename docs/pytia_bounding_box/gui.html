@@ -34,8 +34,9 @@
 import time
 import tkinter as tk
 from pathlib import Path
-from tkinter import font, ttk
+from tkinter import font
 
+import ttkbootstrap as ttk
 from app.callbacks import Callbacks
 from app.frames import Frames
 from app.helper import LazyPartHelper, show_help
@@ -68,11 +69,12 @@ t0 = time.perf_counter()
 class GUI(tk.Tk):
     &#34;&#34;&#34;The user interface of the app.&#34;&#34;&#34;
 
-    HEIGHT = 450
-    WIDTH = 380
+    HEIGHT = 480
+    WIDTH = 390
 
     def __init__(self) -&gt; None:
-        tk.Tk.__init__(self)
+        ttk.tk.Tk.__init__(self)
+        ttk.Style(theme=resource.appdata.theme)
 
         self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
         self.loaders: Loaders  # Instantiate later, depends on part_helper
@@ -82,7 +84,7 @@ class GUI(tk.Tk):
         # has been instantiated.
         self.vars = Variables(root=self)
         self.frames = Frames(root=self)
-        self.layout = Layout(frames=self.frames, variables=self.vars)
+        self.layout = Layout(root=self, frames=self.frames, variables=self.vars)
         self.set_ui = UISetter(root=self, layout=self.layout)
         self.validators = Validators(variables=self.vars, layout=self.layout)
 
@@ -129,12 +131,6 @@ class GUI(tk.Tk):
         x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
         y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
         self.geometry(f&#34;{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}&#34;)
-
-        style = ttk.Style(self)
-        style.configure(&#34;Selection.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Values.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Result.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Grey.TCheckbutton&#34;, foreground=&#34;grey&#34;)
 
         self.update()
         self.window_manager.remove_window_buttons()
@@ -226,12 +222,7 @@ class GUI(tk.Tk):
 <span>class <span class="ident">GUI</span></span>
 </code></dt>
 <dd>
-<div class="desc"><p>The user interface of the app.</p>
-<p>Return a new Toplevel widget on screen SCREENNAME. A new Tcl interpreter will
-be created. BASENAME will be used for the identification of the profile file (see
-readprofile).
-It is constructed from sys.argv[0] without extensions if None is given. CLASSNAME
-is the name of the widget class.</p></div>
+<div class="desc"><p>The user interface of the app.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -239,11 +230,12 @@ is the name of the widget class.</p></div>
 <pre><code class="python">class GUI(tk.Tk):
     &#34;&#34;&#34;The user interface of the app.&#34;&#34;&#34;
 
-    HEIGHT = 450
-    WIDTH = 380
+    HEIGHT = 480
+    WIDTH = 390
 
     def __init__(self) -&gt; None:
-        tk.Tk.__init__(self)
+        ttk.tk.Tk.__init__(self)
+        ttk.Style(theme=resource.appdata.theme)
 
         self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
         self.loaders: Loaders  # Instantiate later, depends on part_helper
@@ -253,7 +245,7 @@ is the name of the widget class.</p></div>
         # has been instantiated.
         self.vars = Variables(root=self)
         self.frames = Frames(root=self)
-        self.layout = Layout(frames=self.frames, variables=self.vars)
+        self.layout = Layout(root=self, frames=self.frames, variables=self.vars)
         self.set_ui = UISetter(root=self, layout=self.layout)
         self.validators = Validators(variables=self.vars, layout=self.layout)
 
@@ -300,12 +292,6 @@ is the name of the widget class.</p></div>
         x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
         y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
         self.geometry(f&#34;{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}&#34;)
-
-        style = ttk.Style(self)
-        style.configure(&#34;Selection.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Values.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Result.TLabelframe.Label&#34;, foreground=&#34;grey&#34;)
-        style.configure(&#34;Grey.TCheckbutton&#34;, foreground=&#34;grey&#34;)
 
         self.update()
         self.window_manager.remove_window_buttons()
