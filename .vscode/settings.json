@@ -6,9 +6,11 @@
     "python.testing.pytestEnabled": true,
     "cSpell.words": [
         "appdata",
+        "bootstyle",
         "CATIA",
         "CATP",
         "catvbs",
+        "cerculean",
         "chkbox",
         "CNEXT",
         "customtkinter",
@@ -17,6 +19,7 @@
         "endregion",
         "gaierror",
         "getpid",
+        "litera",
         "mainloop",
         "nametofont",
         "offvalue",
@@ -42,10 +45,12 @@
         "screenwidth",
         "Segoe",
         "tcltk",
+        "tearoff",
         "tempfolder",
         "textvariable",
         "tkmsg",
         "toolwindow",
+        "ttkbootstrap",
         "winfo",
         "zipfile"
     ]

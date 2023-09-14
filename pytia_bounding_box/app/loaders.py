@@ -192,8 +192,11 @@ class Loaders:
         ToolTip(
             self.layout.input_thickness,
             text=(
-                "Thickness parameter not found.\n\nMake sure the parameter name is "
-                f"exactly {resource.settings.parameters.thickness!r}.\n\nKeep in mind, "
+                "The thickness parameter is only enabled when the selected preset has "
+                "four coordinates and a length parameter with the name "
+                f"{resource.settings.parameters.thickness!r}.\n\n"
+                "Make sure the parameter name is exactly "
+                f" {resource.settings.parameters.thickness!r}.\n\nKeep in mind, "
                 "that the app checks for the name, not the local name! Check this in "
                 "the properties of the thickness parameter."
             ),

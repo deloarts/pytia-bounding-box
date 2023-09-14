@@ -5,8 +5,9 @@
 import time
 import tkinter as tk
 from pathlib import Path
-from tkinter import font, ttk
+from tkinter import font
 
+import ttkbootstrap as ttk
 from app.callbacks import Callbacks
 from app.frames import Frames
 from app.helper import LazyPartHelper, show_help
@@ -39,11 +40,12 @@ t0 = time.perf_counter()
 class GUI(tk.Tk):
     """The user interface of the app."""
 
-    HEIGHT = 450
-    WIDTH = 380
+    HEIGHT = 480
+    WIDTH = 390
 
     def __init__(self) -> None:
-        tk.Tk.__init__(self)
+        ttk.tk.Tk.__init__(self)
+        ttk.Style(theme=resource.appdata.theme)
 
         self.part_helper: LazyPartHelper  # Instantiate later for performance improvement
         self.loaders: Loaders  # Instantiate later, depends on part_helper
@@ -53,7 +55,7 @@ class GUI(tk.Tk):
         # has been instantiated.
         self.vars = Variables(root=self)
         self.frames = Frames(root=self)
-        self.layout = Layout(frames=self.frames, variables=self.vars)
+        self.layout = Layout(root=self, frames=self.frames, variables=self.vars)
         self.set_ui = UISetter(root=self, layout=self.layout)
         self.validators = Validators(variables=self.vars, layout=self.layout)
 
@@ -100,12 +102,6 @@ class GUI(tk.Tk):
         x_coordinate = int((screen_width / 2) - (GUI.WIDTH / 2))
         y_coordinate = int((screen_height / 2) - (GUI.HEIGHT / 2))
         self.geometry(f"{GUI.WIDTH}x{GUI.HEIGHT}+{x_coordinate}+{y_coordinate}")
-
-        style = ttk.Style(self)
-        style.configure("Selection.TLabelframe.Label", foreground="grey")
-        style.configure("Values.TLabelframe.Label", foreground="grey")
-        style.configure("Result.TLabelframe.Label", foreground="grey")
-        style.configure("Grey.TCheckbutton", foreground="grey")
 
         self.update()
         self.window_manager.remove_window_buttons()

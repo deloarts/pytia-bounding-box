@@ -43,6 +43,27 @@ CONFIG_USERS = "users.json"
 
 WEB_PIP = "https://www.pypi.org"
 
+STYLES = [
+    "cosmo",
+    "litera",
+    "flatly",
+    "journal",
+    "lumen",
+    "minty",
+    "pulse",
+    "sandstone",
+    "united",
+    "yeti",
+    "morph",
+    "simplex",
+    "cerculean",
+    "solar",
+    "superhero",
+    "darkly",
+    "cyborg",
+    "vapor",
+]
+
 
 class Preference(Enum):
     """Enum class for preference settings."""
