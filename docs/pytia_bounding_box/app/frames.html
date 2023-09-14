@@ -31,7 +31,9 @@
     Frames submodule for the app. Holds all frames for the main app.
 &#34;&#34;&#34;
 
-from tkinter import Tk, X, ttk
+from tkinter import Tk
+
+from ttkbootstrap import Frame, Labelframe
 
 
 class Frames:
@@ -44,45 +46,48 @@ class Frames:
         Args:
             root (Tk): The main window of the application.
         &#34;&#34;&#34;
-        self._fr_main_selection = ttk.Labelframe(
-            root, style=&#34;Selection.TLabelframe&#34;, text=&#34;Selection&#34;
-        )
-        self._fr_main_values = ttk.Labelframe(
-            root, style=&#34;Values.TLabelframe&#34;, text=&#34;Values&#34;
-        )
-        self._fr_main_result = ttk.Labelframe(
-            root, style=&#34;Result.TLabelframe&#34;, text=&#34;Result&#34;
-        )
-        self._fr_footer = ttk.Frame(root, height=50, style=&#34;Footer.TFrame&#34;)
+        root.columnconfigure(0, weight=1)
+        root.rowconfigure(3, weight=1)
 
+        self._fr_main_selection = Labelframe(root, text=&#34;Selection&#34;)
         self._fr_main_selection.grid(
             row=0, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(10, 5)
         )
+        self._fr_main_selection.grid_columnconfigure(1, weight=1)
+
+        self._fr_main_values = Labelframe(root, text=&#34;Values&#34;)
         self._fr_main_values.grid(
             row=1, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
         )
+        self._fr_main_values.grid_columnconfigure(1, weight=1)
+
+        self._fr_main_result = Labelframe(root, text=&#34;Result&#34;)
         self._fr_main_result.grid(
             row=2, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
         )
+        self._fr_main_result.grid_columnconfigure(1, weight=1)
+
+        self._fr_footer = Frame(root, height=30)
         self._fr_footer.grid(row=3, column=0, sticky=&#34;swe&#34;, padx=10, pady=(5, 10))
+        self._fr_footer.grid_columnconfigure(1, weight=1)
 
     @property
-    def selection(self) -&gt; ttk.Labelframe:
+    def selection(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
         return self._fr_main_selection
 
     @property
-    def values(self) -&gt; ttk.Labelframe:
+    def values(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
         return self._fr_main_values
 
     @property
-    def result(self) -&gt; ttk.Labelframe:
+    def result(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
         return self._fr_main_result
 
     @property
-    def footer(self) -&gt; ttk.Frame:
+    def footer(self) -&gt; Frame:
         &#34;&#34;&#34;Return the footer frame.&#34;&#34;&#34;
         return self._fr_footer</code></pre>
 </details>
@@ -122,45 +127,48 @@ class Frames:
         Args:
             root (Tk): The main window of the application.
         &#34;&#34;&#34;
-        self._fr_main_selection = ttk.Labelframe(
-            root, style=&#34;Selection.TLabelframe&#34;, text=&#34;Selection&#34;
-        )
-        self._fr_main_values = ttk.Labelframe(
-            root, style=&#34;Values.TLabelframe&#34;, text=&#34;Values&#34;
-        )
-        self._fr_main_result = ttk.Labelframe(
-            root, style=&#34;Result.TLabelframe&#34;, text=&#34;Result&#34;
-        )
-        self._fr_footer = ttk.Frame(root, height=50, style=&#34;Footer.TFrame&#34;)
+        root.columnconfigure(0, weight=1)
+        root.rowconfigure(3, weight=1)
 
+        self._fr_main_selection = Labelframe(root, text=&#34;Selection&#34;)
         self._fr_main_selection.grid(
             row=0, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(10, 5)
         )
+        self._fr_main_selection.grid_columnconfigure(1, weight=1)
+
+        self._fr_main_values = Labelframe(root, text=&#34;Values&#34;)
         self._fr_main_values.grid(
             row=1, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
         )
+        self._fr_main_values.grid_columnconfigure(1, weight=1)
+
+        self._fr_main_result = Labelframe(root, text=&#34;Result&#34;)
         self._fr_main_result.grid(
             row=2, column=0, sticky=&#34;nsew&#34;, padx=(10, 10), pady=(5, 5)
         )
+        self._fr_main_result.grid_columnconfigure(1, weight=1)
+
+        self._fr_footer = Frame(root, height=30)
         self._fr_footer.grid(row=3, column=0, sticky=&#34;swe&#34;, padx=10, pady=(5, 10))
+        self._fr_footer.grid_columnconfigure(1, weight=1)
 
     @property
-    def selection(self) -&gt; ttk.Labelframe:
+    def selection(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
         return self._fr_main_selection
 
     @property
-    def values(self) -&gt; ttk.Labelframe:
+    def values(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
         return self._fr_main_values
 
     @property
-    def result(self) -&gt; ttk.Labelframe:
+    def result(self) -&gt; Labelframe:
         &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
         return self._fr_main_result
 
     @property
-    def footer(self) -&gt; ttk.Frame:
+    def footer(self) -&gt; Frame:
         &#34;&#34;&#34;Return the footer frame.&#34;&#34;&#34;
         return self._fr_footer</code></pre>
 </details>
@@ -174,7 +182,7 @@ class Frames:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def footer(self) -&gt; ttk.Frame:
+def footer(self) -&gt; Frame:
     &#34;&#34;&#34;Return the footer frame.&#34;&#34;&#34;
     return self._fr_footer</code></pre>
 </details>
@@ -187,7 +195,7 @@ def footer(self) -&gt; ttk.Frame:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def result(self) -&gt; ttk.Labelframe:
+def result(self) -&gt; Labelframe:
     &#34;&#34;&#34;Return the frame of the result.&#34;&#34;&#34;
     return self._fr_main_result</code></pre>
 </details>
@@ -200,7 +208,7 @@ def result(self) -&gt; ttk.Labelframe:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def selection(self) -&gt; ttk.Labelframe:
+def selection(self) -&gt; Labelframe:
     &#34;&#34;&#34;Return the frame of the selection.&#34;&#34;&#34;
     return self._fr_main_selection</code></pre>
 </details>
@@ -213,7 +221,7 @@ def selection(self) -&gt; ttk.Labelframe:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def values(self) -&gt; ttk.Labelframe:
+def values(self) -&gt; Labelframe:
     &#34;&#34;&#34;Return the frame of the values.&#34;&#34;&#34;
     return self._fr_main_values</code></pre>
 </details>

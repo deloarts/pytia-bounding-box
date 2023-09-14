@@ -41,7 +41,7 @@ from tkinter import BooleanVar, IntVar
 from tkinter import messagebox as tkmsg
 from typing import Optional, Tuple
 
-from const import Axes, Preference
+from const import STYLES, Axes, Preference
 from pytia.const import USERNAME
 from pytia.exceptions import (
     PytiaDifferentDocumentError,
@@ -51,6 +51,7 @@ from pytia.exceptions import (
 )
 from pytia.log import log
 from resources import Preset, resource
+from ttkbootstrap import Menu, Style
 
 
 def show_help() -&gt; None:
@@ -267,6 +268,24 @@ def sort_base_size(
         return f&#34;Ø{diameter} x {length}&#34;
 
 
+def set_appearance_menu(appearance_menu: Menu) -&gt; None:
+    &#34;&#34;&#34;Binds all callbacks to the appearance menubar.&#34;&#34;&#34;
+    for index, _ in enumerate(STYLES):
+        appearance_menu.entryconfig(index, command=lambda x=index: change_theme(x))
+
+
+def change_theme(index: int) -&gt; None:
+    &#34;&#34;&#34;Changes the apps theme.
+
+    Args:
+        index (int): The index of the theme from the STYLES list.
+    &#34;&#34;&#34;
+    theme_name = STYLES[index]
+    Style(theme=theme_name)
+    resource.appdata.theme = theme_name
+    log.info(f&#34;Changed theme to {theme_name} ({index}).&#34;)
+
+
 class LazyPartHelper:
     &#34;&#34;&#34;
     Helper class for late imports of any kind of methods related to handle part operations.
@@ -463,6 +482,32 @@ class LazyPartHelper:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
+<dt id="pytia_bounding_box.app.helper.change_theme"><code class="name flex">
+<span>def <span class="ident">change_theme</span></span>(<span>index: int) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Changes the apps theme.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>index</code></strong> :&ensp;<code>int</code></dt>
+<dd>The index of the theme from the STYLES list.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def change_theme(index: int) -&gt; None:
+    &#34;&#34;&#34;Changes the apps theme.
+
+    Args:
+        index (int): The index of the theme from the STYLES list.
+    &#34;&#34;&#34;
+    theme_name = STYLES[index]
+    Style(theme=theme_name)
+    resource.appdata.theme = theme_name
+    log.info(f&#34;Changed theme to {theme_name} ({index}).&#34;)</code></pre>
+</details>
+</dd>
 <dt id="pytia_bounding_box.app.helper.get_offset"><code class="name flex">
 <span>def <span class="ident">get_offset</span></span>(<span>x: str | int | float, y: str | int | float, z: str | int | float, selected_preset: resources.Preset, selected_axis: const.Axes, selected_offset: tkinter.IntVar, selected_step: tkinter.IntVar) ‑> Tuple[float, float, float]</span>
 </code></dt>
@@ -633,6 +678,21 @@ preset and the configuration can be found, the x axis will be returned.</p>
 
         case _:
             return Axes.X</code></pre>
+</details>
+</dd>
+<dt id="pytia_bounding_box.app.helper.set_appearance_menu"><code class="name flex">
+<span>def <span class="ident">set_appearance_menu</span></span>(<span>appearance_menu: tkinter.Menu) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Binds all callbacks to the appearance menubar.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_appearance_menu(appearance_menu: Menu) -&gt; None:
+    &#34;&#34;&#34;Binds all callbacks to the appearance menubar.&#34;&#34;&#34;
+    for index, _ in enumerate(STYLES):
+        appearance_menu.entryconfig(index, command=lambda x=index: change_theme(x))</code></pre>
 </details>
 </dd>
 <dt id="pytia_bounding_box.app.helper.show_help"><code class="name flex">
@@ -1181,9 +1241,11 @@ def write_property(self, name: str, value: str) -&gt; None:
 </ul>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
-<ul class="">
+<ul class="two-column">
+<li><code><a title="pytia_bounding_box.app.helper.change_theme" href="#pytia_bounding_box.app.helper.change_theme">change_theme</a></code></li>
 <li><code><a title="pytia_bounding_box.app.helper.get_offset" href="#pytia_bounding_box.app.helper.get_offset">get_offset</a></code></li>
 <li><code><a title="pytia_bounding_box.app.helper.get_preferred_axis" href="#pytia_bounding_box.app.helper.get_preferred_axis">get_preferred_axis</a></code></li>
+<li><code><a title="pytia_bounding_box.app.helper.set_appearance_menu" href="#pytia_bounding_box.app.helper.set_appearance_menu">set_appearance_menu</a></code></li>
 <li><code><a title="pytia_bounding_box.app.helper.show_help" href="#pytia_bounding_box.app.helper.show_help">show_help</a></code></li>
 <li><code><a title="pytia_bounding_box.app.helper.sort_base_size" href="#pytia_bounding_box.app.helper.sort_base_size">sort_base_size</a></code></li>
 </ul>
