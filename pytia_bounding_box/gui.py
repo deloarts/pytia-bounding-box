@@ -111,7 +111,7 @@ class GUI(tk.Tk):
         t1 = time.perf_counter()  # pylint: disable=C0103
         log.info(f"Loaded UI in {(t1-t0):.4f}s")
 
-        self.after(100, self.run_controller)
+        self.after(200, self.run_controller)
         self.mainloop()
 
     def run_controller(self) -> None:
@@ -149,7 +149,7 @@ class GUI(tk.Tk):
         self.loaders.load_existing_base_size()
         self.loaders.load_calculated()
         self.loaders.load_result()
-        self.set_ui.normal()
+        # self.set_ui.normal()
 
     def bindings(self) -> None:
         """Key bindings."""

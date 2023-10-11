@@ -2,7 +2,9 @@
     The loaders submodule of the app. Holds all loader methods in the Loaders class.
 """
 
+import functools
 import tkinter as tk
+from typing import Callable
 
 from app.helper import LazyPartHelper, get_offset, get_preferred_axis, sort_base_size
 from app.layout import Layout
@@ -44,6 +46,33 @@ class Loaders:
         self.layout = layout
         self.set_ui = ui_setter
 
+    @staticmethod
+    def _busy(func) -> Callable:
+        @functools.wraps(func)
+        def wrapper(self, *args, **kwargs):
+            self.set_ui.busy()
+            self.root.update_idletasks()
+            self.root.update()
+            result = func(self, *args, **kwargs)
+            self.set_ui.normal()
+            self.root.update_idletasks()
+            self.root.update()
+            return result
+
+        return wrapper
+
+    @staticmethod
+    def _busy_no_reset(func) -> Callable:
+        @functools.wraps(func)
+        def wrapper(self, *args, **kwargs):
+            self.set_ui.busy()
+            self.root.update_idletasks()
+            self.root.update()
+            result = func(self, *args, **kwargs)
+            return result
+
+        return wrapper
+
     def load_existing_base_size(self) -> None:
         """Loads the pre-existing base size from the part document to the UI."""
         if prop := self.part_helper.get_property(resource.props.base_size):
@@ -53,8 +82,6 @@ class Loaders:
 
     def load_measurements(self) -> None:
         """Retrieves the base size from the body and writes the values to the UI."""
-        self.set_ui.busy()
-
         # Late importing improves the GUI loading time.
         # pylint: disable=C0415
         from pytia.utilities.bounding_box import get_bounding_box
@@ -70,7 +97,6 @@ class Loaders:
         self.vars.entry_measure_x_text.set(str(self.vars.x_measure))
         self.vars.entry_measure_y_text.set(str(self.vars.y_measure))
         self.vars.entry_measure_z_text.set(str(self.vars.z_measure))
-        self.set_ui.normal()
 
     def load_process(self) -> None:
         """
@@ -80,8 +106,6 @@ class Loaders:
 
         Always favors the existing preset from the parts properties.
         """
-        self.set_ui.busy()
-
         preset_property = self.part_helper.get_property(resource.props.base_size_preset)
         if preset_property and resource.preset_exists(preset_property):
             self.layout.input_preset.set(preset_property)
@@ -89,7 +113,6 @@ class Loaders:
                 "This preset has been pre-selected because it "
                 "already existed in the part properties.\n\n"
             )
-            self.set_ui.normal()
             return
 
         process_property = self.part_helper.get_property(resource.props.process)
@@ -101,11 +124,9 @@ class Loaders:
                     f"This preset has been pre-selected because of the process "
                     f"property {process_property!r}.\n\n"
                 )
-                self.set_ui.normal()
                 return
 
-        self.set_ui.normal()
-
+    @_busy_no_reset
     def load_combobox_preset(self) -> None:
         """
         Loads the selected preset from the preset-combobox to the UI.
@@ -222,6 +243,7 @@ class Loaders:
         self.vars.entry_value_y_text.set(str(y_calc))
         self.vars.entry_value_z_text.set(str(z_calc))
 
+    @_busy
     def load_result(self) -> None:
         """
         Loads the result from the calculated values to the UI.
