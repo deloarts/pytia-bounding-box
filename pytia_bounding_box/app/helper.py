@@ -179,9 +179,9 @@ def sort_base_size(
 
     # The next three lines are to remove all positions after a comma if
     # the number only has zeros after the floating point.
-    x = int(x) if x.is_integer() else x
-    y = int(y) if y.is_integer() else y
-    z = int(z) if z.is_integer() else z
+    x = int(x) if x.is_integer() else x  # type: ignore
+    y = int(y) if y.is_integer() else y  # type: ignore
+    z = int(z) if z.is_integer() else z  # type: ignore
 
     axis_values = {Axes.X.value: x, Axes.Y.value: y, Axes.Z.value: z}
 
@@ -220,7 +220,7 @@ def sort_base_size(
                         if thickness_value > 0:
                             thickness_value = (
                                 int(thickness_value)
-                                if thickness_value.is_integer()
+                                if thickness_value.is_integer()  # type: ignore
                                 else thickness_value
                             )
                             sorted_list.append(str(thickness_value))
