@@ -3,6 +3,7 @@
 """
 
 import tkinter as tk
+from typing import Literal
 
 from app.layout import Layout
 
@@ -25,10 +26,19 @@ class UISetter:
         self.root = root
         self.layout = layout
 
+        self._input_axis: Literal["normal", "disabled", "readonly"]
+        self._input_thickness: Literal["normal", "disabled", "readonly"]
+
     def busy(self) -> None:
         """Sets the main windows state to busy."""
         self.root.config(cursor="wait")
         self.root.update()
+
+        self._input_axis = self.layout.input_axis["state"]
+        self._input_thickness = self.layout.input_thickness["state"]
+        self._input_offset = self.layout.input_offset["state"]
+        self._input_step = self.layout.input_step["state"]
+
         self.layout.input_preset["state"] = tk.DISABLED
         self.layout.input_axis["state"] = tk.DISABLED
         self.layout.input_offset["state"] = tk.DISABLED
@@ -47,10 +57,10 @@ class UISetter:
         self.root.config(cursor="wait")
         self.root.update()
         self.layout.input_preset["state"] = "readonly"
-        self.layout.input_axis["state"] = "readonly"
-        self.layout.input_offset["state"] = tk.NORMAL
-        self.layout.input_step["state"] = tk.NORMAL
-        # self.layout.input_thickness["state"] = tk.NORMAL
+        self.layout.input_axis["state"] = self._input_axis  # "readonly"
+        self.layout.input_offset["state"] = self._input_offset
+        self.layout.input_step["state"] = self._input_step
+        self.layout.input_thickness["state"] = self._input_thickness  # tk.NORMAL
         self.layout.input_x["state"] = tk.NORMAL
         self.layout.input_y["state"] = tk.NORMAL
         self.layout.input_z["state"] = tk.NORMAL
