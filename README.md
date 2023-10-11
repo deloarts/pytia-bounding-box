@@ -3,7 +3,7 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-beta-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.4.0-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/badge/Version-0.4.1-orange.svg?style=for-the-badge)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
@@ -320,7 +320,7 @@ On a new revision, do the following:
 5. Check **pylint** output: `poetry run pylint pytia_bounding_box/`
 6. Update the **documentation**: `poetry run pdoc --force --html --output-dir docs pytia_bounding_box`
 7. Update the **lockfile**: `poetry lock`
-8. Update the **requirements.txt**: `poetry export --dev -f requirements.txt -o requirements.txt`
+8. Update the **requirements.txt**: `poetry export --with dev -f requirements.txt -o requirements.txt`
 
 ## 6 license
 
@@ -328,6 +328,7 @@ On a new revision, do the following:
 
 ## 7 changelog
 
+**v0.4.1**: Fix ui state.  
 **v0.4.0**: Add themes.  
 **v0.3.4**: Fix thickness parameter. New UI design.  
 **v0.3.3**: Quick fix for thickness parameter.  

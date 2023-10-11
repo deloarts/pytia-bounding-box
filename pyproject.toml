@@ -4,7 +4,7 @@ classifiers = ["Operating System :: Microsoft :: Windows"]
 description = "A visual tool for retrieving the bounding box of a CATIA part."
 name = "pytia-bounding-box"
 readme = "README.md"
-version = "0.4.0"
+version = "0.4.1"
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -20,7 +20,7 @@ pre-commit = "^2.19.0"
 pygit2 = "1.12.0"
 pylint = "2.13.9"
 pytest = "^7.1.1"
-setuptools = "^62.3.1"
+setuptools = "^65.5.1"
 toml = "^0.10.2"
 validators = "^0.19.0"
 
