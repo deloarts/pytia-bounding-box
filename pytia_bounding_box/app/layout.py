@@ -2,16 +2,24 @@
     The layout submodule of the app. Holds the layout of the main window.
 """
 
-from tkinter import DISABLED, Tk
+from tkinter import DISABLED
+from tkinter import Tk
 
 from app.frames import Frames
-from app.helper import set_appearance_menu, show_help
+from app.helper import set_appearance_menu
+from app.helper import show_help
 from app.vars import Variables
-from const import STYLES, Axes
+from const import STYLES
+from const import Axes
 from pytia_ui_tools.widgets.entries import NumberEntry
 from pytia_ui_tools.widgets.scales import SnapScale
 from resources import resource
-from ttkbootstrap import Button, Checkbutton, Combobox, Entry, Label, Menu
+from ttkbootstrap import Button
+from ttkbootstrap import Checkbutton
+from ttkbootstrap import Combobox
+from ttkbootstrap import Entry
+from ttkbootstrap import Label
+from ttkbootstrap import Menu
 
 
 class Layout:

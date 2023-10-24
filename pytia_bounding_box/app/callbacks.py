@@ -5,16 +5,15 @@
 import tkinter as tk
 from tkinter import messagebox as tkmsg
 
-from pytia.const import USERNAME
-from pytia.log import log
-from pytia_ui_tools.handlers.workspace_handler import Workspace
-from resources import resource
-
 from app.helper import LazyPartHelper
 from app.layout import Layout
 from app.loaders import Loaders
 from app.state import UISetter
 from app.vars import Variables
+from pytia.const import USERNAME
+from pytia.log import log
+from pytia_ui_tools.handlers.workspace_handler import Workspace
+from resources import resource
 
 
 class Callbacks:

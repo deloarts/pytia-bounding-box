@@ -5,10 +5,9 @@
 import re
 import tkinter as tk
 
-from pytia_ui_tools.widgets.tooltips import ToolTip
-
 from app.layout import Layout
 from app.vars import Variables
+from pytia_ui_tools.widgets.tooltips import ToolTip
 
 
 class Validators:

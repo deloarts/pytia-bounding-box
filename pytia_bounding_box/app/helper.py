@@ -8,21 +8,25 @@ import re
 import time
 import webbrowser
 from pathlib import Path
-from tkinter import BooleanVar, IntVar
+from tkinter import BooleanVar
+from tkinter import IntVar
 from tkinter import messagebox as tkmsg
-from typing import Optional, Tuple
+from typing import Optional
+from typing import Tuple
 
-from const import STYLES, Axes, Preference
+from const import STYLES
+from const import Axes
+from const import Preference
 from pytia.const import USERNAME
-from pytia.exceptions import (
-    PytiaDifferentDocumentError,
-    PytiaDocumentNotSavedError,
-    PytiaPropertyNotFoundError,
-    PytiaValueError,
-)
+from pytia.exceptions import PytiaDifferentDocumentError
+from pytia.exceptions import PytiaDocumentNotSavedError
+from pytia.exceptions import PytiaPropertyNotFoundError
+from pytia.exceptions import PytiaValueError
 from pytia.log import log
-from resources import Preset, resource
-from ttkbootstrap import Menu, Style
+from resources import Preset
+from resources import resource
+from ttkbootstrap import Menu
+from ttkbootstrap import Style
 
 
 def show_help() -> None:
