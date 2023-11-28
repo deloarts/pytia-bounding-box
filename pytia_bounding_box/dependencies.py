@@ -253,8 +253,8 @@ class VisualInstaller(tk.Tk):
 
 class LooseVersion:
     """
-    This is a copy of distutils.version.LooseVersion (from Python 3.10),
-    since this module is deprecated.
+    This is a simplified copy of distutils.version.LooseVersion (from Python 3.10),
+    since this module is deprecated in Python 3.12.
     """
 
     component_re = re.compile(r"(\d+ | [a-z]+ | \.)", re.VERBOSE)
