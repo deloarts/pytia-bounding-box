@@ -3,11 +3,11 @@
 A python app for retrieving the bounding box dimensions of a CATIA part.
 
 ![state](https://img.shields.io/badge/State-beta-brown.svg?style=for-the-badge)
-![version](https://img.shields.io/badge/Version-0.4.1-orange.svg?style=for-the-badge)
+![version](https://img.shields.io/github/v/release/deloarts/pytia-bounding-box?style=for-the-badge&color=orange)
 
 [![python](https://img.shields.io/badge/Python-3.10-blue.svg?style=for-the-badge)](https://www.python.org/downloads/)
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
-![OS](https://img.shields.io/badge/OS-WIN10%20|%20WIN11-blue.svg?style=for-the-badge)
+![OS](https://img.shields.io/badge/OS-WIN11-blue.svg?style=for-the-badge)
 
 > ⚠️ The layout of this app is heavily biased towards the workflow and needs of my companies' engineering team. Although almost everything can be changed via config files and presets, the apps basic functionality is built to work in the environment of said company.
 
@@ -328,21 +328,21 @@ On a new revision, do the following:
 
 ## 7 changelog
 
-**v0.4.1**: Fix ui state.  
-**v0.4.0**: Add themes.  
-**v0.3.4**: Fix thickness parameter. New UI design.  
-**v0.3.3**: Quick fix for thickness parameter.  
-**v0.3.2**: Fix launcher path.  
-**v0.3.1**: Add env variables to settings.  
-**v0.3.0**: Remove local dependencies.  
-**v0.2.4**: Allow multiple IDs with same logon.  
-**v0.2.3**: Remove app lock.  
-**v0.2.2**: Update deps to fix workspace encoding.  
-**v0.2.1**: Fix import error.  
-**v0.2.0**: Add workspace.  
-**v0.1.2**: Create pid file in tempfolder.  
-**v0.1.1**: Automatically restart app after update.  
-**v0.1.0**: Initial commit.  
+[**v0.4.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.1): Fix ui state.  
+[**v0.4.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.0): Add themes.  
+[**v0.3.4**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.3.4): Fix thickness parameter. New UI design.  
+[**v0.3.3**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.3.3): Quick fix for thickness parameter.  
+[**v0.3.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.3.2): Fix launcher path.  
+[**v0.3.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.3.1): Add env variables to settings.  
+[**v0.3.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.3.0): Remove local dependencies.  
+[**v0.2.4**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.2.4): Allow multiple IDs with same logon.  
+[**v0.2.3**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.2.3): Remove app lock.  
+[**v0.2.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.2.2): Update deps to fix workspace encoding.  
+[**v0.2.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.2.1): Fix import error.  
+[**v0.2.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.2.0): Add workspace.  
+[**v0.1.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.1.2): Create pid file in tempfolder.  
+[**v0.1.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.1.1): Automatically restart app after update.  
+[**v0.1.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.1.0): Initial commit.  
 
 ## 8 to dos
 
