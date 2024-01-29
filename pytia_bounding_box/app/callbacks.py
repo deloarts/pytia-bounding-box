@@ -10,7 +10,7 @@ from app.layout import Layout
 from app.loaders import Loaders
 from app.state import UISetter
 from app.vars import Variables
-from pytia.const import USERNAME
+from const import LOGON
 from pytia.log import log
 from pytia_ui_tools.handlers.workspace_handler import Workspace
 from resources import resource
@@ -49,7 +49,7 @@ class Callbacks:
         self.set_parent_state = ui_setter
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME)
+            not resource.user_exists(LOGON)
             and not resource.settings.restrictions.allow_all_users
         )
 
@@ -85,13 +85,13 @@ class Callbacks:
 
         if self.readonly:
             log.warning(
-                f"Did not save values to the part properties: {USERNAME} is not available in the "
+                f"Did not save values to the part properties: {LOGON} is not available in the "
                 "user configuration."
             )
             tkmsg.showinfo(
                 title=resource.settings.title,
                 message=(
-                    f"You are not allowed to save to the part properties: {USERNAME} is not "
+                    f"You are not allowed to save to the part properties: {LOGON} is not "
                     "available in the user configuration."
                 ),
             )
@@ -99,12 +99,12 @@ class Callbacks:
 
         if (
             self.workspace.elements.editors
-            and USERNAME not in self.workspace.elements.editors
+            and LOGON not in self.workspace.elements.editors
             and not resource.settings.restrictions.allow_all_editors
         ):
             tkmsg.showinfo(
                 message=(
-                    f"You are not allowed to make changes to the part properties: {USERNAME} is "
+                    f"You are not allowed to make changes to the part properties: {LOGON} is "
                     f"not available in the workspace configuration."
                 )
             )

@@ -19,8 +19,8 @@ from app.validators import Validators
 from app.vars import Variables
 from const import APP_VERSION
 from const import LOG
+from const import LOGON
 from const import LOGS
-from pytia.const import USERNAME
 from pytia.exceptions import PytiaBodyEmptyError
 from pytia.exceptions import PytiaDifferentDocumentError
 from pytia.exceptions import PytiaDocumentNotSavedError
@@ -61,7 +61,7 @@ class GUI(tk.Tk):
         self.validators = Validators(variables=self.vars, layout=self.layout)
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME)
+            not resource.user_exists(LOGON)
             and not resource.settings.restrictions.allow_all_users
         )
 
