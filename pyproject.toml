@@ -4,7 +4,7 @@ classifiers = ["Operating System :: Microsoft :: Windows"]
 description = "A visual tool for retrieving the bounding box of a CATIA part."
 name = "pytia-bounding-box"
 readme = "README.md"
-version = "0.4.1"
+version = "0.4.2"
 
 [tool.poetry.dependencies]
 python = "^3.10"

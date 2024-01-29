@@ -34,16 +34,15 @@
 import tkinter as tk
 from tkinter import messagebox as tkmsg
 
-from pytia.const import USERNAME
-from pytia.log import log
-from pytia_ui_tools.handlers.workspace_handler import Workspace
-from resources import resource
-
 from app.helper import LazyPartHelper
 from app.layout import Layout
 from app.loaders import Loaders
 from app.state import UISetter
 from app.vars import Variables
+from const import LOGON
+from pytia.log import log
+from pytia_ui_tools.handlers.workspace_handler import Workspace
+from resources import resource
 
 
 class Callbacks:
@@ -79,7 +78,7 @@ class Callbacks:
         self.set_parent_state = ui_setter
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME)
+            not resource.user_exists(LOGON)
             and not resource.settings.restrictions.allow_all_users
         )
 
@@ -115,13 +114,13 @@ class Callbacks:
 
         if self.readonly:
             log.warning(
-                f&#34;Did not save values to the part properties: {USERNAME} is not available in the &#34;
+                f&#34;Did not save values to the part properties: {LOGON} is not available in the &#34;
                 &#34;user configuration.&#34;
             )
             tkmsg.showinfo(
                 title=resource.settings.title,
                 message=(
-                    f&#34;You are not allowed to save to the part properties: {USERNAME} is not &#34;
+                    f&#34;You are not allowed to save to the part properties: {LOGON} is not &#34;
                     &#34;available in the user configuration.&#34;
                 ),
             )
@@ -129,12 +128,12 @@ class Callbacks:
 
         if (
             self.workspace.elements.editors
-            and USERNAME not in self.workspace.elements.editors
+            and LOGON not in self.workspace.elements.editors
             and not resource.settings.restrictions.allow_all_editors
         ):
             tkmsg.showinfo(
                 message=(
-                    f&#34;You are not allowed to make changes to the part properties: {USERNAME} is &#34;
+                    f&#34;You are not allowed to make changes to the part properties: {LOGON} is &#34;
                     f&#34;not available in the workspace configuration.&#34;
                 )
             )
@@ -278,7 +277,7 @@ class Callbacks:
         self.set_parent_state = ui_setter
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME)
+            not resource.user_exists(LOGON)
             and not resource.settings.restrictions.allow_all_users
         )
 
@@ -314,13 +313,13 @@ class Callbacks:
 
         if self.readonly:
             log.warning(
-                f&#34;Did not save values to the part properties: {USERNAME} is not available in the &#34;
+                f&#34;Did not save values to the part properties: {LOGON} is not available in the &#34;
                 &#34;user configuration.&#34;
             )
             tkmsg.showinfo(
                 title=resource.settings.title,
                 message=(
-                    f&#34;You are not allowed to save to the part properties: {USERNAME} is not &#34;
+                    f&#34;You are not allowed to save to the part properties: {LOGON} is not &#34;
                     &#34;available in the user configuration.&#34;
                 ),
             )
@@ -328,12 +327,12 @@ class Callbacks:
 
         if (
             self.workspace.elements.editors
-            and USERNAME not in self.workspace.elements.editors
+            and LOGON not in self.workspace.elements.editors
             and not resource.settings.restrictions.allow_all_editors
         ):
             tkmsg.showinfo(
                 message=(
-                    f&#34;You are not allowed to make changes to the part properties: {USERNAME} is &#34;
+                    f&#34;You are not allowed to make changes to the part properties: {LOGON} is &#34;
                     f&#34;not available in the workspace configuration.&#34;
                 )
             )
@@ -544,13 +543,13 @@ class Callbacks:
 
     if self.readonly:
         log.warning(
-            f&#34;Did not save values to the part properties: {USERNAME} is not available in the &#34;
+            f&#34;Did not save values to the part properties: {LOGON} is not available in the &#34;
             &#34;user configuration.&#34;
         )
         tkmsg.showinfo(
             title=resource.settings.title,
             message=(
-                f&#34;You are not allowed to save to the part properties: {USERNAME} is not &#34;
+                f&#34;You are not allowed to save to the part properties: {LOGON} is not &#34;
                 &#34;available in the user configuration.&#34;
             ),
         )
@@ -558,12 +557,12 @@ class Callbacks:
 
     if (
         self.workspace.elements.editors
-        and USERNAME not in self.workspace.elements.editors
+        and LOGON not in self.workspace.elements.editors
         and not resource.settings.restrictions.allow_all_editors
     ):
         tkmsg.showinfo(
             message=(
-                f&#34;You are not allowed to make changes to the part properties: {USERNAME} is &#34;
+                f&#34;You are not allowed to make changes to the part properties: {LOGON} is &#34;
                 f&#34;not available in the workspace configuration.&#34;
             )
         )
