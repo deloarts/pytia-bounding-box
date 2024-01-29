@@ -100,8 +100,6 @@ class Dependencies:
         path = urlparse(address).path or "/"
         conn = HTTPSConnection(domain, timeout=5)
 
-        print(path)
-
         try:
             conn.request("HEAD", path)
             response = conn.getresponse()
