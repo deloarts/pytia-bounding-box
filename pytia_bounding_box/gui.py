@@ -10,22 +10,23 @@ from tkinter import font
 import ttkbootstrap as ttk
 from app.callbacks import Callbacks
 from app.frames import Frames
-from app.helper import LazyPartHelper, show_help
+from app.helper import LazyPartHelper
+from app.helper import show_help
 from app.layout import Layout
 from app.loaders import Loaders
 from app.state import UISetter
 from app.validators import Validators
 from app.vars import Variables
-from const import APP_VERSION, LOG, LOGS
-from pytia.const import USERNAME
-from pytia.exceptions import (
-    PytiaBodyEmptyError,
-    PytiaDifferentDocumentError,
-    PytiaDocumentNotSavedError,
-    PytiaNoDocumentOpenError,
-    PytiaPropertyNotFoundError,
-    PytiaWrongDocumentTypeError,
-)
+from const import APP_VERSION
+from const import LOG
+from const import LOGON
+from const import LOGS
+from pytia.exceptions import PytiaBodyEmptyError
+from pytia.exceptions import PytiaDifferentDocumentError
+from pytia.exceptions import PytiaDocumentNotSavedError
+from pytia.exceptions import PytiaNoDocumentOpenError
+from pytia.exceptions import PytiaPropertyNotFoundError
+from pytia.exceptions import PytiaWrongDocumentTypeError
 from pytia.log import log
 from pytia_ui_tools.exceptions import PytiaUiToolsOutsideWorkspaceError
 from pytia_ui_tools.handlers.error_handler import ErrorHandler
@@ -60,7 +61,7 @@ class GUI(tk.Tk):
         self.validators = Validators(variables=self.vars, layout=self.layout)
 
         self.readonly = bool(
-            not resource.user_exists(USERNAME)
+            not resource.user_exists(LOGON)
             and not resource.settings.restrictions.allow_all_users
         )
 

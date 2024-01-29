@@ -8,7 +8,7 @@ import os
 from enum import Enum
 from pathlib import Path
 
-__version__ = "0.4.1"
+__version__ = "0.4.2"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
@@ -16,6 +16,7 @@ PYTIA_BOUNDING_BOX = "pytia_bounding_box"
 APP_NAME = "PYTIA Bounding Box"
 APP_VERSION = __version__
 
+LOGON = str(os.environ.get("USERNAME")).lower()
 CNEXT = "win_b64\\code\\bin\\CNEXT.exe"
 TEMP = str(os.environ.get("TEMP"))
 APPDATA = f"{str(os.environ.get('APPDATA'))}\\{PYTIA}\\{PYTIA_BOUNDING_BOX}"

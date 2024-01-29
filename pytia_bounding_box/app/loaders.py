@@ -6,7 +6,10 @@ import functools
 import tkinter as tk
 from typing import Callable
 
-from app.helper import LazyPartHelper, get_offset, get_preferred_axis, sort_base_size
+from app.helper import LazyPartHelper
+from app.helper import get_offset
+from app.helper import get_preferred_axis
+from app.helper import sort_base_size
 from app.layout import Layout
 from app.state import UISetter
 from app.validators import Validators
