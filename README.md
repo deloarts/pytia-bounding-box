@@ -330,6 +330,7 @@ On a new revision, do the following:
 
 ## 7 changelog
 
+[**v0.4.3**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.2): Fix logon (don't use pytia username).  
 [**v0.4.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.2): Fix deprecation & logon.  
 [**v0.4.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.1): Fix ui state.  
 [**v0.4.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.0): Add themes.  

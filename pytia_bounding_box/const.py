@@ -8,7 +8,7 @@ import os
 from enum import Enum
 from pathlib import Path
 
-__version__ = "0.4.2"
+__version__ = "0.4.3"
 
 PYTIA = "pytia"
 PYTIA_BOUNDING_BOX = "pytia_bounding_box"
