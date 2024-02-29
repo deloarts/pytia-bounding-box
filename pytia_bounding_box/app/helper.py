@@ -14,10 +14,10 @@ from tkinter import messagebox as tkmsg
 from typing import Optional
 from typing import Tuple
 
+from const import LOGON
 from const import STYLES
 from const import Axes
 from const import Preference
-from pytia.const import USERNAME
 from pytia.exceptions import PytiaDifferentDocumentError
 from pytia.exceptions import PytiaDocumentNotSavedError
 from pytia.exceptions import PytiaPropertyNotFoundError
@@ -424,8 +424,8 @@ class LazyPartHelper:
         Args:
             write_creator (bool, optional): Also write the creator. Defaults to True.
         """
-        if resource.user_exists(USERNAME):
-            user = resource.get_user_by_logon(USERNAME)
+        if resource.user_exists(LOGON):
+            user = resource.get_user_by_logon(LOGON)
             filter_result = re.findall(r"\%(.*?)\%", resource.settings.save_modifier_by)
             modifier = resource.settings.save_modifier_by
 
@@ -435,13 +435,13 @@ class LazyPartHelper:
             else:
                 log.warning(
                     f"Cannot save user by {resource.settings.save_modifier_by!r}. "
-                    f"Saving logon name {USERNAME!r} to {resource.props.modifier!r}."
+                    f"Saving logon name {LOGON!r} to {resource.props.modifier!r}."
                 )
-                modifier = USERNAME
+                modifier = LOGON
         else:
-            modifier = USERNAME
+            modifier = LOGON
             log.warning(
-                f"Current user doesn't exist in config file. Saving logon name {USERNAME!r} to "
+                f"Current user doesn't exist in config file. Saving logon name {LOGON!r} to "
                 f"{resource.props.modifier!r}."
             )
 

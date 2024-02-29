@@ -86,11 +86,10 @@ def test_release_folder():
 def test_modifier_filter():
     import re
 
-    from pytia.const import USERNAME
-
+    from pytia_bounding_box.const import LOGON
     from pytia_bounding_box.resources import resource
 
-    user = resource.get_user_by_logon(USERNAME)
+    user = resource.get_user_by_logon(LOGON)
     filter_result = re.findall(r"\%(.*?)\%", resource.settings.save_modifier_by)
 
     assert all(elem in user.keys for elem in filter_result)

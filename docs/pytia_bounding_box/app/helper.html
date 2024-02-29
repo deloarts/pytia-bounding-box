@@ -43,10 +43,10 @@ from tkinter import messagebox as tkmsg
 from typing import Optional
 from typing import Tuple
 
+from const import LOGON
 from const import STYLES
 from const import Axes
 from const import Preference
-from pytia.const import USERNAME
 from pytia.exceptions import PytiaDifferentDocumentError
 from pytia.exceptions import PytiaDocumentNotSavedError
 from pytia.exceptions import PytiaPropertyNotFoundError
@@ -453,8 +453,8 @@ class LazyPartHelper:
         Args:
             write_creator (bool, optional): Also write the creator. Defaults to True.
         &#34;&#34;&#34;
-        if resource.user_exists(USERNAME):
-            user = resource.get_user_by_logon(USERNAME)
+        if resource.user_exists(LOGON):
+            user = resource.get_user_by_logon(LOGON)
             filter_result = re.findall(r&#34;\%(.*?)\%&#34;, resource.settings.save_modifier_by)
             modifier = resource.settings.save_modifier_by
 
@@ -464,13 +464,13 @@ class LazyPartHelper:
             else:
                 log.warning(
                     f&#34;Cannot save user by {resource.settings.save_modifier_by!r}. &#34;
-                    f&#34;Saving logon name {USERNAME!r} to {resource.props.modifier!r}.&#34;
+                    f&#34;Saving logon name {LOGON!r} to {resource.props.modifier!r}.&#34;
                 )
-                modifier = USERNAME
+                modifier = LOGON
         else:
-            modifier = USERNAME
+            modifier = LOGON
             log.warning(
-                f&#34;Current user doesn&#39;t exist in config file. Saving logon name {USERNAME!r} to &#34;
+                f&#34;Current user doesn&#39;t exist in config file. Saving logon name {LOGON!r} to &#34;
                 f&#34;{resource.props.modifier!r}.&#34;
             )
 
@@ -1019,8 +1019,8 @@ document changes all operations will be made on the original document.</p>
         Args:
             write_creator (bool, optional): Also write the creator. Defaults to True.
         &#34;&#34;&#34;
-        if resource.user_exists(USERNAME):
-            user = resource.get_user_by_logon(USERNAME)
+        if resource.user_exists(LOGON):
+            user = resource.get_user_by_logon(LOGON)
             filter_result = re.findall(r&#34;\%(.*?)\%&#34;, resource.settings.save_modifier_by)
             modifier = resource.settings.save_modifier_by
 
@@ -1030,13 +1030,13 @@ document changes all operations will be made on the original document.</p>
             else:
                 log.warning(
                     f&#34;Cannot save user by {resource.settings.save_modifier_by!r}. &#34;
-                    f&#34;Saving logon name {USERNAME!r} to {resource.props.modifier!r}.&#34;
+                    f&#34;Saving logon name {LOGON!r} to {resource.props.modifier!r}.&#34;
                 )
-                modifier = USERNAME
+                modifier = LOGON
         else:
-            modifier = USERNAME
+            modifier = LOGON
             log.warning(
-                f&#34;Current user doesn&#39;t exist in config file. Saving logon name {USERNAME!r} to &#34;
+                f&#34;Current user doesn&#39;t exist in config file. Saving logon name {LOGON!r} to &#34;
                 f&#34;{resource.props.modifier!r}.&#34;
             )
 
@@ -1166,8 +1166,8 @@ def write_modifier(self, write_creator: bool = True) -&gt; None:
     Args:
         write_creator (bool, optional): Also write the creator. Defaults to True.
     &#34;&#34;&#34;
-    if resource.user_exists(USERNAME):
-        user = resource.get_user_by_logon(USERNAME)
+    if resource.user_exists(LOGON):
+        user = resource.get_user_by_logon(LOGON)
         filter_result = re.findall(r&#34;\%(.*?)\%&#34;, resource.settings.save_modifier_by)
         modifier = resource.settings.save_modifier_by
 
@@ -1177,13 +1177,13 @@ def write_modifier(self, write_creator: bool = True) -&gt; None:
         else:
             log.warning(
                 f&#34;Cannot save user by {resource.settings.save_modifier_by!r}. &#34;
-                f&#34;Saving logon name {USERNAME!r} to {resource.props.modifier!r}.&#34;
+                f&#34;Saving logon name {LOGON!r} to {resource.props.modifier!r}.&#34;
             )
-            modifier = USERNAME
+            modifier = LOGON
     else:
-        modifier = USERNAME
+        modifier = LOGON
         log.warning(
-            f&#34;Current user doesn&#39;t exist in config file. Saving logon name {USERNAME!r} to &#34;
+            f&#34;Current user doesn&#39;t exist in config file. Saving logon name {LOGON!r} to &#34;
             f&#34;{resource.props.modifier!r}.&#34;
         )
 
