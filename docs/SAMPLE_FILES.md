@@ -28,6 +28,10 @@ This file contains the basic settings for the app.
         "max": 10,
         "tick": 5
     },
+    "signs": {
+        "dimension": " × ",
+        "diameter": "Ø"
+    },
     "parameters": {
         "thickness": "section_thickness"
     },
@@ -71,6 +75,8 @@ offset.tick | `int` | The steps which the slider can move.
 step.min | `int` | The minimum step the user can apply via the step slider.
 step.max | `int` | The maximum step the user can apply via the step slider.
 step.tick | `int` | The steps which the slider can move.
+signs.dimension | `str` | The dimension separating sign.
+signs.diameter | `str` | The diameter sign.
 parameters.thickness | `str` | The name of the thickness parameter in a part.
 restrictions.allow_all_users | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users from the **users.json** file can modify the properties.
 restrictions.allow_all_editors | `bool` | If set to `true` any user can make changes to the documents properties. If set to `false` only those users which are declared in the **workspace** file can modify the properties. If no workspace file is found, or no **editors** list-item is inside the workspace file, then this is omitted, and everyone can make changes.
