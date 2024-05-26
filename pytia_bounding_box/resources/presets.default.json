@@ -9,11 +9,11 @@
         "offset_preference": true,
         "offset_non_preference": true,
         "sort_max_to_min": true,
-        "result_filter": "(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)$",
+        "result_filter": "(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)$",
         "tooltip": "Applies an offset to all three dimensions of the parts boundaries.\n\nThe filter allows only integer numbers.\n\nMost useful for standard milling parts.",
         "filter_examples": [
-            "100 x 80 x 25",
-            "40 x 40 x 10"
+            "100 × 80 × 25",
+            "40 × 40 × 10"
         ]
     },
     {
@@ -26,12 +26,12 @@
         "offset_preference": false,
         "offset_non_preference": false,
         "sort_max_to_min": true,
-        "result_filter": "(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)$",
+        "result_filter": "(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)$",
         "tooltip": "Applies no offset, just retrieves the exact measurements of the parts boundaries.\n\nMost useful for sheet metal parts.",
         "filter_examples": [
-            "100 x 80 x 25",
-            "100.123 x 80.001 x 25.05",
-            "100 x 80.5 x 25"
+            "100 × 80 × 25",
+            "100.123 × 80.001 × 25.05",
+            "100 × 80.5 × 25"
         ]
     },
     {
@@ -44,12 +44,12 @@
         "offset_preference": false,
         "offset_non_preference": false,
         "sort_max_to_min": false,
-        "result_filter": "((\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+))$|((\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+))$",
+        "result_filter": "((\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+))$|((\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+))$",
         "tooltip": "Applies no offset, just retrieves the exact measurements of the parts boundaries.\n\nThe axis represents the length of the cut element. The axis will be auto-detected. If no axis can be detected the longest dimension will be used as cutting-dimension.\n\nWhen a thickness parameter is available it will be added to the result.\n\nMost useful for sections or strut profiles.",
         "filter_examples": [
-            "40 x 40 x 800",
-            "40 x 60 x 800",
-            "40 x 40 x 5 x 800 (where 5 is the thickness)"
+            "40 × 40 × 800",
+            "40 × 60 × 800",
+            "40 × 40 × 5 × 800 (where 5 is the thickness)"
         ]
     },
     {
@@ -62,13 +62,13 @@
         "offset_preference": false,
         "offset_non_preference": true,
         "sort_max_to_min": true,
-        "result_filter": "(\\d+|\\d+\\.\\d+)F{0,1}\\sx\\s(\\d+|\\d+\\.\\d+)F{0,1}\\sx\\s(\\d+|\\d+\\.\\d+)F{0,1}$",
+        "result_filter": "(\\d+|\\d+\\.\\d+)F{0,1}\\s×\\s(\\d+|\\d+\\.\\d+)F{0,1}\\s×\\s(\\d+|\\d+\\.\\d+)F{0,1}$",
         "tooltip": "Applies no offset to the preferred dimension, applies an offset to both non-preferred dimensions.\n\nThe axis represents the preferred dimension, which will be set to the smallest of the three dimensions. The axis can be changed later.\n\nThe preferred dimension will receive a postfix to indicate the dimension that won't be processed. The postfix can be used on multiple dimensions.\n\nMost useful on milling parts, where one surface will not be processed and where this surface has no requirements. This surface will remain in the delivered condition.",
         "filter_examples": [
-            "100 x 80 x 20F",
-            "100.5 x 80.25 x 20.5F",
-            "100 x 80F x 20F",
-            "100F x 80F x 20F"
+            "100 × 80 × 20F",
+            "100.5 × 80.25 × 20.5F",
+            "100 × 80F × 20F",
+            "100F × 80F × 20F"
         ]
     },
     {
@@ -81,11 +81,11 @@
         "offset_preference": false,
         "offset_non_preference": true,
         "sort_max_to_min": true,
-        "result_filter": "(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)F{0,1}$",
+        "result_filter": "(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)F{0,1}$",
         "tooltip": "Applies no offset to the preferred dimension, applies an offset to both non-preferred dimensions.\n\nThe axis represents the preferred dimension, which will be set to the smallest of the three dimensions. The axis can be changed later.\n\nThe preferred dimension will receive a postfix to indicate the dimension that won't be processed.\n\nMost useful on milling parts, where the preferred dimension will be pre-milled. This surface will remain in the delivered condition.",
         "filter_examples": [
-            "100 x 80 x 20F",
-            "100.5 x 80.25 x 20F"
+            "100 × 80 × 20F",
+            "100.5 × 80.25 × 20F"
         ]
     },
     {
@@ -98,11 +98,11 @@
         "offset_preference": false,
         "offset_non_preference": false,
         "sort_max_to_min": true,
-        "result_filter": "Ø(\\d+|\\d+\\.\\d+) x (\\d+|\\d+\\.\\d+)$",
+        "result_filter": "Ø(\\d+|\\d+\\.\\d+) × (\\d+|\\d+\\.\\d+)$",
         "tooltip": "Applies no offset to any dimension.\n\nThe axis represents the turning axis of the part and thus the length of the shaft. The axis will be auto-detected. If no axis can be detected, the longest dimension will be set as the axis. The axis can be changed later.\n\nMost useful on turned parts.",
         "filter_examples": [
-            "Ø50 x 250",
-            "Ø100 x 10"
+            "Ø50 × 250",
+            "Ø100 × 10"
         ]
     },
     {
@@ -119,7 +119,8 @@
         "tooltip": "Applies no offset, just retrieves the exact measurements of the parts boundaries.\n\nThe result value can be chosen freely, any text or number is valid.",
         "filter_examples": [
             "100 x 50 x 20",
-            "Ø50 x 250",
+            "100 × 50 × 20",
+            "Ø50 × 250",
             "Any text"
         ]
     }
