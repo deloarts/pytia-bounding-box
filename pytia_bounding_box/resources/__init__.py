@@ -46,6 +46,14 @@ class SettingsScale:
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsSigns:
+    """Dataclass for signs-settings (settings.json)."""
+
+    dimension: str
+    diameter: str
+
+
+@dataclass(slots=True, kw_only=True, frozen=True)
 class SettingsParameters:
     """Dataclass for scale ui-elements settings (settings.json)."""
 
@@ -108,6 +116,7 @@ class Settings:  # pylint: disable=R0902
     precision: int
     offset: SettingsScale
     step: SettingsScale
+    signs: SettingsSigns
     parameters: SettingsParameters
     restrictions: SettingsRestrictions
     save_modifier_by: str
@@ -119,6 +128,7 @@ class Settings:  # pylint: disable=R0902
     def __post_init__(self) -> None:
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
+        self.signs = SettingsSigns(**dict(self.signs))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
         self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore

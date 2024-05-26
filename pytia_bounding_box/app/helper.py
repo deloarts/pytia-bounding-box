@@ -235,12 +235,12 @@ def sort_base_size(
             sorted_list.append(preferred_value)
         else:
             sorted_list = list(sorted_axes.values())
-        return " x ".join(sorted_list)
+        return resource.settings.signs.dimension.join(sorted_list)
     else:
         length = axis_values[selected_axis.value]
         del axis_values[selected_axis.value]
         diameter = max(axis_values.values())
-        return f"Ø{diameter} x {length}"
+        return f"{resource.settings.signs.diameter}{diameter}{resource.settings.signs.dimension}{length}"
 
 
 def set_appearance_menu(appearance_menu: Menu) -> None:

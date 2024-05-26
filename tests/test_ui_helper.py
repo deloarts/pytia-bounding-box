@@ -4,13 +4,18 @@
 
 import importlib.resources
 import json
-from tkinter import BooleanVar, IntVar, Tk
+from tkinter import BooleanVar
+from tkinter import IntVar
+from tkinter import Tk
 
 import pytest
 from pytia.exceptions import PytiaValueError
-from pytia_bounding_box.const import CONFIG_PRESETS_DEFAULT, Axes
-from pytia_bounding_box.resources import Preset, resource
+
 from pytia_bounding_box.app import helper
+from pytia_bounding_box.const import CONFIG_PRESETS_DEFAULT
+from pytia_bounding_box.const import Axes
+from pytia_bounding_box.resources import Preset
+from pytia_bounding_box.resources import resource
 
 root = Tk()
 
@@ -132,7 +137,7 @@ def test_sort_base_size():
                             selected_axis=Axes.X,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "100 x 50 x 20"
+                        == f"100{resource.settings.signs.dimension}50{resource.settings.signs.dimension}20"
                     )
                 case "Exact":
                     assert (
@@ -144,7 +149,7 @@ def test_sort_base_size():
                             selected_axis=Axes.X,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "100 x 50 x 20"
+                        == f"100{resource.settings.signs.dimension}50{resource.settings.signs.dimension}20"
                     )
                 case "Cut":
                     assert (
@@ -156,7 +161,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Y,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "50 x 50 x 100"
+                        == f"50{resource.settings.signs.dimension}50{resource.settings.signs.dimension}100"
                     )
                 case "Cut":
                     assert (
@@ -168,7 +173,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Y,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "40 x 50 x 100"
+                        == f"40{resource.settings.signs.dimension}50{resource.settings.signs.dimension}100"
                     )
                 case "Sawn":
                     assert (
@@ -180,7 +185,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Z,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "100 x 80 x 20F"
+                        == f"100{resource.settings.signs.dimension}80{resource.settings.signs.dimension}20F"
                     )
                 case "Pre-Milled":
                     assert (
@@ -192,7 +197,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Z,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "100 x 80 x 20F"
+                        == f"100{resource.settings.signs.dimension}80{resource.settings.signs.dimension}20F"
                     )
                 case "Shaft":
                     assert (
@@ -204,7 +209,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Y,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "Ø20 x 100"
+                        == f"{resource.settings.signs.diameter}20{resource.settings.signs.dimension}100"
                     )
                 case "Shaft":
                     assert (
@@ -216,7 +221,7 @@ def test_sort_base_size():
                             selected_axis=Axes.Y,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "Ø20 x 100"
+                        == f"{resource.settings.signs.diameter}20{resource.settings.signs.dimension}100"
                     )
                 case "Custom":
                     assert (
@@ -228,7 +233,7 @@ def test_sort_base_size():
                             selected_axis=Axes.X,
                             thickness=BooleanVar(master=root, value=False),
                         )
-                        == "100 x 50 x 20"
+                        == f"100{resource.settings.signs.dimension}50{resource.settings.signs.dimension}20"
                     )
 
 
