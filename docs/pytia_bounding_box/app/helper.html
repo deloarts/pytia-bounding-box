@@ -264,12 +264,12 @@ def sort_base_size(
             sorted_list.append(preferred_value)
         else:
             sorted_list = list(sorted_axes.values())
-        return &#34; x &#34;.join(sorted_list)
+        return resource.settings.signs.dimension.join(sorted_list)
     else:
         length = axis_values[selected_axis.value]
         del axis_values[selected_axis.value]
         diameter = max(axis_values.values())
-        return f&#34;Ø{diameter} x {length}&#34;
+        return f&#34;{resource.settings.signs.diameter}{diameter}{resource.settings.signs.dimension}{length}&#34;
 
 
 def set_appearance_menu(appearance_menu: Menu) -&gt; None:
@@ -831,12 +831,12 @@ numbers can't be sorted.</dd>
             sorted_list.append(preferred_value)
         else:
             sorted_list = list(sorted_axes.values())
-        return &#34; x &#34;.join(sorted_list)
+        return resource.settings.signs.dimension.join(sorted_list)
     else:
         length = axis_values[selected_axis.value]
         del axis_values[selected_axis.value]
         diameter = max(axis_values.values())
-        return f&#34;Ø{diameter} x {length}&#34;</code></pre>
+        return f&#34;{resource.settings.signs.diameter}{diameter}{resource.settings.signs.dimension}{length}&#34;</code></pre>
 </details>
 </dd>
 </dl>

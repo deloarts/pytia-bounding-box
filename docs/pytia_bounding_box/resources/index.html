@@ -77,6 +77,14 @@ class SettingsScale:
 
 
 @dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsSigns:
+    &#34;&#34;&#34;Dataclass for signs-settings (settings.json).&#34;&#34;&#34;
+
+    dimension: str
+    diameter: str
+
+
+@dataclass(slots=True, kw_only=True, frozen=True)
 class SettingsParameters:
     &#34;&#34;&#34;Dataclass for scale ui-elements settings (settings.json).&#34;&#34;&#34;
 
@@ -139,6 +147,7 @@ class Settings:  # pylint: disable=R0902
     precision: int
     offset: SettingsScale
     step: SettingsScale
+    signs: SettingsSigns
     parameters: SettingsParameters
     restrictions: SettingsRestrictions
     save_modifier_by: str
@@ -150,6 +159,7 @@ class Settings:  # pylint: disable=R0902
     def __post_init__(self) -&gt; None:
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
+        self.signs = SettingsSigns(**dict(self.signs))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
         self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore
@@ -551,7 +561,7 @@ resource = Resources()</code></pre>
 <dl>
 <dt id="pytia_bounding_box.resources.AppData"><code class="flex name class">
 <span>class <span class="ident">AppData</span></span>
-<span>(</span><span>*, version: str = '0.4.3', counter: int = 0, disable_volume_warning: bool = False, theme: str = 'cosmo')</span>
+<span>(</span><span>*, version: str = '0.5.0', counter: int = 0, disable_volume_warning: bool = False, theme: str = 'cosmo')</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for appdata settings.</p></div>
@@ -1557,7 +1567,7 @@ def users(self) -&gt; List[User]:
 </dd>
 <dt id="pytia_bounding_box.resources.Settings"><code class="flex name class">
 <span>class <span class="ident">Settings</span></span>
-<span>(</span><span>*, title: str, debug: bool, precision: int, offset: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, step: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, parameters: <a title="pytia_bounding_box.resources.SettingsParameters" href="#pytia_bounding_box.resources.SettingsParameters">SettingsParameters</a>, restrictions: <a title="pytia_bounding_box.resources.SettingsRestrictions" href="#pytia_bounding_box.resources.SettingsRestrictions">SettingsRestrictions</a>, save_modifier_by: str, files: <a title="pytia_bounding_box.resources.SettingsFiles" href="#pytia_bounding_box.resources.SettingsFiles">SettingsFiles</a>, paths: <a title="pytia_bounding_box.resources.SettingsPaths" href="#pytia_bounding_box.resources.SettingsPaths">SettingsPaths</a>, urls: <a title="pytia_bounding_box.resources.SettingsUrls" href="#pytia_bounding_box.resources.SettingsUrls">SettingsUrls</a>, mails: <a title="pytia_bounding_box.resources.SettingsMails" href="#pytia_bounding_box.resources.SettingsMails">SettingsMails</a>)</span>
+<span>(</span><span>*, title: str, debug: bool, precision: int, offset: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, step: <a title="pytia_bounding_box.resources.SettingsScale" href="#pytia_bounding_box.resources.SettingsScale">SettingsScale</a>, signs: <a title="pytia_bounding_box.resources.SettingsSigns" href="#pytia_bounding_box.resources.SettingsSigns">SettingsSigns</a>, parameters: <a title="pytia_bounding_box.resources.SettingsParameters" href="#pytia_bounding_box.resources.SettingsParameters">SettingsParameters</a>, restrictions: <a title="pytia_bounding_box.resources.SettingsRestrictions" href="#pytia_bounding_box.resources.SettingsRestrictions">SettingsRestrictions</a>, save_modifier_by: str, files: <a title="pytia_bounding_box.resources.SettingsFiles" href="#pytia_bounding_box.resources.SettingsFiles">SettingsFiles</a>, paths: <a title="pytia_bounding_box.resources.SettingsPaths" href="#pytia_bounding_box.resources.SettingsPaths">SettingsPaths</a>, urls: <a title="pytia_bounding_box.resources.SettingsUrls" href="#pytia_bounding_box.resources.SettingsUrls">SettingsUrls</a>, mails: <a title="pytia_bounding_box.resources.SettingsMails" href="#pytia_bounding_box.resources.SettingsMails">SettingsMails</a>)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Dataclass for settings (settings.json).</p></div>
@@ -1574,6 +1584,7 @@ class Settings:  # pylint: disable=R0902
     precision: int
     offset: SettingsScale
     step: SettingsScale
+    signs: SettingsSigns
     parameters: SettingsParameters
     restrictions: SettingsRestrictions
     save_modifier_by: str
@@ -1585,6 +1596,7 @@ class Settings:  # pylint: disable=R0902
     def __post_init__(self) -&gt; None:
         self.offset = SettingsScale(**dict(self.offset))  # type: ignore
         self.step = SettingsScale(**dict(self.step))  # type: ignore
+        self.signs = SettingsSigns(**dict(self.signs))  # type: ignore
         self.parameters = SettingsParameters(**dict(self.parameters))  # type: ignore
         self.restrictions = SettingsRestrictions(**dict(self.restrictions))  # type: ignore
         self.files = SettingsFiles(**dict(self.files))  # type: ignore
@@ -1627,6 +1639,10 @@ class Settings:  # pylint: disable=R0902
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
 <dt id="pytia_bounding_box.resources.Settings.save_modifier_by"><code class="name">var <span class="ident">save_modifier_by</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.Settings.signs"><code class="name">var <span class="ident">signs</span> : <a title="pytia_bounding_box.resources.SettingsSigns" href="#pytia_bounding_box.resources.SettingsSigns">SettingsSigns</a></code></dt>
 <dd>
 <div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
 </dd>
@@ -1842,6 +1858,35 @@ class SettingsScale:
 </dd>
 </dl>
 </dd>
+<dt id="pytia_bounding_box.resources.SettingsSigns"><code class="flex name class">
+<span>class <span class="ident">SettingsSigns</span></span>
+<span>(</span><span>*, dimension: str, diameter: str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dataclass for signs-settings (settings.json).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(slots=True, kw_only=True, frozen=True)
+class SettingsSigns:
+    &#34;&#34;&#34;Dataclass for signs-settings (settings.json).&#34;&#34;&#34;
+
+    dimension: str
+    diameter: str</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pytia_bounding_box.resources.SettingsSigns.diameter"><code class="name">var <span class="ident">diameter</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+<dt id="pytia_bounding_box.resources.SettingsSigns.dimension"><code class="name">var <span class="ident">dimension</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return an attribute of instance, which is of type owner.</p></div>
+</dd>
+</dl>
+</dd>
 <dt id="pytia_bounding_box.resources.SettingsUrls"><code class="flex name class">
 <span>class <span class="ident">SettingsUrls</span></span>
 <span>(</span><span>*, help: Optional[str])</span>
@@ -2049,6 +2094,7 @@ def values(self) -&gt; List[str]:
 <li><code><a title="pytia_bounding_box.resources.Settings.precision" href="#pytia_bounding_box.resources.Settings.precision">precision</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.restrictions" href="#pytia_bounding_box.resources.Settings.restrictions">restrictions</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.save_modifier_by" href="#pytia_bounding_box.resources.Settings.save_modifier_by">save_modifier_by</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.Settings.signs" href="#pytia_bounding_box.resources.Settings.signs">signs</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.step" href="#pytia_bounding_box.resources.Settings.step">step</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.title" href="#pytia_bounding_box.resources.Settings.title">title</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.Settings.urls" href="#pytia_bounding_box.resources.Settings.urls">urls</a></code></li>
@@ -2098,6 +2144,13 @@ def values(self) -&gt; List[str]:
 <li><code><a title="pytia_bounding_box.resources.SettingsScale.max" href="#pytia_bounding_box.resources.SettingsScale.max">max</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.SettingsScale.min" href="#pytia_bounding_box.resources.SettingsScale.min">min</a></code></li>
 <li><code><a title="pytia_bounding_box.resources.SettingsScale.tick" href="#pytia_bounding_box.resources.SettingsScale.tick">tick</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pytia_bounding_box.resources.SettingsSigns" href="#pytia_bounding_box.resources.SettingsSigns">SettingsSigns</a></code></h4>
+<ul class="">
+<li><code><a title="pytia_bounding_box.resources.SettingsSigns.diameter" href="#pytia_bounding_box.resources.SettingsSigns.diameter">diameter</a></code></li>
+<li><code><a title="pytia_bounding_box.resources.SettingsSigns.dimension" href="#pytia_bounding_box.resources.SettingsSigns.dimension">dimension</a></code></li>
 </ul>
 </li>
 <li>
