@@ -12,6 +12,10 @@
         "max": 10,
         "tick": 5
     },
+    "signs": {
+        "dimension": "×",
+        "diameter": "Ø"
+    },
     "parameters": {
         "thickness": "section_thickness"
     },

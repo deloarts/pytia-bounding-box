@@ -51,11 +51,11 @@ This file contains a list of all presets for the calculation of the bounding box
         "offset_preference": true,
         "offset_non_preference": true,
         "sort_max_to_min": true,
-        "result_filter": "(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)\\sx\\s(\\d+|\\d+\\.\\d+)$",
+        "result_filter": "(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)\\s×\\s(\\d+|\\d+\\.\\d+)$",
         "tooltip": "Applies an offset to all three dimensions of the parts boundaries.",
         "filter_examples": [
-            "100 x 80 x 25",
-            "40 x 40 x 10"
+            "100 × 80 × 25",
+            "40 × 40 × 10"
         ]
     },
     ...
