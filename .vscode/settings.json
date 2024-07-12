@@ -61,6 +61,9 @@
         },
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
+    "python.analysis.extraPaths": [
+        "./pytia_bounding_box"
+    ],
     "python.testing.pytestArgs": [
         "tests"
     ],
