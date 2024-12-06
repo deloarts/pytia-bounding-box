@@ -314,6 +314,7 @@ On a new revision, do the following:
 
 ## 7 changelog
 
+[**v0.5.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.2): Update deps & docs.  
 [**v0.5.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.1): Update workspace.  
 [**v0.5.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.0): Add signs to settings json.  
 [**v0.4.3**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.3): Fix logon (don't use pytia username).  
