@@ -1,7 +1,5 @@
 # pytia bounding box
 
-A python app for retrieving the bounding box dimensions of a CATIA part.
-
 ![state](https://img.shields.io/badge/State-beta-brown.svg?style=for-the-badge)
 ![version](https://img.shields.io/github/v/release/deloarts/pytia-bounding-box?style=for-the-badge&color=orange)
 
@@ -9,18 +7,35 @@ A python app for retrieving the bounding box dimensions of a CATIA part.
 ![catia](https://img.shields.io/badge/CATIA-V5%206R2017-blue.svg?style=for-the-badge)
 ![OS](https://img.shields.io/badge/OS-WIN11-blue.svg?style=for-the-badge)
 
+*Get a parts outer dimensions with ease.*
+
+The bounding box app allows you to retrieve the outer dimensions of a CATPart by just one click. Further the app can:
+
+- calculate needed thickness for different processes (e.g. milling)
+- apply different presets for different processes, e.g.:
+  - milling requires an extra thickness of the part of 2mm on each face (in 5mm steps)
+  - pre-milled parts only require an extra thickness of 2mm on the side faces (no milling in the height dimension)
+  - cut-to-length parts, such as sections, only require their order-dimensions (W x H x L)
+  - cut-to-length hollow sections also require their wall thickness taken into account (W x H x T x L)
+  - laser cut parts only require their exact dimensions
+  - turned parts require their dimensions in the radial coordinates, rather than the cartesian
+- you can use pre-defined preset or create your own using config files
+- verify the result by filters
+
+![Banner](assets/images/banner.png)
+
 > ⚠️ The layout of this app is heavily biased towards the workflow and needs of my companies' engineering team. Although almost everything can be changed via config files and presets, the apps basic functionality is built to work in the environment of said company.
 
 Check out the pytia ecosystem:
 
-- **pytia** ([web](https://pytia.deloarts.com/), [repo](https://github.com/deloarts/pytia)): The heart of this project.
-- **pytia-property-manager** ([web](https://pytia.deloarts.com/property-manager/v0.html), [repo](https://github.com/deloarts/pytia-property-manager)) : An app to edit part and product properties.
-- **pytia-bounding-box** ([web](https://pytia.deloarts.com/bounding-box/v0.html), [repo](https://github.com/deloarts/pytia-bounding-box)): For retrieving the bounding box of a part.
-- **pytia-bill-of-material** ([web](https://pytia.deloarts.com/bill-of-material/v0.html), [repo](https://github.com/deloarts/pytia-bill-of-material)): Exports the bill of material and data of a product.
-- **pytia-title-block** ([web](https://pytia.deloarts.com/title-block/v0.html), [repo](https://github.com/deloarts/pytia-title-block)): An app to edit a drawing's title block.
-- **pytia-quick-export** ([web](https://pytia.deloarts.com/quick-export/v0.html), [repo](https://github.com/deloarts/pytia-quick-export)): Single file export with useful features.
-- **pytia-reorder-tree** ([web](https://pytia.deloarts.com/reorder-tree/v0.html), [repo](https://github.com/deloarts/pytia-reorder-tree)): Brings order in your product graph tree.
-- **pytia-ui-tools** ([web](https://pytia.deloarts.com/), [repo](https://github.com/deloarts/pytia-ui-tools)): A toolbox for all pytia apps.
+- **[pytia](https://github.com/deloarts/pytia)**: The heart of this project
+- **[pytia-property-manager](https://github.com/deloarts/pytia-property-manager)**: An app to edit part and product properties
+- **[pytia-bounding-box](https://github.com/deloarts/pytia-bounding-box)**: For retrieving the bounding box of a part
+- **[pytia-bill-of-material](https://github.com/deloarts/pytia-bill-of-material)**: Exports the bill of material and data of a product
+- **[pytia-title-block](https://github.com/deloarts/pytia-title-block)**: An app to edit a drawing's title block
+- **[pytia-quick-export](https://github.com/deloarts/pytia-quick-export)**: Single file export with useful features
+- **[pytia-reorder-tree](https://github.com/deloarts/pytia-reorder-tree)**: Brings order in your product graph tree
+- **[pytia-ui-tools](https://github.com/deloarts/pytia-ui-tools)**: A toolbox for all pytia apps
 
 Table of contents:
 
@@ -36,9 +51,6 @@ Table of contents:
     - [2.4 release](#24-release)
     - [2.5 docs](#25-docs)
   - [3 usage](#3-usage)
-    - [3.1 selection](#31-selection)
-    - [3.2 measured / selected](#32-measured--selected)
-    - [3.3 result](#33-result)
   - [4 workspace](#4-workspace)
   - [5 developing](#5-developing)
     - [5.1 repository](#51-repository)
@@ -59,15 +71,14 @@ Table of contents:
 
 ## 1 installation
 
-> ✏️ For a guided installation visit [https://pytia.deloarts.com](https://pytia.deloarts.com/installation/v0.html)
->
+For a guided installation visit the [installation guide](/docs/INSTALLATION.md).
+
 > ⚠️ Do not manually install any dependencies. The app installs all required packages on its own.
 
 On the users machine you need to install the following:
 
 - CATIA
 - [Python](https://www.python.org/downloads/)
-- [Git](https://gitforwindows.org/)
 
 When the user starts the app it will automatically install all its requirements. Further the app also updates outdated dependencies if needed. The apps environment will be created in the users appdata-folder: `C:\Users\User\AppData\Roaming\pytia\pytia_bounding_box`
 
@@ -76,8 +87,6 @@ Recommended python install options for the user:
 ```powershell
 python-installer.exe /passive PrependPath=1 Include_doc=0 Include_test=0 SimpleInstall=1 SimpleInstallDescription="python for pytia"
 ```
-
-For convenience there is a powershell script that will install the required python version for you, see [assets/python_installer.ps1](assets/python_installer.ps1).
 
 ## 2 setup
 
@@ -137,34 +146,9 @@ You can find the documentation in the [docs folder](/docs).
 
 ## 3 usage
 
-Use the launcher (a.k.a the catvbs-file) to launch the app. On the first run all required dependencies will be installed:
-
-![Installer](assets/images/installer.png)
-
-After the installation the app starts automatically:
+For a complete overview of the apps functionality see the [usage](/docs/USAGE.md) readme file.
 
 ![App](assets/images/app.png)
-
-### 3.1 selection
-
-The selection area is for applying various settings to the bounding box calculation.
-
-- **Preset**: Apply a preset. By default there are various presets available. For a quick hint of what which preset does, hover with your mouse over the preset option menu.
-- **Axis**: The axis is relevant for some presets. For example the turning axis of a shaft.
-- **Offset**: The offset is the minimum value that will be applied to the parts minimum bounding box.
-- **Step**: The step is the value to which the offset will be rounded up to.
-- **Thickness**: Some presets allow a thickness parameter. It will be added to the resulting value. For example the thickness of a section profile.
-
-### 3.2 measured / selected
-
-The measured / selected area is for the user to compare the values of the exact bounding box and the calculated result. The results can be edited by the user, if the automatically created values won't fit the users needs.
-
-### 3.3 result
-
-The result area is for a last check before saving the bounding box value to the part-properties.
-
-- **Current value**: Shows an applied current bounding box value, if the app has been run before.
-- **New value**: Shows the newly calculated bounding box value. This input is tested against a filter. If the value doesn't pass the test, the user can hover over the input field to get an explanation why the new value doesn't match the filter criteria.
 
 ## 4 workspace
 
@@ -296,13 +280,13 @@ Documentation is done with [pdoc3](https://pdoc3.github.io/pdoc/).
 To update the documentation run:
 
 ```powershell
-python -m pdoc --html --output-dir docs pytia_bill_of_material
+python -m pdoc --html --output-dir docs pytia_bounding_box
 ```
 
 For preview run:
 
 ```powershell
-python -m pdoc --http : pytia_bill_of_material
+python -m pdoc --http : pytia_bounding_box
 ```
 
 ### 5.5 new revision checklist
@@ -330,6 +314,7 @@ On a new revision, do the following:
 
 ## 7 changelog
 
+[**v0.5.2**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.2): Update deps & docs.  
 [**v0.5.1**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.1): Update workspace.  
 [**v0.5.0**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.5.0): Add signs to settings json.  
 [**v0.4.3**](https://github.com/deloarts/pytia-bounding-box/releases/tag/v0.4.3): Fix logon (don't use pytia username).  
